@@ -2541,26 +2541,7 @@ $(function() {
         });
 
     });
-
-    $('#btn_copy').on('click', function(){
-
-        console.log('本文コピーの処理');
-
-        //　テキストエリアを選択
-        $('#url_text').select();
-        
-        // コピー
-        document.execCommand('copy');
-
-        swal({
-            title: "本文をコピーしました！",
-            text: "【control(Ctrl)+C】で貼付け可能です。",
-            icon: "success",
-            button: "OK!",
-        });
-
-    });
-
+    
     /**
      * 送信(申込URL発行)
      */
