@@ -1,0 +1,366 @@
+/*==================================
+動画全画面表示
+===================================*/
+.video-container {
+    margin: 0 auto;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.video-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+/* background: url(img/video.jpg) no-repeat center center/cover; */
+}
+
+video {
+    min-width: 100%;
+    min-height: 100vh;
+    position: absolute;
+}
+
+/*画面サイズが変わっても常に動画の中央が表示されるようにする*/
+/*動画よりも画面が横に長くなるとき用*/
+@media (aspect-ratio: 16/9), (min-aspect-ratio: 16/9) {
+video {
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+}
+
+/*動画よりも画面が縦に長くなるとき用*/
+@media (max-aspect-ratio: 16/9) {
+video {
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+}
+
+/* 動画背景をグレー */
+.overlay::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url(../img/top_img.png);
+}
+
+/*==================================
+動画上の文字設定(英語)
+===================================*/
+h1{
+    /*要素の配置*/
+    font-family: Roboto;
+    position:absolute;
+    /*要素を天地中央寄せ*/
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    /*見た目の調整*/
+    color:#fff;
+    text-shadow: 0 0 15px #666;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 6rem;
+}
+
+/* mobile画面になった時
+　 画面いっぱいの大きさにする */
+@media (max-width: 768px) {
+    h1{
+        /*要素の配置*/
+        font-family: Roboto;
+        position:absolute;
+        /*要素を天地中央寄せ*/
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        /*見た目の調整*/
+        color:#fff;
+        text-shadow: 0 0 15px #666;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 3rem;
+    }
+}
+
+/*==================================
+動画上の文字設定(日本語)
+===================================*/
+.top_font_jp{
+    font-size: 40px;
+}
+
+@media (max-width: 768px){
+    .top_font_jp {
+        font-size: 15px;
+    }
+}
+
+
+/*==================================
+じわっと文字を表示
+===================================*/
+/* 初期表示 見えなくする*/
+.catch{
+    lay: none;
+}
+
+.blur{
+    animation-name:blurAnime;
+    /* 文字を表示する時間 */
+    animation-duration:2s;
+    animation-fill-mode:forwards;
+    }
+
+    @keyframes blurAnime{
+    from {
+    filter: blur(10px);
+    transform: scale(1.02);
+    opacity: 0;
+    }
+
+    to {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+    }
+}
+
+.blurTrigger{
+    opacity: 0;
+}
+
+/* text */
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*==================================
+顧客情報、新着情報の文字設定
+===================================*/
+/* PC */
+.customer_list_jp{
+    font-size: 2rem;
+    color: #0082e2;
+}
+
+.customer_list_en{
+    font-size: 3rem;
+    font-weight: bold;
+    color: #0082e2;
+}
+
+.customer_list_right{
+    font-size: 1.5rem;
+    color: #0082e2;
+}
+
+/* リンクの文字色 */
+.customer_list_right > a {
+    color: #0082e2;
+    text-decoration: none;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+.customer_list_jp{
+    font-size: 1.5rem;
+}
+
+.customer_list_en{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.customer_list_right{
+    font-size: 1.2rem;
+    color: #0082e2;
+}
+}
+
+/*==================================
+新着通知
+===================================*/
+.ul_info{
+    width: 100%;
+}
+
+.li_info{
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: dashed 1px #87CEFA;
+}
+
+.day{
+    font-size: 1.2rem;
+}
+
+.label{
+    background-color:#0082e2;
+    border-radius: 3px;
+    color:#fff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-right: 5rem;
+}
+
+.text{
+    font-size: 1.2rem;
+    color: #8080a1;
+    /* テキストをはみ出した部分...に置換 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 新着情報の下線 */
+.info_border-bottom{
+    border-bottom: 1px dashed #d6d6d6!important;
+}
+
+@media (max-width: 768px){
+.offset-md-1 {
+    margin-left: 0;
+}
+
+.day{
+    font-size: 1rem;
+}
+
+.label{
+    font-size: 1rem;
+}
+
+.text{
+    font-size: 1rem;
+}
+}
+
+/*==================================
+マウスFocus時、下線描写
+===================================*/
+.contents_f_link_line {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #0082e2;
+}
+
+.contents_f_link_line::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #31aae2;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+}
+
+.contents_f_link_line:hover::after {
+    transform: scale(1, 1);
+}
+
+/*==================================
+顧客が存在しない(新規登録の設定)
+===================================*/
+/* 背景画像 */
+.bg-img {
+    background-image: url(../img/bg_home.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+/* 背景画像フィルタ */
+.bg_filter{
+    background-color: rgb(0 87 152 / 60%);
+}
+
+/* 親要素の固定 */
+.bg_contents{
+    height: 25rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.register_list_jp{
+    font-size: 1.5rem;
+    color: #0082e2;
+}
+
+.register_list_en{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0082e2;
+}
+
+.register_list_contents{
+    font-size: 1.5rem;
+}
+
+/* モバイル */
+@media (max-width: 768px){
+    .register_list_jp,
+    .register_list_en{
+    font-size: 1.5rem;
+    }
+
+    .register_list_contents{
+        font-size: 1rem;
+    }
+}
+
+/*==================================
+モーダル画面の設定
+===================================*/
+.modal_text_required{
+    color: red;
+    font-weight: bold;
+}
+
+/*==================================
+契約進捗状況のフラグ
+===================================*/
+.progress_blue_label{
+    background-color:#0082e2;
+    border-radius: 3px;
+    color:#fff;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.progress_pink_label{
+    background-color:#e889b7;
+    border-radius: 3px;
+    color:#fff;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

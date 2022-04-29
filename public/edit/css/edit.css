@@ -1,0 +1,36 @@
+.btn_box{
+    margin-top: 2rem;
+}
+
+hr{
+    margin-top: 2rem;
+}
+
+a {
+    text-decoration: none; 
+}
+
+/* ボタンでマウスクリック際の色変更の指定 */
+a:hover {
+    color: #ffffff;
+}
+
+/* ラベル(必須) */
+label.label_required:after {
+    padding: 0px 6px 0px 6px;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    color: white;
+    background-color: #C44;
+    content: "必須";
+}
+
+/* ラベル(任意) */
+label.label_Any:after {
+    padding: 0px 6px 0px 6px;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    color: white;
+    background-color: #5e5e5e;
+    content: "任意";
+}

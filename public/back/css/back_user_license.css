@@ -1,0 +1,34 @@
+/* テキストボックス、コンボボックスの文字の大きさ */
+.form-control, .form-select, .btn, .dropdown-menu{
+    font-size: 0.9rem;
+}
+/*-----------------------------お知らせ、アップデート情報-------------------------------------------------*/
+/* 行間 */
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+    padding: 10px;  /* 5px の値を変更 */
+}
+
+table, td, th {
+    /* 見出し線、テーブル線のカスタマイズ */
+    border-bottom: 1px solid #dee2e6!important;
+    /* はみ出た部分を隠す */
+    overflow: hidden;
+    /* 折り返し無し */
+    white-space: nowrap;
+}
+
+/* テーブル上のhrのmargin_bottom */
+.info_title{
+    font-size: 1.1rem;
+    color: #6c757d;
+    /* letter-spacing: 0.1rem; */
+}
+
+.icon_blue{
+    color: #98a4c7;
+}

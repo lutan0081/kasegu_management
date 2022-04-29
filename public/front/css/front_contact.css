@@ -1,0 +1,172 @@
+/*==================================
+全体の設定
+===================================*/
+body {
+    font-family: "Hiragino Sans";
+    letter-spacing: 0.1rem;
+}
+
+.container_fluid_w_80{
+    width: 80%;
+}
+
+.container_fluid_w_90{
+    width: 90%;
+}
+
+/* リンク下線削除 */
+a {
+    text-decoration:none;
+}
+
+/* リンクの色変更無効 */
+a:visited{
+    color: inherit;
+}
+
+/*==================================
+表題の設定
+===================================*/
+.top_box{
+    background-image: url(../img/contact.jpg);
+    background-size: cover;
+    background-position: center top 75%; 
+    background-attachment: fixed;
+    /* 親要素の高さ調整 */
+    height: 25rem;
+    /* センター寄せ */
+    position: relative;
+}
+
+.top_contents{
+    /* 子要素を半分にして上下センター表示 */
+    /* テキストセンター */
+    text-align: center;
+    /* センター寄せ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* 画像フィルタ */
+.top_img_filter {
+    width: 100%;
+    height:25rem;
+    background: rgba(0, 0, 0, 0.637);
+    text-align: center;
+    padding-top:200px;
+}
+
+/* タイトル(日本語) */
+.title_jp{
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+/* タイトル(英語) */
+.title_en{
+    font-size: 2.5rem;
+    letter-spacing: 0.8rem;
+    color: #fff;
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1rem;
+        padding-left: 0.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 1.5rem;
+        padding-left: 1.5rem;
+    }
+}
+
+/* ipad */
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 1rem;
+    }
+}
+
+/* ipadPro */
+@media screen and (min-width:1024px) and ( max-width:1366px) {
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 2rem;
+        padding-left: 1rem;
+    }
+}
+
+/*==================================
+ラベル(必須)
+===================================*/
+label.label_required:after {
+    padding: 0px 6px 0px 8px;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    color: white;
+    background-color: #C44;
+    content: "必須";
+}
+
+/* ラベル(任意) */
+label.label_any:after {
+    padding: 0px 6px 0px 8px;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+    color: white;
+    background-color: #5e5e5e;
+    content: "任意";
+}
+
+
+/*==================================
+下線描写(フォーカス)
+===================================*/
+.f_link_line {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.f_link_line::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #31aae2;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+}
+.f_link_line:hover::after {
+    transform: scale(1, 1);
+}
+
+/* 注意書き */
+.dangerous_text{
+    color: #C44;
+}

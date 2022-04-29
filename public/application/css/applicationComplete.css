@@ -1,0 +1,32 @@
+/* タイトルの設定 */
+h2 {
+  padding: 0 65px;
+  text-align: center;
+  margin: 2em;
+  font-weight: bold;
+}
+
+/* タイトルの設定 */
+.title{
+  /* margin-top: 2em; */
+  margin-bottom: 2em;
+}
+
+/* 本文の内容 */
+.text_contents{
+  text-align: center;
+}
+
+hr{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* ボックスを画面のセンターに表示 */
+.box_center{
+  height: 100vh;
+  /* 真ん中寄せ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,41 @@
+/* タイトルの両側に線を入れる */
+body {
+    font-family: "Hiragino Sans";
+    letter-spacing: 0.1rem;
+}
+
+h2 {
+    padding: 0 65px;
+    text-align: center;
+    margin: 2em;
+    font-weight: bold;
+}
+
+/* タイトルの設定 */
+.title{
+    /* margin-top: 2em; */
+    margin-bottom: 2em;
+}
+
+/* 本文の内容 */
+.text_contents{
+    text-align: left;
+}
+
+hr{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* 注意事項 */
+.danger_info{
+    color: red;
+}
+
+.box_center{
+    height: 100vh;
+    /* 真ん中寄せ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

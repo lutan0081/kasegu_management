@@ -1,0 +1,18 @@
+/* テーブル上のhrのmargin_bottom */
+.info_title{
+    font-size: 1.1rem;
+    color: #6c757d;
+    /* letter-spacing: 0.1rem; */
+}
+
+.icon_blue{
+    color: #98a4c7;
+}
+
+.btn-default{
+    width: 6rem;
+}
+
+.text_red{
+    color: red;
+}

@@ -1,0 +1,178 @@
+/*==================================
+全体の設定
+===================================*/
+body {
+    font-family: "Hiragino Sans";
+    letter-spacing: 0.1rem;
+}
+
+.container_fluid_w_80{
+    width: 80%;
+}
+
+.container_fluid_w_90{
+    width: 90%;
+}
+
+/* リンク下線削除 */
+a {
+    text-decoration:none;
+}
+
+/* リンクの色変更無効 */
+a:visited{
+    color: inherit;
+}
+
+/*==================================
+表題の設定
+===================================*/
+.top_box{
+    background-image: url(../img/info.jpg);
+    background-size: cover;
+    background-position: center top 85%;
+    background-attachment: fixed;
+    /* 親要素の高さ調整 */
+    height: 25rem;
+    /* センター寄せ */
+    position: relative;
+}
+
+.top_contents{
+    /* 子要素を半分にして上下センター表示 */
+    /* テキストセンター */
+    text-align: center;
+    /* センター寄せ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* 画像フィルタ */
+.top_img_filter {
+    width: 100%;
+    height:25rem;
+    background: rgba(0, 0, 0, 0.637);
+    text-align: center;
+    padding-top:200px;
+}
+
+/* タイトル(日本語) */
+.title_jp{
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+/* タイトル(英語) */
+.title_en{
+    font-size: 2.5rem;
+    letter-spacing: 1rem;
+    color: #fff;
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1rem;
+        padding-left: 0.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 1.5rem;
+        padding-left: 1.5rem;
+    }
+}
+
+/* ipad */
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 1rem;
+    }
+}
+
+/* ipadPro */
+@media screen and (min-width:1024px) and ( max-width:1366px) {
+    /* タイトル(日本語) */
+    .title_jp{
+        font-size: 1.5rem;
+    }
+
+    /* タイトル(英語) */
+    .title_en{
+        font-size: 2rem;
+        padding-left: 1rem;
+    }
+}
+
+/*==================================
+内容の設定
+===================================*/
+.card_bg_contents{
+    background-color: #f5f5f5;
+}
+
+.card_img{
+    width: 100%;
+}
+
+.card_date{
+    font-weight: bold;
+    color: #817d7d;
+}
+
+.card_head{
+    font-weight: bold;
+    /* 超過分... */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 25rem;
+    text-overflow: ellipsis;
+}
+
+.card_contents{
+    font-weight: bold;
+    color: #817d7d;
+    
+    /* 超過分... */
+    overflow: hidden;
+    white-space: nowrap;
+    /* インラインの要素の大きさの指定が必要... */
+    width: 25rem;
+    text-overflow: ellipsis;
+}
+
+/* スマホ */
+@media (max-width: 768px){
+    /* インラインの要素の大きさの指定が必要... */
+    .card_head{
+        width: 13rem;
+    }
+
+    .card_contents{
+        width: 13rem;
+    }
+}
+
+/* ipadPro */
+@media screen and (min-width:1024px) and ( max-width:1366px) {
+    /* インラインの要素の大きさの指定が必要... */
+    .card_head{
+        width: 12rem;
+    }
+
+    .card_contents{
+        width: 12rem;
+    }
+}

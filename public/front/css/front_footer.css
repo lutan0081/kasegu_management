@@ -1,0 +1,118 @@
+footer{
+    font-family: "Hiragino Sans";
+    background-color: #393939;
+    text-align: center;
+    /* 文字左右間隔 */
+    letter-spacing: 0.1rem;
+}
+
+/* リスト */
+footer li{
+    color:#ffffff;
+    padding:10px;
+    text-decoration:none;
+}
+
+/* sns */
+.footer_sns{
+    background-color:#393939;
+}
+footer li a:hover {
+    color: #7dabdb !important;
+}
+
+/* アイコンの設定 */
+.fa.fa-facebook , 
+.fa.fa-twitter, 
+.fa.fa-instagram , 
+.fa.fa-github , 
+.fa.fa-linkedin ,
+.fa.fa-google-plus , 
+.fa.fa-tumblr {
+    color: #ffffff;
+    font-size: 23px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* padding: 15px; */
+    /* padding-bottom: 3rem; */
+}
+
+/* アイコンの設定(foucus時) */
+.fa.fa-facebook:hover, 
+.fa.fa-twitter:hover,
+.fa.fa-instagram:hover,
+.fa.fa-github:hover, 
+.fa.fa-linkedin:hover,
+.fa.fa-google-plus:hover, 
+.fa.fa-tumblr:hover {
+    color: #6794c2;
+}
+
+/* 著作権の表示 */
+.copyright {
+    font-size: 15px;
+    color: #ffffff;
+    margin-top: 3rem;
+}
+
+/*==================================
+マウスFocus時、下線描写
+===================================*/
+.f_link_line {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.f_link_line::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #31aae2;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+}
+.f_link_line:hover::after {
+    transform: scale(1, 1);
+}
+
+/*==================================
+ロゴの設定
+===================================*/
+/* ロゴのボックスのサイズ */
+.fotter_icon {
+    width: 15%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+    /* レスポンシブのロゴサイズ */
+@media (max-width: 768px) {
+    .fotter_icon {
+        width: 60%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    /* 著作権の表示 */
+    .copyright {
+        font-size: 10px;
+        color: #ffffff;
+    }
+
+    /* sns_icon */
+    .fa.fa-facebook , 
+    .fa.fa-twitter, 
+    .fa.fa-instagram , 
+    .fa.fa-github , 
+    .fa.fa-linkedin ,
+    .fa.fa-google-plus , 
+    .fa.fa-tumblr {
+        padding: 10px;
+    }
+}
