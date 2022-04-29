@@ -15,7 +15,7 @@
 
             /* ボタンデフォルト値 */
             .btn-default{
-                width: 7rem;
+                width: 6rem;
             }
 
             .card-body {
@@ -206,7 +206,7 @@
                                                     <div class="row row-cols-2">
 
                                                         <!-- 個人又は法人 -->
-                                                        <div class="col-5 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>個人又は法人
                                                             <select class="form-select" name="private_or_company_id" id="private_or_company_id" required>
                                                                 <option></option>
@@ -223,7 +223,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 申込区分 -->
-                                                        <div class="col-5 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>申込区分
                                                             <select class="form-select" name="application_type_id" id="application_type_id" required>
                                                                 <option></option>
@@ -237,7 +237,7 @@
                                                         </div>
 
                                                         <!-- 物件用途 -->
-                                                        <div class="col-5 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>物件用途
                                                             <select class="form-select" name="application_use_id" id="application_use_id" required>
                                                                 <!-- タグ内に値を追加、値追加後同一の場合選択する -->
@@ -252,13 +252,13 @@
                                                         </div>
 
                                                         <!-- 入居予定日 -->
-                                                        <div class="col-6 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>入居予定日
                                                             <input type="text" class="form-control" name="contract_start_date" id="contract_start_date" value="{{ $app_list->contract_start_date }}" placeholder="例：xxxx年xx月xx日" required>
                                                             <div class="trade-tab invalid-feedback" id ="contract_start_date_error"></div>
                                                         </div>
 
-                                                        <div class="col-6 col-md-8 col-lg-12 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-12 mt-3">
                                                             <hr>
                                                         </div>
 
@@ -702,7 +702,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 性別 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-6 col-lg-2 mt-3">
                                                             <label class="label_any mb-2" for="textBox"></label>性別
                                                             <select class="form-select" name="housemate_sex_id" id="housemate_sex_id" disabled>
                                                                 <option></option>
@@ -714,7 +714,7 @@
                                                         </div>
 
                                                         <!-- 続柄 -->
-                                                        <div class="col-8 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-6 col-lg-2 mt-3">
                                                             <label class="label_any mb-2" for="textBox"></label>続柄
                                                                 <select class="form-select" name="housemate_link_id" id="housemate_link_id" disabled>
                                                                 <option></option>
@@ -727,7 +727,7 @@
                                                         </div>
 
                                                         <!-- 生年月日 -->
-                                                        <div class="col-6 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_any mb-2" for="textBox"></label>生年月日
                                                             <input type="text" class="form-control" name="housemate_birthday" id="housemate_birthday" value="" placeholder="例：xxxx年xx月xx日" disabled>
                                                             <div class="housemate-tab invalid-feedback" id ="housemate_birthday_error"></div>
@@ -864,7 +864,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 性別 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-6 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>性別
                                                             <select class="form-select" name="emergency_sex_id" id="emergency_sex_id" required>
                                                                 <option></option>
@@ -878,7 +878,7 @@
                                                         </div>
 
                                                         <!-- 続柄 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-6 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>続柄
                                                             <select class="form-select" name="emergency_link_id" id="emergency_link_id" required>
                                                                 <option></option>
@@ -895,7 +895,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 生年月日 -->
-                                                        <div class="col-6 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>生年月日
                                                             <input type="text" class="form-control" name="emergency_birthday" id="emergency_birthday" value="{{ $app_list->emergency_birthday }}" placeholder="例：xxxx年xx月xx日" required>
                                                             <div class="emergency-tab invalid-feedback" id ="emergency_birthday_error">
@@ -904,7 +904,7 @@
                                                         </div>
 
                                                         <!-- 年齢 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>年齢
                                                             <input type="number" class="form-control" name="emergency_age" id="emergency_age" value="{{ $app_list->emergency_age }}" style="text-align:right" placeholder="例：30" required>
                                                             <div class="emergency-tab invalid-feedback" id ="emergency_age_error">
@@ -937,7 +937,7 @@
                                                         </div>
 
                                                         <!-- 電話番号 -->
-                                                        <div class="col-6 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>電話番号
                                                             <input type="text" class="form-control" name="emergency_home_tel" id="emergency_home_tel" value="{{ $app_list->emergency_home_tel }}" placeholder="例：080-xxxx-xxxx" required>
                                                             <div class="emergency-tab invalid-feedback" id ="emergency_home_tel_error">
@@ -946,7 +946,7 @@
                                                         </div>
 
                                                         <!-- 電話番号2 -->
-                                                        <div class="col-6 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_any mb-2" for="textBox"></label>電話番号2
                                                             <input type="text" class="form-control" name="emergency_mobile_tel" id="emergency_mobile_tel" value="{{ $app_list->emergency_mobile_tel }}" placeholder="例：080-xxxx-xxxx">
                                                             <div class="emergency-tab invalid-feedback" id ="emergency_mobile_tel_error">
@@ -962,7 +962,7 @@
                                                     <div class="row row-cols-2">
 
                                                         <!-- 連帯保証人の有無 -->
-                                                        <div class="col-5 col-md-12 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>連帯保証人の有無
                                                             <select class="form-select" name="guarantor_flag" id="guarantor_flag" required>
                                                                 <option></option>
@@ -975,7 +975,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-5 col-md-12 col-lg-3 d-flex align-items-end">
+                                                        <div class="col-12 col-md-12 col-lg-3 d-flex align-items-end">
                                                             <div class="form-check">
                                                                 <input class="form-check-input guarantor_disable_flag" type="checkbox" value="" id="cb_emergency">
                                                                 <label class="form-check-label" for="flexCheckDefault">
@@ -984,7 +984,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-6 col-md-8 col-lg-12 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-12 mt-3">
                                                             <hr>
                                                         </div>
 
@@ -1007,7 +1007,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 性別 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>性別
                                                             <select class="form-select guarantor_disable_flag" name="guarantor_sex_id" id="guarantor_sex_id">
                                                                 <option></option>
@@ -1019,7 +1019,7 @@
                                                         </div>
 
                                                         <!-- 続柄 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>続柄
                                                             <select class="form-select guarantor_disable_flag" name="guarantor_link_id" id="guarantor_link_id" value="">
                                                                 <option></option>
@@ -1041,7 +1041,7 @@
                                                         </div>
 
                                                         <!-- 年齢 -->
-                                                        <div class="col-4 col-md-12 col-lg-2 mt-3">
+                                                        <div class="col-6 col-md-12 col-lg-2 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>年齢
                                                             <input type="number" class="form-control guarantor_disable_flag" name="guarantor_age" id="guarantor_age" value="{{ $app_list->guarantor_age }}" style="text-align:right" placeholder="例：40">
                                                             <div class="guarantor-tab invalid-feedback" id ="guarantor_age_error"></div>
@@ -1206,7 +1206,7 @@
                                                         <div class="w-100"></div>
 
                                                         <!-- 種別 -->
-                                                        <div class="col-6 col-md-6 col-lg-3 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-3 mt-3">
                                                             <label class="mb-2">ファイル種別</label>
                                                             <select class="form-select" name="img_type" id="img_type">
                                                                 <option selected></option>
@@ -1229,7 +1229,7 @@
 
                                                         <!-- 画像ファイル -->
                                                         @if(count($img_list) > 0)
-                                                            <div class="col-6 col-md-12 col-lg-12 mt-4">
+                                                            <div class="col-12 col-md-12 col-lg-12 mt-4">
 
                                                                 <!-- タイトル -->
                                                                 <i class="fas fa-file icon_blue me-2"></i>付属書類
@@ -1238,7 +1238,7 @@
                                                                 <div class="row">
                                                                     
                                                                     @foreach($img_list as $imgs)
-                                                                        <div class="col-6 col-md-12 col-lg-4 mt-3 mb-2">
+                                                                        <div class="col-12 col-md-12 col-lg-4 mt-3 mb-2">
                                                                             <div class="card" style="min-height:25rem;">
                                                                                 
                                                                                 <img src="storage/{{ $imgs->img_path }}" class="card-img-top">
@@ -1289,7 +1289,7 @@
                                             <div class="btn-group" role="group">
                                                 <button type="button" id="btn_delete" class="btn btn-outline-danger btn-default">削除</button>
                                                 <button type="button" id="btn_app" class="btn btn-outline-primary btn-default">契約に進む</button>
-                                                <button type="button" id="btn_url_again" class="btn btn-outline-primary btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">申込URL発行</button>
+                                                <button type="button" id="btn_url_again" class="btn btn-outline-primary btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">URL発行</button>
                                             </div>
                                         </div>
                                         <!-- 削除 -->
@@ -1406,7 +1406,7 @@
                             <!-- ヘッダー -->
                             <div class="modal-header">
                                 <div class="modal-title info_title" id="exampleModalLabel">
-                                    <i class="fas fa-paper-plane icon_blue me-2"></i>申込URL発行
+                                    <i class="fas fa-paper-plane icon_blue me-2"></i>URL発行
                                 </div>
 
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

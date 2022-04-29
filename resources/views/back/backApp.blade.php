@@ -15,7 +15,7 @@
 
             /* ボタンデフォルト値 */
             .btn-default{
-                width: 7rem;
+                width: 6rem;
             }
 
             /* 一覧の左右に余白が出来るため、0に設定 */
@@ -218,7 +218,7 @@
                                 <div class="col-12 col-md-6 col-lg-6">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-outline-primary float-start btn-default">CSV出力</button>
-                                        <button type="button" class="btn btn-outline-primary float-start btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">申込URL発行</button>
+                                        <button type="button" class="btn btn-outline-primary float-start btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">URL発行</button>
                                     </div>
                                 </div>
                                 <!-- 新規、編集 -->
