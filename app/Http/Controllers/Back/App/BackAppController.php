@@ -268,7 +268,7 @@ class BackAppController extends Controller
      *
      * @return void
      */
-    public function backAppNewInit(){
+    public function backAppNewInit(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -278,7 +278,6 @@ class BackAppController extends Controller
 
             // 入居者一覧取得(空配列)
             $houseMate_list = [];
-            // dd($houseMate_list);
 
             // 写真一覧取得(空配列)
             $img_list = [];
@@ -314,6 +313,9 @@ class BackAppController extends Controller
 
             // 保証会社一覧
             $guarantee_companies = $common->getGuaranteeCompanies();
+
+            // ユーザ情報
+            // $users = $common->getUserList($request)[0];
 
         // 例外処理
         } catch (\Exception $e) {
@@ -363,7 +365,7 @@ class BackAppController extends Controller
         $obj->key_fee = '';
         $obj->refund_fee = '';
         $obj->rent_fee = '';
-        $obj->security_fee = '';
+        $obj->service_fee = '';
         $obj->water_fee = '';
         $obj->ohter_fee = '';
         $obj->total_fee = '';
@@ -2470,9 +2472,6 @@ class BackAppController extends Controller
             
             // returnのステータスにtrueを設定
             $ret['status'] = $img_info['status'];
-
-            // 登録完了のメール送信
-            
 
             // コミット
             DB::commit();

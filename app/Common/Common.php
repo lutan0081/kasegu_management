@@ -743,6 +743,45 @@ class Common
     }
 
     /**
+     * 銀行一覧取得
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function getUserList($request){
+
+        Log::debug('log_start:'.__FUNCTION__);
+
+        try{
+
+            // session_id
+            $session_id = $request->session()->get('create_user_id');
+            Log::debug('$session_id:' .$session_id);
+
+            $str = "select "
+            ."* "
+            ."from "
+            ."create_users "
+            ."where "
+            ."create_users.create_user_id = '$session_id' ";
+            Log::debug('$sql:' .$str);
+
+            $ret = DB::select($str);
+
+        }catch(\Throwable $e) {
+
+            throw $e;
+
+        }finally{
+
+        };
+
+        Log::debug('log_end:'.__FUNCTION__);
+
+        return $ret;
+    }
+
+    /**
      * 日付fフォーマット(年月日)
      * {{ Common::format_date($update->create_date,'Y年m月d日') }}
      * @return return date('Y/m/d', strtotime($date));

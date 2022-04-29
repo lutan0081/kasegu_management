@@ -116,6 +116,9 @@ class LoginController extends Controller
                 // アカウント名
                 $request->session()->put('create_user_name',$data[0]->create_user_name);
 
+                // メールアドレス
+                $request->session()->put('create_user_mail',$data[0]->create_user_mail);
+
                 // ture=自動フラグ設定
                 if($auto_login_flag == "true"){
 

@@ -2510,6 +2510,14 @@ class FrontAppController extends Controller
             // returnのステータスにtrueを設定
             $ret['status'] = $img_info['status'];
 
+            /**
+             * 登録後メールで通知
+             */
+            $mail_info = $this->completeMail($request);
+            
+            // returnのステータスにtrueを設定
+            $ret['status'] = $mail_info['status'];
+
             // コミット
             DB::commit();
 
@@ -3462,6 +3470,89 @@ class FrontAppController extends Controller
             return $ret;
 
         }
+    }
+
+    /**
+     * 登録後の完了メール送信
+     *
+     * @param Request $request
+     * @return void
+     */
+    private function completeMail(Request $request){
+
+        Log::debug('log_start:'.__FUNCTION__);
+
+        $ret = [];
+
+        /**
+         * 値取得
+         */
+        //　自身のメールアドレスをconfigファイルから取得(key:address)
+        $from = config('mail.from');
+        $from = $from['address'];
+
+        /**
+         * ユーザ情報取得
+         */
+        $create_user_id = $request->input('session_id');
+        Log::debug('create_user_id:'.$create_user_id);
+
+        $str = "select "
+        ."* "
+        ."from "
+        ."create_users "
+        ."where "
+        ."create_users.create_user_id = '$create_user_id' ";
+        Log::debug('$sql:' .$str);
+
+        $user_info = DB::select($str)[0];
+
+        // アカウント名
+        $create_user_name = $user_info->create_user_name;
+
+        // メールアドレス
+        $create_user_mail = $user_info->create_user_mail;
+
+        // 物件名
+        $real_estate_name = $request->input('real_estate_name');
+
+        // 号室
+        $room_name = $request->input('room_name');
+
+        // 不動産id
+        $application_id = $request->input('application_id');
+        
+        // URL発行
+        $url = url("/backAppEditInit?create_user_id=" .$create_user_id ."&application_id=$application_id");
+
+        // 本文設定
+        $mail_text = "──────────────────────────────────────────────────────────────────────\n"
+        ."本メールは KASEGU をご利用いただいている方に自動配信しています。\n"
+        ."──────────────────────────────────────────────────────────────────────\n"
+        ."$create_user_name "
+        ."様\n\n"
+        ."KASEGUをご利用いただき、誠にありがとうございます。\n"
+        ."下記物件の登録・編集がありました。\n\n"
+        ."物件名：$real_estate_name\n"
+        ."号室：$room_name\n\n"
+        ."$url\n\n"
+        ."────────────────────────────────────────────────────────────────────────────\n"
+        ."URLを閲覧出来なかった場合、システム管理者にご連絡ください。\n"
+        ."────────────────────────────────────────────────────────────────────────────\n";
+
+        // メール設定
+        Mail::raw($mail_text, function($message) use($create_user_mail,$from){
+
+            $message->to($create_user_mail)
+            ->from($from)
+            ->subject("【登録・変更のお知らせ】申込一覧/KASEGU");
+
+        });
+
+        $ret['status'] = 1;
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret;
     }
 
     /**
