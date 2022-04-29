@@ -16,16 +16,21 @@ $(function() {
 
         // 送信用データ設定
         let sendData = {
+
             "auto_login_flag": auto_login_flag,
             "mail_request": mail_request,
             "password_request": password_request
+
         };
         console.log(sendData);
         
         $.ajaxSetup({
+
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+        
         });
         $.ajax({
+
             type: 'post',
             url: 'loginApi',
             dataType: 'json',
@@ -33,6 +38,7 @@ $(function() {
         
         // 接続が出来た場合の処理
         }).done(function(data) {
+
             // trueの場合ログイン
             console.log(data);
             
@@ -40,15 +46,19 @@ $(function() {
              * admin = trueの場合、管理画面に遷移
              */
             if(data.admin == true){
-                location.href = 'adminInit'
+
+                location.href = 'adminHomeInit'
                 return false;
+
             }else{
                 /**
                  * status = trueの場合、一般画面に遷移
                  */
                 if(data.status == true){
+
                     location.href = 'backHomeInit';
                     return false;
+                    
                 }else{
                     /**
                      * falseの処理

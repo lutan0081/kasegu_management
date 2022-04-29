@@ -29,7 +29,7 @@
                 </span>
 
                 <span class="user-role">
-                    Members
+                    Administrator
                 </span>
 
                 <span class="user-status">
@@ -41,7 +41,6 @@
 
         </div>
         <!-- sidebar-header  -->
-
 
         <!-- sidebar-menu  -->
         <div class="sidebar-menu">
@@ -56,7 +55,7 @@
 
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fas fa-id-card me-2"></i>
+                        <i class="fas fa-id-card"></i>
                         <span>申込管理</span>
                         <span class="badge badge-pill badge-danger"></span>
                     </a>
@@ -71,7 +70,7 @@
 
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fas fa-key me-2"></i>
+                        <i class="fas fa-key"></i>
                         <span>契約管理</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -98,6 +97,52 @@
                         <ul>
                             <li>
                                 <a href="adminUserInit">ファイル一覧</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>アカウント管理</span>
+                        <span class="badge badge-pill badge-danger"></span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="#">アカウント一覧</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>ライフライン管理</span>
+                        <span class="badge badge-pill badge-danger"></span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="#">ライフライン一覧</a>
+                                <a href="#">提携業者一覧</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fas fa-bell"></i>
+                        <span>新着情報</span>
+                        <span class="badge badge-pill badge-danger"></span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="#">新着情報一覧</a>
                             </li>
                         </ul>
                     </div>

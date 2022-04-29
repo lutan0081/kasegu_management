@@ -238,6 +238,12 @@ Route::get('excelEntryDummy', 'Common\ExcelController@excelEntryDummy')->middlew
 Route::get('backApplicationExcelEntry', 'Common\ExcelController@backApplicationExcelEntry')->middleware("kasegu_auth");
 
 /**
+ * admin(管理者)
+ */
+Route::get('adminHomeInit', 'Admin\Home\AdminHomeController@adminHomeInit')->middleware("kasegu_auth");;
+
+
+/**
  * テスト
  */
 // 表示

@@ -2,14 +2,14 @@
 <html lang="ja">
 
 	<head>
-		<title>ホーム/管理画面</title>
+		<title>ホーム/Admin</title>
 
 		<!-- head -->
 		@component('component.back_head')
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('back/css/back_home.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_home.css') }}">  
 		
         <style>
 
@@ -34,7 +34,7 @@
 		
 
 		<!-- sidebar-wrapper  -->
-		@component('component.back_sidebar')
+		@component('component.admin_sidebar')
 		@endcomponent
 		<!-- sidebar-wrapper  -->
 		
@@ -60,15 +60,15 @@
                                         <div class="row">
 
                                             <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                <span class="dashboard_box_title"><i class="fas fa-id-card me-2"></i>申込管理</span> 
+                                                <span class="dashboard_box_title"><i class="fas fa-laptop me-2"></i></i>アクセス</span> 
                                             </div>
                                             
                                             <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                入居審査中: <span class="count dashboard_box_num">{{ $app_judgment_list->app_count }}</span>
+                                                本日: <span class="count dashboard_box_num">1111111111111</span>
                                             </div>
 
                                             <div class="col-12 col-md-12 col-lg-12">
-                                                申込件数: <span class="count dashboard_box_num">{{ $app_list->app_count }}</span>
+                                                合計: <span class="count dashboard_box_num">1111111111111</span>
                                             </div>
                                             
                                         </div>
@@ -85,15 +85,11 @@
                                         <div class="row">
 
                                             <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                <span class="dashboard_box_title"><i class="fas fa-key me-2"></i>契約管理</span> 
+                                                <span class="dashboard_box_title"><i class="fas fa-user me-2"></i>アカウント</span> 
                                             </div>
                                             
                                             <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                契約手続中: <span class="count dashboard_box_num">{{ $contract_judgment_list->contract_count }}</span>
-                                            </div>
-
-                                            <div class="col-12 col-md-12 col-lg-12">
-                                                契約件数: <span class="count dashboard_box_num">{{ $contract_list->contract_count }}</span>
+                                                アカウント数: <span class="count dashboard_box_num">1111111111111</span>
                                             </div>
                                             
                                         </div>
@@ -110,11 +106,15 @@
                                         <div class="row">
 
                                             <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                <span class="dashboard_box_title"><i class="fas fa-file me-2"></i>ファイル管理</span> 
+                                                <span class="dashboard_box_title"><i class="fas fa-chart-line me-2"></i>ライフライン</span> 
                                             </div>
                                             
                                             <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                ファイル数: <span class="count dashboard_box_num">{{ $img_list->img_count }}</span>
+                                                承認: <span class="count dashboard_box_num">1111111111111</span>
+                                            </div>
+
+                                            <div class="col-12 col-md-12 col-lg-12">
+                                                否認: <span class="count dashboard_box_num">1111111111111</span>
                                             </div>
                                             
                                         </div>
@@ -131,11 +131,15 @@
                                         <div class="row">
 
                                             <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                <span class="dashboard_box_title"><i class="fas fa-bell me-2"></i>新着情報</span> 
+                                                <span class="dashboard_box_title"><i class="fas fa-id-card me-2"></i></i>申込管理</span> 
                                             </div>
                                             
                                             <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                新着情報数: <span class="count dashboard_box_num">{{ $information_count_list->informations_count }}</span>
+                                                契約手続中: <span class="count dashboard_box_num">1111111111111</span>
+                                            </div>
+
+                                            <div class="col-12 col-md-12 col-lg-12">
+                                                契約件数: <span class="count dashboard_box_num">1111111111111</span>
                                             </div>
 
                                         </div>
@@ -150,6 +154,17 @@
                                     <!-- 子要素cssで95%に設定し、mx-autoで中央に配置 -->
                                     <div class="col-12 col-md-12 col-lg-12 dashboard_box_inner_5 mx-auto">
                                         <div class="row">
+                                            <div class="col-12 col-md-12 col-lg-12 pt-5">
+                                                <span class="dashboard_box_title"><i class="fas fa-key me-2"></i></i></i>契約管理</span> 
+                                            </div>
+
+                                            <div class="col-12 col-md-12 col-lg-12 pt-2">
+                                                契約件数: <span class="count dashboard_box_num">1111111111111</span>
+                                            </div>
+
+                                            <div class="col-12 col-md-12 col-lg-12">
+                                                キャンセル: <span class="count dashboard_box_num">1111111111111</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +176,14 @@
                                 <div class="row">
                                     <!-- 子要素cssで95%に設定し、mx-autoで中央に配置 -->
                                     <div class="col-12 col-md-12 col-lg-12 dashboard_box_inner_6 mx-auto">
-                                        <div class="row">           
+                                        <div class="row">
+                                            <div class="col-12 col-md-12 col-lg-12 pt-5">
+                                                <span class="dashboard_box_title"><i class="fas fa-file me-2"></i>ファイル</span> 
+                                            </div>
+
+                                            <div class="col-12 col-md-12 col-lg-12 pt-2">
+                                                ファイル数: <span class="count dashboard_box_num">1111111111</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -223,15 +245,6 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($res as $information)
-                                            <tr>
-                                                <td td id="id_{{ $information->information_id }}" class="click_class" style="display:none"></td>
-                                                <td td id="cb_{{ $information->information_id }}" class="click_class"><input id="check_box" class="form-check-input btn_radio" type="radio" name="flexRadioDisabled"></td>
-                                                <td td id="title_{{ $information->information_id }}" class="click_class">{{ $information->information_title }}</td>
-                                                <td td id="contents_{{ $information->information_id }}" class="click_class">{{ $information->information_contents }}</td>
-                                                <td td id="date_{{ $information->information_id }}" class="click_class">{{ $information->update_date }}</td>
-                                            </tr>
-                                        @endforeach
                                     </tbody>
 
                                 </table>
@@ -241,7 +254,7 @@
 
                     <!-- ぺージネーション -->   
                     <div id="links" style="display:none;" class="mt-3">
-                        {{ $res->links() }}
+                    
                     </div>
 
                 </div>
@@ -259,7 +272,7 @@
 		@endcomponent
 
 		<!-- 自作js -->
-		<script src="{{ asset('back/js/back_home.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_home.js') }}"></script>
 	</body>
 	
 </html>

@@ -140,22 +140,31 @@ class LoginController extends Controller
                 $admin_user_flag = $data[0]->admin_user_flag;
                 Log::debug('admin_user_flag:' .$admin_user_flag);
 
-                // admin_user_flag=1:管理ユーザ/admin_user_flag=0:一般ユーザ
+                /**
+                 * admin_user_flag=1:管理ユーザ
+                 * admin_user_flag=0:一般ユーザ
+                 */
                 if($admin_user_flag == 1){
+
                     Log::debug('管理ユーザの場合の処理');
 
                     $response["admin"] = true;
 
-                    $response["status"] = false;  
+                    $response["status"] = false;
+    
                 }else{
+
                     Log::debug('一般ユーザの場合の処理');
 
                     $response["admin"] = false;
 
-                    $response["status"] = true;  
+                    $response["status"] = true;
+
                 }
+                
             // データ数が存在しない場合の処理 
             }else{
+                
                 // ログイン判定フラグ
                 $response["admin"] = false;
 
@@ -191,7 +200,7 @@ class LoginController extends Controller
         // sql
         $str = "insert "
         ."into "
-        ."kasegu_management.accesses( "
+        ."accesses( "
         ."ip_address, "
         ."create_date)values( "
         ."'$ip', "
