@@ -240,7 +240,10 @@ Route::get('backApplicationExcelEntry', 'Common\ExcelController@backApplicationE
 /**
  * admin(管理者)
  */
+// ホーム画面
 Route::get('adminHomeInit', 'Admin\Home\AdminHomeController@adminHomeInit')->middleware("kasegu_auth");;
+
+Route::any('adminInformationInit', 'Admin\Information\AdminInformationController@adminInformationInit')->middleware("kasegu_auth");;
 
 
 /**

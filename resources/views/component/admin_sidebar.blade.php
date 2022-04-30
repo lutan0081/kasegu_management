@@ -47,7 +47,7 @@
             <!-- 親要素ul -->
             <ul>
                 <li>
-                    <a href="backHomeInit">
+                    <a href="adminHomeInit">
                         <i class="fas fa-laptop-house"></i>
                         <span>ホーム</span>
                     </a>
@@ -142,7 +142,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="#">新着情報一覧</a>
+                                <a href="adminInformationInit">新着情報一覧</a>
                             </li>
                         </ul>
                     </div>

@@ -56,7 +56,7 @@
 
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fas fa-id-card me-2"></i>
+                        <i class="fas fa-id-card"></i>
                         <span>申込管理</span>
                         <span class="badge badge-pill badge-danger"></span>
                     </a>
@@ -71,7 +71,7 @@
 
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fas fa-key me-2"></i>
+                        <i class="fas fa-key"></i>
                         <span>契約管理</span>
                     </a>
                     <div class="sidebar-submenu">

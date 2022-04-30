@@ -35,6 +35,9 @@ class AdminHomeController extends Controller
 
         try {
 
+            // 新着情報
+            $information_list = $this->getInformationList($request);
+
             // // 申込件数
             // $app_info = $this->getAppList($request);
             // $app_list = $app_info[0];
@@ -55,9 +58,6 @@ class AdminHomeController extends Controller
             // $img_info = $this->getImgList($request);
             // $img_list = $img_info[0];
 
-            // // 新着情報
-            $information_list = $this->getInformationList($request);
-
         // 例外処理
         } catch (\Exception $e) {
 
@@ -68,7 +68,7 @@ class AdminHomeController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('admin.adminHome',compact('information_list'));
+        return view('admin.adminHome',$information_list);
     }
 
     /**
@@ -184,7 +184,19 @@ class AdminHomeController extends Controller
         // session_id
         $session_id = $request->session()->get('create_user_id');
         
-        $str = "select * from informations ";
+        $str = "select "
+        ."informations.information_id, "
+        ."informations.information_title, "
+        ."informations.information_type_id, "
+        ."information_types.information_type_name, "
+        ."informations.information_contents , "
+        ."informations.entry_user_id, "
+        ."informations.entry_date, "
+        ."informations.update_user_id, "
+        ."informations.update_date "
+        ."from informations "
+        ."left join information_types "
+        ."on information_types.information_type_id = informations.information_type_id ";
         Log::debug('$sql:' .$str);
 
         // query
