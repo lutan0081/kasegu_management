@@ -209,30 +209,55 @@ class AdminInformationController extends Controller
      * @param Request $request(フォームデータ)
      * @return
      */
-    public function backLegalPlaceEditInit(Request $request){   
-        Log::debug('start:' .__FUNCTION__);
+    public function adminInformationEditInit(Request $request){ 
+        
+        Log::debug('log_start:'.__FUNCTION__);
 
-        try {
-                    
+        try{
+
+            // return初期値
+            $response = [];
+
             // 一覧取得
-            $legal_place_info = $this->getEditList($request);
-            $legal_place_list = $legal_place_info[0];
+            $information_info = $this->getEditList($request);
+
+            // jtrue:OK/false:NG
+            $response['status'] = $information_info['status'];
+
+            // information_list
+            $response['information_list'] = $information_info['information_list'];
 
         // 例外処理
         } catch (\Throwable $e) {
 
-            Log::debug('error:'.$e);
+            Log::debug(__FUNCTION__ .':' .$e);
 
+            $response['status'] = 0;
+
+        // status:OK=1/NG=0
         } finally {
+
+            if($response['status'] == 1){
+
+                Log::debug('status:trueの処理');
+
+                $response['status'] = true;
+
+            }else{
+
+                Log::debug('status:falseの処理');
+                
+                $response['status'] = false;
+            }
 
         }
 
-        Log::debug('end:' .__FUNCTION__);
-        return view('back.backLegalPlaceEdit' ,compact('legal_place_list'));
+        Log::debug('log_end:' .__FUNCTION__);
+        return response()->json($response);
     }
 
     /**
-     * 編集(申込情報取得:sql)
+     * 編集(sql)
      *
      * @return void
      */
@@ -240,16 +265,27 @@ class AdminInformationController extends Controller
         Log::debug('start:' .__FUNCTION__);
 
         try{
-            // 値設定
-            $legal_place_id = $request->input('legal_place_id');
+            
+            /**
+             * 値取得
+             */
+            $information_id = $request->input('information_id');
 
-            // sql
+            /**
+             * sql
+             */
             $str = "select * "
-            ."from legal_places "
-            ."where legal_places.legal_place_id = $legal_place_id ";
+            ."from informations "
+            ."left join information_types "
+            ."on informations.information_type_id = information_types.information_type_id "
+            ."where informations.information_id = $information_id ";
             Log::debug('sql:' .$str);
             
-            $ret = DB::select($str);
+            $ret['information_list'] = DB::select($str);
+            $ret['status'] = 1;
+
+            $arrString = print_r($ret , true);
+            Log::debug('messages:'.$arrString);
 
         // 例外処理
         } catch (\Exception $e) {

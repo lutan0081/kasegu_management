@@ -5,58 +5,90 @@ $(function(){
     $("#links").show();
 
     /**
-     * 編集(ダブルクリックの処理)
+     * 編集(ダブルクリックの処理:ajax)
      */
     $(".click_class").on('dblclick', function(e) {
+
         console.log("ダブルクリックの処理.");
+
+        e.preventDefault();
 
         // ローディング画面
         $("#overlay").fadeIn(300);
 
         // tdのidを配列に分解
         var id = $(this).attr("id");
-        console.log(id);
 
-        setTimeout(function(){
-            $("#overlay").fadeOut(300);
-        },500);
+        var information_id = id.split('_')[1];
+        console.log(information_id);
 
-        // idをパラメーターでControllerに渡す
-        location.href = "backLegalPlaceEditInit?legal_place_id=" + id;
+        // 送信データ
+        let sendData = {
+
+			"information_id": information_id,
+
+        };
+
+        $.ajaxSetup({
+
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+
+        });
+
+        $.ajax({
+
+            type: 'post',
+            url: 'adminInformationEditInit',
+            dataType: 'json',
+            data: sendData,
+        
+        // 接続処理
+        }).done(function(data) {
+
+            console.log(data.information_list[0]['information_title']);
+
+            /**
+             * 値代入
+             */
+            // タイトル名
+            $("#information_title").val(data.information_list[0]['information_title']);
+
+            // 種別
+            $("#information_type").val(data.information_list[0]['information_type_id']);
+
+            // 内容
+            $("#information_contents").val(data.information_list[0]['information_contents']);
+
+            // モーダル開く
+            $('#informaitonModal').modal('show');
+
+            // ローディング画面停止
+			setTimeout(function(){
+				$("#overlay").fadeOut(300);
+			},500);
+
+            return false;
+    
+        // ajax接続失敗の時の処理
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);            
+        });
+
     });
 
-    // 編集(ラジオボタンの処理)
-    $("#btn_edit").on('click', function(e) {
+    /**
+     * 登録
+     */
+    $("#information_contents").on('dblclick', function(e) {
+
         console.log("編集ボタンの処理");
 
         // ローディング画面
         $("#overlay").fadeIn(300);
 
         e.preventDefault();
-
-        /**
-         * ラジオボタンにチェックがない場合、プログラム終了
-         * ラジオボタンに値がない場合 = 0
-         * ラジオボタンに値がある場合 = 1
-         */
-        // チェックがない場合終了
-        if ($('input[name=flexRadioDisabled]:checked').length <= 0) {
-
-            console.log("チェックがない場合の処理");
-
-            setTimeout(function(){
-                $("#overlay").fadeOut(300);
-            },500);
-            
-            exit;
-        }    
-
-        // id取得
-        var id = $('input[name=flexRadioDisabled]:checked').attr('id');
-        console.log(id);
-
-        // idをパラメーターでControllerに渡す
-        location.href = "backLegalPlaceEditInit?legal_place_id=" + id;
     });
-
 });

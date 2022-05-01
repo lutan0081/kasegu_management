@@ -56,9 +56,11 @@
                                     <div class="info_title mt-3">
                                         <i class="fas fa-bell icon_blue me-2"></i>新着情報一覧
                                     </div>
+
                                     <!-- 境界線 -->
                                     <hr>
                                     <!-- 境界線 -->
+
                                 </div>
                             </div>
                             <!-- タイトル -->
@@ -76,7 +78,6 @@
                                                     <label for="">フリーワード</label>
                                                     <input type="text" class="form-control" name="free_word" id="free_word" value="">
                                                 </div>
-
 
                                                 <!-- 検索ボタン -->
                                                 <div class="col-5 col-md-4 col-lg-8">
@@ -160,6 +161,7 @@
                         <!-- ボタン -->
                         <div class="col-sm-12 mt-2 pt-2">
                             <div class="card border border-0">
+
                                 <!-- row -->
                                 <div class="row">
                                     <!-- 新規、編集 -->
@@ -171,6 +173,7 @@
                                     </div>
                                 </div>
                                 <!-- row -->
+
                             </div>
                         </div>
                         <!-- ボタン -->
@@ -180,17 +183,19 @@
                 <!-- 一覧 -->
 
                 <!-- 新着情報編集画面 -->
-                <div class="modal fade" id="urlModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="informaitonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
 
                             <!-- ヘッダー -->
                             <div class="modal-header">
+
                                 <div class="modal-title info_title" id="exampleModalLabel">
                                     <i class="fas fa-bell icon_blue me-2"></i>新着情報詳細
                                 </div>
 
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                             </div>
 
                             <!-- ボディ -->
@@ -202,8 +207,8 @@
 
                                             <div class="col-12 col-md-6 col-lg-12">
                                                 <label class="col-form-label">タイトル</label>
-                                                <input type="text" class="form-control was-validated" id="application_name" placeholder="例：株式会社〇〇〇〇" required>
-                                                <div class="invalid-feedback" id ="application_name_error">
+                                                <input type="text" class="form-control was-validated" id="information_title" placeholder="例：株式会社〇〇〇〇" required>
+                                                <div class="invalid-feedback" id ="information_title_error">
                                                     タイトルは必須です。
                                                 </div>
                                             </div>
@@ -211,13 +216,13 @@
                                             <!-- 種別 -->
                                             <div class="col-12 col-md-12 col-lg-4 mt-3">
                                                 <label class="mb-2">種別</label>
-                                                <select class="form-select" name="img_type" id="img_type" required>
+                                                <select class="form-select" name="information_type" id="information_type" required>
                                                     <option selected></option>
                                                     @foreach($information_type_list as $information_types)
                                                         <option value="{{ $information_types->information_type_id }}">{{ $information_types->information_type_name }}</option>
                                                     @endforeach
                                                 </select>
-                                                <div class="invalid-feedback" id ="img_type_error">
+                                                <div class="invalid-feedback" id ="information_type_error">
                                                     種別は必須です。
                                                 </div>
                                             </div>
@@ -225,8 +230,8 @@
                                             <!-- 内容 -->
                                             <div class="col-12 col-md-12 col-lg-12 mt-3">
                                                 <label for="">内容</label>
-                                                <textarea class="form-control" name="url_text" id="url_text" rows="10" placeholder="例：自由に入力"></textarea>
-                                                <div class="invalid-feedback" id ="url_text_error">
+                                                <textarea class="form-control" name="information_contents" id="information_contents" rows="10" placeholder="例：自由に入力" required></textarea>
+                                                <div class="invalid-feedback" id ="information_contents_error">
                                                     内容は必須です。
                                                 </div>
                                             </div>
@@ -242,13 +247,10 @@
                             <div class="modal-footer">
 
                                 <div class="col my-3">
-
                                     <!-- 戻る -->
                                     <button type="button" id="btn_modal_url_back" class="btn btn-outline-primary btn-default" data-bs-dismiss="modal">戻る</button>
-
                                     <!-- 送信 -->
                                     <button type="button" id="btn_modal_url_send" class="btn btn-outline-primary btn-default float-end">送信</button>
-                                    
                                 </div>
 
                             </div>
