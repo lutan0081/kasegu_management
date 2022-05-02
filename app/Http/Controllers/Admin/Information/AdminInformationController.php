@@ -307,7 +307,7 @@ class AdminInformationController extends Controller
      * @param $request(edit.blade.phpの各項目)
      * @return $response(status:true=OK/false=NG)
      */
-    public function backLegalPlaceEditEntry(Request $request){
+    public function adminInformationEditEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
         
         // return初期値
@@ -324,13 +324,13 @@ class AdminInformationController extends Controller
         }
 
         /**
-         * legal_place_id_id=無:insert
-         * legal_place_id_id=有:update
+         * information_id=無:insert
+         * information_id=有:update
          */
-        $legal_place_id = $request->input('legal_place_id');
+        $information_id = $request->input('information_id');
 
         // 新規登録
-        if($request->input('legal_place_id') == ""){
+        if($request->input('information_id') == ""){
 
             Log::debug('新規の処理');
 
@@ -372,25 +372,18 @@ class AdminInformationController extends Controller
          * rules
          */
         $rules = [];
-        $rules['legal_place_name'] = "required|max:50";
-        $rules['legal_place_post_number'] = "required|zip";
-        $rules['legal_place_address'] = "required|max:100";
-        $rules['legal_place_tel'] = "nullable|jptel";
-        $rules['legal_place_fax'] = "nullable|jptel";
+        $rules['information_title'] = "required|max:100";
+        $rules['information_contents'] = "required|max:300";
 
         /**
          * messages
          */
         $messages = [];
-        $messages['legal_place_name.required'] = "名前は必須です。";
-        $messages['legal_place_name.max'] = "名前の文字数が超過しています。";
-        $messages['legal_place_post_number.required'] = "郵便番号は必須です。";
-        $messages['legal_place_post_number.zip'] = "郵便番号の形式が不正です。";
-        $messages['legal_place_address.required'] = "住所は必須です。";
-        $messages['legal_place_address.max'] = "住所の文字数が超過しています。";
-        $messages['legal_place_tel.jptel'] = "Telの形式が不正です。";
-        $messages['legal_place_fax.jptel'] = "Faxの形式が不正です。";
-    
+        $messages['information_title.required'] = "タイトルは必須です。";
+        $messages['information_title.max'] = "タイトルの文字数が超過しています。";
+        $messages['information_contents.required'] = "内容は必須です。";
+        $messages['information_contents.max'] = "内容の文字数が超過しています。";
+
         // validation判定
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -449,12 +442,12 @@ class AdminInformationController extends Controller
             $ret['status'] = true;
 
             /**
-             * 不動産業者(status:OK=1 NG=0/application_id:新規登録のid)
+             * status:OK=1 NG=0/application_id:新規登録のid
              */
-            $legal_place_info = $this->insertLegalPlace($request);
+            $information_info = $this->insertInformation($request);
 
             // returnのステータスにtrueを設定
-            $ret['status'] = $legal_place_info['status'];
+            $ret['status'] = $information_info['status'];
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -483,25 +476,29 @@ class AdminInformationController extends Controller
     }
 
     /**
-     * 法務局(新規登録)
+     * 新規登録(sql)
      * 
      * @param Request $request
      * @return $ret['application_id(登録のapplication_id)']['status:1=OK/0=NG']''
      */
-    private function insertLegalPlace(Request $request){
+    private function insertInformation(Request $request){
         Log::debug('log_start:' .__FUNCTION__);
 
         try {
+
             // returnの初期値
             $ret=[];
 
             // 値取得
             $session_id = $request->session()->get('create_user_id');
-            $legal_place_name = $request->input('legal_place_name');
-            $legal_place_post_number = $request->input('legal_place_post_number');
-            $legal_place_address = $request->input('legal_place_address');
-            $legal_place_tel = $request->input('legal_place_tel');
-            $legal_place_fax = $request->input('legal_place_fax');
+
+            $information_id = $request->input('information_id');
+
+            $information_title = $request->input('information_title');
+
+            $information_type_id = $request->input('information_type_id');
+
+            $information_contents = $request->input('information_contents');
 
             // 現在の日付取得
             $date = now() .'.000';
@@ -509,55 +506,46 @@ class AdminInformationController extends Controller
             /**
              * 数値に関してはNULLで値を代入出来ないので0、''を入れる
              */
-            // 法務局名
-            if($legal_place_name == null){
-                $legal_place_name ='';
+            // id
+            if($information_id == null){
+                $information_id =0;
             }
 
-            // 郵便番号
-            if($legal_place_post_number == null){
-                $legal_place_post_number ='';
+            // タイトル
+            if($information_title == null){
+                $information_title ='';
             }
 
-            // 住所
-            if($legal_place_address == null){
-                $legal_place_address ='';
+            // 内容
+            if($information_contents == null){
+                $information_contents ='';
             }
 
-            // Tel
-            if($legal_place_tel == null){
-                $legal_place_tel = '';
+            // 種別
+            if($information_type_id == null){
+                $information_type_id = 0;
             }
 
-            // Fax
-            if($legal_place_fax == null){
-                $legal_place_fax = '';
-            }
-
-            // 登録
+            // sql
             $str = "insert "
             ."into "
-            ."legal_places "
+            ."informations "
             ."( "
-            ."legal_place_name, "
-            ."legal_place_post_number, "
-            ."legal_place_address, "
-            ."legal_place_tel, "
-            ."legal_place_fax, "
+            ."information_title, "
+            ."information_type_id, "
+            ."information_contents, "
             ."entry_user_id, "
             ."entry_date, "
             ."update_user_id, "
             ."update_date "
             .")values( "
-            ."'$legal_place_name', "
-            ."'$legal_place_post_number', "
-            ."'$legal_place_address', "
-            ."'$legal_place_tel', "
-            ."'$legal_place_fax', "
-            ."$session_id, "
-            ."'$date', "
-            ."$session_id, "
-            ."'$date' "
+            ."'$information_title', "
+            ."$information_type_id, "
+            ."'$information_contents', "
+            ."1, "
+            ."now(), "
+            ."1, "
+            ."now() "
             ."); ";
             
             Log::debug('sql:'.$str);
@@ -597,10 +585,10 @@ class AdminInformationController extends Controller
             /**
              * status:OK=1 NG=0
              */
-            $legal_place_info = $this->updateLegalPlace($request);
+            $information_info = $this->updateInformation($request);
 
             // returnのステータスにtrueを設定
-            $ret['status'] = $legal_place_info['status'];
+            $ret['status'] = $information_info['status'];
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -615,11 +603,13 @@ class AdminInformationController extends Controller
             if($ret['status'] == 1){
 
                 Log::debug('status:trueの処理');
+
                 $ret['status'] = true;
 
             }else{
 
                 Log::debug('status:falseの処理');
+
                 $ret['status'] = false;
             }
 
@@ -629,12 +619,13 @@ class AdminInformationController extends Controller
     }
 
     /**
-     * 法務局(編集)
+     * 編集登録(sql)
      * 
      * @param Request $request
      * @return $ret['application_id(登録のapplication_id)']['status:1=OK/0=NG']''
      */
-    private function updateLegalPlace(Request $request){
+    private function updateInformation(Request $request){
+
         Log::debug('log_start:' .__FUNCTION__);
 
         try {
@@ -643,12 +634,14 @@ class AdminInformationController extends Controller
 
             // 値取得
             $session_id = $request->session()->get('create_user_id');
-            $legal_place_id = $request->input('legal_place_id');
-            $legal_place_name = $request->input('legal_place_name');
-            $legal_place_post_number = $request->input('legal_place_post_number');
-            $legal_place_address = $request->input('legal_place_address');
-            $legal_place_tel = $request->input('legal_place_tel');
-            $legal_place_fax = $request->input('legal_place_fax');
+
+            $information_id = $request->input('information_id');
+
+            $information_title = $request->input('information_title');
+
+            $information_type_id = $request->input('information_type_id');
+
+            $information_contents = $request->input('information_contents');
 
             // 現在の日付取得
             $date = now() .'.000';
@@ -656,45 +649,38 @@ class AdminInformationController extends Controller
             /**
              * 数値に関してはNULLで値を代入出来ないので0、''を入れる
              */
-            // 法務局名
-            if($legal_place_name == null){
-                $legal_place_name ='';
+            // id
+            if($information_id == null){
+                $information_id =0;
             }
 
-            // 郵便番号
-            if($legal_place_post_number == null){
-                $legal_place_post_number ='';
+            // タイトル
+            if($information_title == null){
+                $information_title ='';
             }
 
-            // 住所
-            if($legal_place_address == null){
-                $legal_place_address ='';
+            // 内容
+            if($information_contents == null){
+                $information_contents ='';
             }
 
-            // Tel
-            if($legal_place_tel == null){
-                $legal_place_tel = '';
-            }
-
-            // Fax
-            if($legal_place_fax == null){
-                $legal_place_fax = '';
+            // 種別
+            if($information_type_id == null){
+                $information_type_id = 0;
             }
 
             $str = "update "
-            ."legal_places "
+            ."informations "
             ."set "
-            ."legal_place_name = '$legal_place_name', "
-            ."legal_place_post_number = '$legal_place_post_number', "
-            ."legal_place_address = '$legal_place_address', "
-            ."legal_place_tel = '$legal_place_tel', "
-            ."legal_place_fax = '$legal_place_fax', "
+            ."information_title = '$information_title', "
+            ."information_type_id = $information_type_id, "
+            ."information_contents = '$information_contents', "
             ."entry_user_id = $session_id, "
             ."entry_date = '$date', "
             ."update_user_id = $session_id, "
             ."update_date = '$date' "
             ."where "
-            ."legal_place_id = $legal_place_id; ";
+            ."information_id = $information_id; ";
             
             Log::debug('sql:'.$str);
 
@@ -721,7 +707,7 @@ class AdminInformationController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backLegalPlaceDeleteEntry(Request $request){
+    public function adminDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -732,7 +718,7 @@ class AdminInformationController extends Controller
             /**
              * 不動産業者
              */
-            $legal_place_info = $this->deleteLegalPlace($request);
+            $legal_place_info = $this->deleteInformation($request);
 
             // js側での判定のステータス(true:OK/false:NG)
             $response['status'] = $legal_place_info['status'];
@@ -765,12 +751,12 @@ class AdminInformationController extends Controller
     }
 
     /**
-     * 削除(法務局)
+     * 削除(sql)
      *
      * @param Request $request
      * @return void
      */
-    private function deleteLegalPlace(Request $request){
+    private function deleteInformation(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -778,13 +764,13 @@ class AdminInformationController extends Controller
             $ret = [];
 
             // 値取得
-            $legal_place_id = $request->input('legal_place_id');
+            $information_id = $request->input('information_id');
 
             $str = "delete "
             ."from "
-            ."legal_places "
+            ."informations "
             ."where "
-            ."legal_place_id = $legal_place_id; ";
+            ."information_id = $information_id; ";
 
             // OK=1/NG=0
             $ret['status'] = DB::delete($str);

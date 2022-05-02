@@ -167,7 +167,7 @@
                                     <!-- 新規、編集 -->
                                     <div class="col-12">
                                         <div class="btn-group float-end" role="group">
-                                            <button type="button" class="btn btn-outline-primary float-end btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">新規登録</button>
+                                            <button type="button" class="btn btn-outline-primary float-end btn-default" data-bs-toggle="modal" data-bs-target="#informaitonModal">新規登録</button>
                                             <button type="button" id="btn_edit" class="btn btn-outline-primary float-end btn-default">編集</button>
                                         </div>
                                     </div>
@@ -235,6 +235,11 @@
                                                     内容は必須です。
                                                 </div>
                                             </div>
+                                            
+                                            <!-- id -->
+                                            <div class="col-12 col-md-12 col-lg-12 mt-3">
+                                                <input type="hidden" class="form-control" id="information_id">
+                                            </div>
 
                                         </div>  
                                     </div>
@@ -247,8 +252,12 @@
                             <div class="modal-footer">
 
                                 <div class="col my-3">
-                                    <!-- 戻る -->
-                                    <button type="button" id="btn_modal_url_back" class="btn btn-outline-primary btn-default" data-bs-dismiss="modal">戻る</button>
+
+                                    <div class="btn-group" role="group">
+                                        <button type="button" id="btn_modal_back" class="btn btn-outline-primary btn-default" data-bs-dismiss="modal">戻る</button>
+                                        <button type="button" id="btn_modal_delete" class="btn btn-outline-danger btn-default">削除</button>
+                                    </div>
+
                                     <!-- 送信 -->
                                     <button type="button" id="btn_modal_url_send" class="btn btn-outline-primary btn-default float-end">送信</button>
                                 </div>

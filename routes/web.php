@@ -247,6 +247,10 @@ Route::any('adminInformationInit', 'Admin\Information\AdminInformationController
 
 Route::post('adminInformationEditInit', 'Admin\Information\AdminInformationController@adminInformationEditInit')->middleware("kasegu_auth");
 
+Route::post('adminInformationEditEntry', 'Admin\Information\AdminInformationController@adminInformationEditEntry')->middleware("kasegu_auth");
+
+Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@adminDeleteEntry')->middleware("kasegu_auth");
+
 /**
  * テスト
  */
