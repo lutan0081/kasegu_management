@@ -38,6 +38,14 @@ class AdminHomeController extends Controller
             // 新着情報
             $information_list = $this->getInformationList($request);
 
+            // access数:合計
+            $access_info = $this->getAccessCount($request);
+            $access_list = $access_info[0];
+
+            // access数:当日
+            $access_info_today = $this->getAccessCountToday($request);
+            $access_list_today = $access_info_today[0];
+        
             // // 申込件数
             // $app_info = $this->getAppList($request);
             // $app_list = $app_info[0];
@@ -68,7 +76,112 @@ class AdminHomeController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('admin.adminHome',$information_list);
+        return view('admin.adminHome' ,$information_list ,compact('access_list' ,'access_list_today'));
+    }
+
+    /**
+     * 新着情報
+     */
+    private function getInformationList(Request $request){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        // session_id
+        $session_id = $request->session()->get('create_user_id');
+        
+        $str = "select "
+        ."informations.information_id, "
+        ."informations.information_title, "
+        ."informations.information_type_id, "
+        ."information_types.information_type_name, "
+        ."informations.information_contents , "
+        ."informations.entry_user_id, "
+        ."informations.entry_date, "
+        ."informations.update_user_id, "
+        ."informations.update_date "
+        ."from informations "
+        ."left join information_types "
+        ."on information_types.information_type_id = informations.information_type_id ";
+        Log::debug('$sql:' .$str);
+
+        // query
+        $alias = DB::raw("({$str}) as alias");
+
+        // columnの設定、表示件数
+        $res = DB::table($alias)->selectRaw("*")->orderByRaw("update_date desc")->paginate(3)->onEachSide(1);
+
+        // resの中に値が代入されている
+        $ret = [];
+        $ret['res'] = $res;
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret;
+    }
+
+    /**
+     *  アクセス数:合計
+     *
+     * @return $ret(real_estate_agentの件数)
+     */
+    private function getAccessCount(Request $request){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        // sql
+        $str = "select count(*) as accesses_count "
+        ."from accesses; ";
+
+        Log::debug('sql:'.$str);
+
+        $ret = DB::select($str);
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret;
+    }
+
+    /**
+     *  アクセス数:本日
+     *
+     * @return $ret(real_estate_agentの件数)
+     */
+    private function getAccessCountToday(Request $request){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        /**
+         * 現在日付取得
+         */
+        $now = now(); 
+        $date = date_format($now , 'Y-m-d');
+        Log::debug('date:'.$date);
+
+        /**
+         * 秒の取得
+         */
+        $start_min = ' 00:00:00.000';
+
+        $end_min = ' 23:59:59.999';
+
+        /**
+         * sql用に日付フォーマット
+         */
+        $start_date = $date .$start_min;
+        Log::debug('start_date:'.$start_date);
+
+        $end_date = $date .$end_min;
+        Log::debug('end_date:'.$end_date);
+
+        // sql
+        $str = "select "
+        ."count(*) as accesses_count_today "
+        ."from accesses "
+        ."where "
+        ."(entry_date > '$start_date') "
+        ."and "
+        ."(entry_date < '$end_date') ";
+        Log::debug('sql:'.$str);
+
+        $ret = DB::select($str);
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret;
     }
 
     /**
@@ -170,44 +283,6 @@ class AdminHomeController extends Controller
         ."where entry_user_id = $session_id ";
 
         $ret = DB::select($str);
-
-        Log::debug('log_end:'.__FUNCTION__);
-        return $ret;
-    }
-
-    /**
-     * 新着情報
-     */
-    private function getInformationList(Request $request){
-        Log::debug('log_start:'.__FUNCTION__);
-
-        // session_id
-        $session_id = $request->session()->get('create_user_id');
-        
-        $str = "select "
-        ."informations.information_id, "
-        ."informations.information_title, "
-        ."informations.information_type_id, "
-        ."information_types.information_type_name, "
-        ."informations.information_contents , "
-        ."informations.entry_user_id, "
-        ."informations.entry_date, "
-        ."informations.update_user_id, "
-        ."informations.update_date "
-        ."from informations "
-        ."left join information_types "
-        ."on information_types.information_type_id = informations.information_type_id ";
-        Log::debug('$sql:' .$str);
-
-        // query
-        $alias = DB::raw("({$str}) as alias");
-
-        // columnの設定、表示件数
-        $res = DB::table($alias)->selectRaw("*")->orderByRaw("update_date desc")->paginate(3)->onEachSide(1);
-
-        // resの中に値が代入されている
-        $ret = [];
-        $ret['res'] = $res;
 
         Log::debug('log_end:'.__FUNCTION__);
         return $ret;

@@ -63,11 +63,11 @@
                                                 </div>
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    本日: <span class="count dashboard_box_num">1111111111111</span>
+                                                    本日: <span class="count dashboard_box_num">{{ $access_list_today->accesses_count_today }}</span>
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12">
-                                                    合計: <span class="count dashboard_box_num">1111111111111</span>
+                                                    合計: <span class="count dashboard_box_num">{{ $access_list->accesses_count }}</span>
                                                 </div>
                                                 
                                             </div>
@@ -88,7 +88,7 @@
                                                 </div>
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    アカウント数: <span class="count dashboard_box_num">1111111111111</span>
+                                                    アカウント数: <span class="count dashboard_box_num"></span>
                                                 </div>
                                                 
                                             </div>
