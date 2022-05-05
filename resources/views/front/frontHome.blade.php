@@ -58,7 +58,7 @@
 
             <!-- TOP動画の文字 -->
             <h1>
-                <span class="catch">
+                <div class="catch">
                     <span class="top_font_en">Real Estate Work Innovation<br></span>
                     
                     <div class="top_jp_box">
@@ -71,7 +71,7 @@
                     </div>
 
                     <span class="top_font_en_bottom">Find your best way that will help change your task<br></span>
-                </span>
+                </div>
             </h1>
             <!-- TOP動画の文字 -->
 
