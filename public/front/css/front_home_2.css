@@ -569,3 +569,54 @@ div.bg_dark {
         height: 25rem;
     }
 }
+
+/*==================================
+効率の悪い業務をしてませんか？
+===================================*/
+.top_bottom_title_box{
+
+    text-align: center;
+    
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    line-height: 3.5rem;
+}
+
+/*==================================
+申込管理
+===================================*/
+.app_right_text{
+
+    font-weight: bold;
+
+    font-size: 1.3rem;
+
+    line-height: 2.5rem;
+
+    background: linear-gradient(transparent 50%, #ffcccc 0%);
+}
+
+/* 下線描写アニメーション */
+.Text-Span {
+    position: relative;
+    z-index: 1;
+}
+
+.Text-Span:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 0%;
+    height: 4px;
+    z-index: -1;
+    transition: all 0.8s;
+    border-bottom: 7px solid #0082e2;
+}
+
+.Text-Span.isActive:after {
+    width: 100%;
+}
+

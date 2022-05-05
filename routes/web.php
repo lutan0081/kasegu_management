@@ -255,9 +255,13 @@ Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@ad
 // アカウント
 Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
 
+
 /**
  * テスト
  */
+// 表示
+Route::get('frontHome2Init', 'Front\Home\FrontHomeController@frontHome2Init');
+
 // 表示
 Route::get('testInit', 'Test\TestController@testInit');
 

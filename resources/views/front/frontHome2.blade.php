@@ -11,7 +11,7 @@
         @endcomponent
 
         <!-- front_home -->
-        <link rel="stylesheet" href="{{ asset('front/css/front_home.css') }}">
+        <link rel="stylesheet" href="{{ asset('front/css/front_home_2.css') }}">
 
         <!-- front_register -->
         <link rel="stylesheet" href="{{ asset('front/css/front_register.css') }}">
@@ -73,9 +73,132 @@
                     </div>
 
                     <span class="top_font_en_bottom">Find your best way that will help change your task<br></span>
+
                 </div>
             </h1>
-            <!-- TOP動画の文字 -->
+
+            <!-- 効率の悪い業務をしてませんか？ -->
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12 top_bottom_title_box mt-5">
+                        <p class="Text"><span class="Text-Span JS_ScrollAnimationItem">まだ、効率の悪い業務をしてませんか？</span></p>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- 効率の悪い業務をしてませんか？ -->
+
+            <!-- 申込管理 -->
+            <div class="container mt-5 pt-5 mb-5">
+                <div class="row">
+
+                    <!-- 左ボックス -->
+                    <div class="col-6 col-md-6 col-lg-6 box fadeLeftTrigger">
+                        <div class="bg_dark">
+                            
+                            <div class="zoomIn">
+                                <a href="#">
+                                    <span class="mask">
+                                        <img src="./front/img/read_book.jpg" class="img_size">
+                                    </span>
+                                    <div class="img_text">
+                                        <span class="img_text_en">Application Management<br></span>
+                                        <span class="img_text_jp">- 申込管理 -</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <!-- 右ボックス -->
+                    <div class="col-6 col-md-6 col-lg-6 app_box_right box fadeLeftTrigger">
+
+                        <span class="app_right_text">
+                            「申込管理」は、賃貸居物件の入居申込とそれに伴う業務をWeb上で完結できるサービスです。<br><br>
+                        </span>
+                        
+                        <div>
+                            <span class="fw-bold">■機能紹介<br><br></span>
+                            01.Web申込管理<br><br>
+                            02.申込詳細URL発行<br><br>
+                            03.進捗状況管理<br><br>
+                            04.帳票作成<br>
+
+                        </div>
+
+                        <!-- メッセージボタン -->
+                        <div class="col-12 col-md-12 col-lg-12 btn_box mt-5 box fadeLeftTrigger float-end">
+                            <a href="#" class="btn bgleft float-end">
+                                <span>詳細はこちら</span>
+                            </a>
+                        </div>
+                        <!-- メッセージボタン -->
+
+                    </div>
+                    <!-- 右ボックス -->
+
+
+
+                </div>
+            </div>
+            <!-- 申込管理 -->
+
+            <!-- 契約管理 -->
+            <div class="container mt-5 pt-5">
+                <div class="row">
+
+                    <!-- 右ボックス -->
+                    <div class="col-6 col-md-6 col-lg-6 app_box_right box fadeRightTrigger">
+
+                        <span class="app_right_text">
+                            「契約管理」は、賃貸物件の契約管理とそれに伴う業務をWeb上で完結できるサービスです。<br><br>
+                        </span>
+                        
+                        <div>
+                            <span class="fw-bold">■機能紹介<br><br></span>
+                            01.Web契約管理<br><br>
+                            02.契約書・重要事項説明書などの帳票作成<br><br>
+                            03.進捗状況管理<br><br>
+                            04.取引台帳作成・管理<br>
+
+                        </div>
+
+                        <!-- メッセージボタン -->
+                        <div class="col-12 col-md-12 col-lg-12 btn_box mt-5 box fadeRightTrigger float-end">
+                            <a href="#" class="btn bgleft float-start">
+                                <span>詳細はこちら</span>
+                            </a>
+                        </div>
+                        <!-- メッセージボタン -->
+
+                    </div>
+                    <!-- 右ボックス -->
+
+                    <!-- 左ボックス -->
+                    <div class="col-6 col-md-6 col-lg-6 box fadeRightTrigger">
+                        <div class="bg_dark">
+                            
+                            <div class="">
+                                <a href="#">
+                                    <span class="mask">
+                                        <img src="./front/img/writing.jpg" class="img_size">
+                                    </span>
+                                    <div class="img_text">
+                                        <span class="img_text_en">Contract Management<br></span>
+                                        <span class="img_text_jp">- 契約管理 -</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                
+
+                </div>
+            </div>
+            <!-- 契約管理 -->
+
 
             <!-- INFOMATION -->
             <div class="container-fluid container_fluid_w_80 mt-5">
@@ -90,7 +213,7 @@
 
                     <!-- VIEW ALL -->
                     <div class="col-6 col-md-6 col-lg-6 mt-5 box fadeRightTrigger">
-                        <span class="view_all_text float-end"><a href="frontInfoInit">VIEW</a></span>
+                        <span class="view_all_text float-end"><a href="frontInfoInit">READ MORE</a></span>
                     </div>
                     <!-- VIEW ALL -->
 
@@ -273,7 +396,7 @@
         <script src="{{ asset('lode/js/lode.js') }}"></script>
         
         <!-- front_home -->
-        <script src="{{ asset('front/js/front_home.js') }}"></script>
+        <script src="{{ asset('front/js/front_home_2.js') }}"></script>
     </body>
 
 </html>
