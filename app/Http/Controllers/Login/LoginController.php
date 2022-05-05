@@ -29,7 +29,10 @@ class LoginController extends Controller
         // session_idを取得
         $create_user_id = $request->session()->get('create_user_id');
 
-        // auto_login_flag=true:自動ログイン
+        /**
+         * ログイン時auto_login_flag = trueに設定
+         * trueの時、管理ユーザ:adminHomeInit/一般ユーザ:backHomeInit
+         */
         $auto_login_flag = $request->session()->get('auto_login_flag');
 
         // メールアドレス取得
@@ -48,7 +51,7 @@ class LoginController extends Controller
             // admin_user_flag=1:管理ユーザ/admin_user_flag=0:一般ユーザ
             if($admin_user_flag == 1){
                 Log::debug('管理ユーザの場合の処理');
-                return redirect('adminInit');
+                return redirect('adminHomeInit');
             }else{
                 Log::debug('一般ユーザの場合の処理');
                 return redirect('backHomeInit');
