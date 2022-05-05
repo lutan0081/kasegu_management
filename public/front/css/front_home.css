@@ -130,7 +130,7 @@ h1{
 ===================================*/
 .top_font_jp{
     font-weight: normal;
-    font-size: 30px;
+    font-size: 28px;
     line-height: 8rem;
 }
 
@@ -152,14 +152,15 @@ h1{
 @media (max-width: 768px){
     .top_font_jp{
         font-weight: normal;
-        font-size: 1.2rem;
-        line-height: 8rem;
+        font-size: 1rem;
+        line-height: 1rem;
     }
     
     .top_font_en{
         font-weight: normal;
         font-size: 1.5rem;
-        line-height: 1rem;
+        /* white-space: nowrap */
+        /* line-height: 1rem; */
     }
     
     .top_font_en_bottom{
@@ -170,6 +171,30 @@ h1{
     }
 }
 
+@media (max-width: 768px) {
+    .top_btn_box{
+        margin-top: 3rem;
+    }
+
+    .top_jp_box{
+        margin-top: 1.5rem;
+    }
+    
+}
+
+/*==================================
+PC、モバイル用の改行コード　<br class="sp" />
+===================================*/
+@media screen and (max-width:640px) {
+	.pc {
+		display: none;
+	}
+}
+@media screen and (min-width:641px) {
+	.sp {
+		display: none;
+	}
+}
 
 /*==================================
 動画上のボタン設定

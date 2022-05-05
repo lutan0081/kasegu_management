@@ -3,9 +3,8 @@
 
     <head>
         <title>ホーム/KASEGU</title>
-
-        <meta name="description"  content="会員登録無料で申込管理・重説・契約書作成が可能です。大阪の工事業者一覧等お得な情報も掲載しています。" />
-        <meta name="keywords"  content="web申込,web契約,賃貸,不動産IT,契約書 賃貸,重説 賃貸" />
+        <meta name="description" content="「KASEGU-カセグ-」は、不動産賃貸入居申込書のWeb受付システムです。賃貸居住用物件の入居申込とそれに伴う受付業務をWeb上で完結することができます。シームレスな申込情報のやりとりによって、仲介会社さま・管理会社さま双方の業務の効率化が図れます。" />
+        <meta name="keywords"  content="IT申込,IT契約,IT重説,不動産IT,賃貸,契約書,重説" />
 
         <!-- css -->
         @component('component.front_head')
@@ -60,10 +59,17 @@
             <!-- TOP動画の文字 -->
             <h1>
                 <span class="catch">
-                    <span class="top_font_en">Real Estate Work Innovation.<br></span>
-                    <span class="top_font_jp">不動産業務の「改革」<br></span>
-                    <a href="frontUserInit" class="btn btn-border"><i class="far fa-gem me-2"></i>無料登録</a>
-                    <a href="loginInit" class="btn btn-border"><i class="fas fa-sign-in-alt me-2"></i>ログイン</a><br>
+                    <span class="top_font_en">Real Estate Work Innovation<br></span>
+                    
+                    <div class="top_jp_box">
+                        <span class="top_font_jp">不動産業務を<br class="sp" />「もっとスムーズに」<br class="sp" />「もっとスピーディーに」<br></span>
+                    </div>
+
+                    <div class="top_btn_box">
+                        <a href="frontUserInit" class="btn btn-border"><i class="far fa-gem me-2"></i>無料登録</a>
+                        <a href="loginInit" class="btn btn-border"><i class="fas fa-sign-in-alt me-2"></i>ログイン</a><br>
+                    </div>
+
                     <span class="top_font_en_bottom">Find your best way that will help change your task<br></span>
                 </span>
             </h1>
