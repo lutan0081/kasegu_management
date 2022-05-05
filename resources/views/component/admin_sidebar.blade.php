@@ -8,10 +8,9 @@
 
         <!-- サイドメニュータイトル -->
         <div class="sidebar-brand">
-            <a href="adminHomeInit">KASEGU Ver 1.06</a>
-            <div id="close-sidebar">
-                <i class="fas fa-times"></i>
-            </div>
+            <!-- version -->
+            @component('component.back_version')
+            @endcomponent
         </div>
         <!-- サイドメニュータイトル -->
 
