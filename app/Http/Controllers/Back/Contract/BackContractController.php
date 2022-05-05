@@ -92,6 +92,9 @@ class BackContractController extends Controller
             $end_date = $request->input('end_date');
             Log::debug('$end_date:' .$end_date);
 
+            // 管理会社
+
+
             $str = "select "
             ."contract_details.contract_detail_id as contract_detail_id, "
             ."contract_details.create_user_id as create_user_id, "
@@ -235,6 +238,8 @@ class BackContractController extends Controller
                 $where = $where ."or ifnull(real_estate_name,'') like '%$free_word%'";
                 $where = $where ."or ifnull(contract_tel,'') like '%$free_word%'";
                 $where = $where ."or ifnull(admin_number,'') like '%$free_word%'";
+                $where = $where ."or ifnull(m_share_name,'') like '%$free_word%'";
+                $where = $where ."or ifnull(m_own_name,'') like '%$free_word%'";
 
             };
 
