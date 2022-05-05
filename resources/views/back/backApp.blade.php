@@ -141,7 +141,7 @@
                 </div>
 
                 <!-- 一覧 -->
-                <div class="container mt-3 mb-5">
+                <div class="container mb-5">
                     
                     <div class="row">
                             
@@ -153,7 +153,7 @@
                                 <!-- カードボディ -->
                                 <div class="card-body">
                                     <!-- スクロール -->
-                                    <div class="overflow-auto" style="height:35rem;">
+                                    <div class="overflow-auto" style="height:34rem;">
                                         <div class="table-responsive">
                                             <table class="table table-hover table-condensed table-striped">
                                                 <!-- テーブルヘッド -->
