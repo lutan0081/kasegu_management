@@ -148,25 +148,7 @@ h1{
     line-height: 4rem;
 }
 
-/*==================================
-動画上のボタン設定
-===================================*/
-a.btn-border {
-    border: 2px solid #4162a7;
-    border-radius: 0;
-    color: #fff;
-    background: #4162a7;
-    width: 12rem;
-    margin-bottom: 1rem;
-}
-
-/* トップボタンの設定(hover) */
-a.btn-border:hover {
-    border: 2px solid #fff;
-    color: #4162a7;
-    background: #fff;
-}
-
+/* レスポンシブ */
 @media (max-width: 768px){
     .top_font_jp{
         font-weight: normal;
@@ -183,11 +165,32 @@ a.btn-border:hover {
     
     .top_font_en_bottom{
         font-weight: normal;
-        font-size: 0.5rem;
+        font-size: 1rem;
         letter-spacing: 0.3rem;
         line-height: 0.5rem;
     }
 }
+
+
+/*==================================
+動画上のボタン設定
+===================================*/
+a.btn-border {
+    border: 2px solid #4162a7;
+    border-radius: 0;
+    color: #fff;
+    background: #4162a7;
+    width: 12rem;
+    margin-bottom: 2rem;
+}
+
+/* トップボタンの設定(hover) */
+a.btn-border:hover {
+    border: 2px solid #fff;
+    color: #4162a7;
+    background: #fff;
+}
+
 
 /*==================================
 じわっと文字を表示
