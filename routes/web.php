@@ -243,6 +243,7 @@ Route::get('backApplicationExcelEntry', 'Common\ExcelController@backApplicationE
 // ホーム画面
 Route::get('adminHomeInit', 'Admin\Home\AdminHomeController@adminHomeInit')->middleware("kasegu_auth");
 
+// 新着情報
 Route::any('adminInformationInit', 'Admin\Information\AdminInformationController@adminInformationInit')->middleware("kasegu_auth");
 
 Route::post('adminInformationEditInit', 'Admin\Information\AdminInformationController@adminInformationEditInit')->middleware("kasegu_auth");
@@ -250,6 +251,9 @@ Route::post('adminInformationEditInit', 'Admin\Information\AdminInformationContr
 Route::post('adminInformationEditEntry', 'Admin\Information\AdminInformationController@adminInformationEditEntry')->middleware("kasegu_auth");
 
 Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@adminDeleteEntry')->middleware("kasegu_auth");
+
+// アカウント
+Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
 
 /**
  * テスト

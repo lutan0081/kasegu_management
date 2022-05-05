@@ -88,7 +88,7 @@
                                                 </div>
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    アカウント数: <span class="count dashboard_box_num"></span>
+                                                    アカウント数: <span class="count dashboard_box_num">{{ $user_list->user_count }}</span>
                                                 </div>
                                                 
                                             </div>
@@ -104,16 +104,16 @@
                                         <div class="col-12 col-md-12 col-lg-12 dashboard_box_inner_3 mx-auto">
                                             <div class="row">
 
-                                                <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                    <span class="dashboard_box_title"><i class="fas fa-chart-line me-2"></i>ライフライン</span> 
+                                            <div class="col-12 col-md-12 col-lg-12 pt-5">
+                                                    <span class="dashboard_box_title"><i class="fas fa-id-card me-2"></i></i>申込管理</span> 
                                                 </div>
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    承認: <span class="count dashboard_box_num">1111111111111</span>
+                                                    契約手続中: <span class="count dashboard_box_num">1111111111111</span>
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12">
-                                                    否認: <span class="count dashboard_box_num">1111111111111</span>
+                                                    契約件数: <span class="count dashboard_box_num">1111111111111</span>
                                                 </div>
                                                 
                                             </div>
@@ -130,15 +130,15 @@
                                             <div class="row">
 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                    <span class="dashboard_box_title"><i class="fas fa-id-card me-2"></i></i>申込管理</span> 
+                                                    <span class="dashboard_box_title"><i class="fas fa-key me-2"></i></i></i>契約管理</span> 
                                                 </div>
-                                                
+
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    契約手続中: <span class="count dashboard_box_num">1111111111111</span>
+                                                    契約件数: <span class="count dashboard_box_num">1111111111111</span>
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12">
-                                                    契約件数: <span class="count dashboard_box_num">1111111111111</span>
+                                                    キャンセル: <span class="count dashboard_box_num">1111111111111</span>
                                                 </div>
 
                                             </div>
@@ -154,15 +154,11 @@
                                         <div class="col-12 col-md-12 col-lg-12 dashboard_box_inner_5 mx-auto">
                                             <div class="row">
                                                 <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                    <span class="dashboard_box_title"><i class="fas fa-key me-2"></i></i></i>契約管理</span> 
+                                                    <span class="dashboard_box_title"><i class="fas fa-file me-2"></i>ファイル</span> 
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    契約件数: <span class="count dashboard_box_num">1111111111111</span>
-                                                </div>
-
-                                                <div class="col-12 col-md-12 col-lg-12">
-                                                    キャンセル: <span class="count dashboard_box_num">1111111111111</span>
+                                                    ファイル数: <span class="count dashboard_box_num">1111111111</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,13 +172,7 @@
                                         <!-- 子要素cssで95%に設定し、mx-autoで中央に配置 -->
                                         <div class="col-12 col-md-12 col-lg-12 dashboard_box_inner_6 mx-auto">
                                             <div class="row">
-                                                <div class="col-12 col-md-12 col-lg-12 pt-5">
-                                                    <span class="dashboard_box_title"><i class="fas fa-file me-2"></i>ファイル</span> 
-                                                </div>
 
-                                                <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    ファイル数: <span class="count dashboard_box_num">1111111111</span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

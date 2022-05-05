@@ -110,7 +110,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="#">アカウント一覧</a>
+                                <a href="adminUserInit">アカウント一覧</a>
                             </li>
                         </ul>
                     </div>

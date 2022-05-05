@@ -45,6 +45,10 @@ class AdminHomeController extends Controller
             // access数:当日
             $access_info_today = $this->getAccessCountToday($request);
             $access_list_today = $access_info_today[0];
+
+            // アカウント数
+            $user_info = $this->getUserList($request);
+            $user_list = $user_info[0];
         
             // // 申込件数
             // $app_info = $this->getAppList($request);
@@ -76,7 +80,7 @@ class AdminHomeController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('admin.adminHome' ,$information_list ,compact('access_list' ,'access_list_today'));
+        return view('admin.adminHome' ,$information_list ,compact('access_list' ,'access_list_today' ,'user_list'));
     }
 
     /**
@@ -176,6 +180,28 @@ class AdminHomeController extends Controller
         ."(entry_date > '$start_date') "
         ."and "
         ."(entry_date < '$end_date') ";
+        Log::debug('sql:'.$str);
+
+        $ret = DB::select($str);
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret;
+    }
+
+    /**
+     *  アカウント数
+     *
+     * @return $ret(real_estate_agentの件数)
+     */
+    private function getUserList(Request $request){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        // session_id
+        $session_id = $request->session()->get('create_user_id');
+
+        // sql
+        $str = "select count(*) as user_count "
+        ."from create_users ";
         Log::debug('sql:'.$str);
 
         $ret = DB::select($str);
