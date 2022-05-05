@@ -137,7 +137,7 @@ h1{
 .top_font_en{
     font-weight: normal;
     font-size: 3rem;
-    letter-spacing: 1rem;
+    letter-spacing: 0.6rem;
     line-height: 1rem;
 }
 
@@ -152,14 +152,13 @@ h1{
 @media (max-width: 768px){
     .top_font_jp{
         font-weight: normal;
-        font-size: 1rem;
+        font-size: 1.5rem;
         line-height: 8rem;
     }
     
     .top_font_en{
         font-weight: normal;
         font-size: 2rem;
-        letter-spacing: 0.5rem;
         line-height: 1rem;
     }
     

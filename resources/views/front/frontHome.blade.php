@@ -60,8 +60,8 @@
             <!-- TOP動画の文字 -->
             <h1>
                 <span class="catch">
-                    <span class="top_font_en">Change Your Daily Task<br></span>
-                    <span class="top_font_jp">不動産の業務を「改革」する<br></span>
+                    <span class="top_font_en">Real Estate Work Innovation.<br></span>
+                    <span class="top_font_jp">不動産業務の「改革」<br></span>
                     <a href="frontUserInit" class="btn btn-border"><i class="far fa-gem me-2"></i>無料登録</a>
                     <a href="loginInit" class="btn btn-border"><i class="fas fa-sign-in-alt me-2"></i>ログイン</a><br>
                     <span class="top_font_en_bottom">Find your best way that will help change your task<br></span>
