@@ -8,33 +8,33 @@ function fadeAnime(){
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
     if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeIn');// 画面内に入ったらfadeInというクラス名を追記
+        $(this).addClass('fadeIn');// 画面内に入ったらfadeInというクラス名を追記
     }else{
-    $(this).removeClass('fadeIn');// 画面外に出たらfadeInというクラス名を外す
+        $(this).removeClass('fadeIn');// 画面外に出たらfadeInというクラス名を外す
     }
     
     });
 
   $('.fadeUpTrigger').each(function(){ //fadeUpTriggerというクラス名が
-    var elemPos = $(this).offset().top-50;//要素より、50px上の
-    var scroll = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeUp');// 画面内に入ったらfadeUpというクラス名を追記
-    }else{
-    $(this).removeClass('fadeUp');// 画面外に出たらfadeUpというクラス名を外す
-    }
+        var elemPos = $(this).offset().top-50;//要素より、50px上の
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll >= elemPos - windowHeight){
+            $(this).addClass('fadeUp');// 画面内に入ったらfadeUpというクラス名を追記
+        }else{
+            $(this).removeClass('fadeUp');// 画面外に出たらfadeUpというクラス名を外す
+        }
     });
 
   $('.fadeDownTrigger').each(function(){ //fadeDownTriggerというクラス名が
     var elemPos = $(this).offset().top-50;//要素より、50px上の
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
-    if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeDown');// 画面内に入ったらfadeDownというクラス名を追記
-    }else{
-    $(this).removeClass('fadeDown');// 画面外に出たらfadeDownというクラス名を外す
-    }
+        if (scroll >= elemPos - windowHeight){
+            $(this).addClass('fadeDown');// 画面内に入ったらfadeDownというクラス名を追記
+        }else{
+            $(this).removeClass('fadeDown');// 画面外に出たらfadeDownというクラス名を外す
+        }
     });
 
   $('.fadeLeftTrigger').each(function(){ //fadeLeftTriggerというクラス名が
@@ -295,9 +295,7 @@ function fadeAnime(){
       $(this).removeClass('bgUDextend');// 画面外に出たらbgUDextendというクラス名を外す
     }
   }); 
-  
 
-  
 }
 
 // 画面をスクロールをしたら動かしたい場合の記述

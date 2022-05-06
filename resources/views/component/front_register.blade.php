@@ -9,9 +9,9 @@
                     
                         <div class="resi_contents">
                             <span class="f_resister_jp">今すぐ無料登録<br></span>
-                            <span class="f_resister_en">Free Registration<br></span>
-                            <a href="frontUserInit" class="btn btn-register box zoomInTrigger mt-5"><i class="far fa-gem me-2"></i>今すぐ無料登録</a><br>
-                            <span class="f_resister_jp_bottom">不動産業務の効率化「申込管理」「契約管理」「契約書作成」「重説作成」を無料で提供します<br></span>
+                            <span class="f_resister_en">Free Member Registration<br></span>
+                            <a href="frontUserInit" class="btn btn-register box zoomInTrigger mt-5"><i class="far fa-gem me-2"></i>無料登録</a><br>
+                            <span class="f_resister_jp_bottom">不動産業務を「もっとスムーズに」「もっとスピーディーに」<br></span>
                         </div>
 
                     </div>

@@ -44,16 +44,16 @@
 
 /* タイトル(英語) */
 .f_resister_en{
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 1rem;
-    letter-spacing: 1rem;
+    letter-spacing: 0.5rem;
     color: #fff;
     text-align: center;
 }
 
 .f_resister_jp_bottom{
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 1.5rem;
     letter-spacing: 0.3rem;
     line-height: 5rem;
     color: #fff;
