@@ -670,8 +670,126 @@ hr {
 /*==================================
 資料請求
 ===================================*/
-.document_request_box {
+.document_box{
+    background-image: url(../img/document_send.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed;
+    height: 30rem;
+    /* センター寄せ */
+    position: relative;
+    /* センター寄せ */
+}
 
+.document_contents{
     height: 25rem;
+    text-align: center;
+    /* センター寄せ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* センター寄せ */
+}
 
+/* 画像フィルタ */
+.document_img_filter{
+    width: 100%;
+    height:30rem;
+    background: rgba(0, 0, 0, 0.637);
+    text-align: center;
+    padding-top:200px;
+}
+
+/* タイトル(日本語) */
+.f_document_jp{
+    font-size: 30px;
+    line-height: 8rem;
+    color: #fff;
+    text-align: center;
+    /* 文字間隔 */
+    letter-spacing: 0.3rem;
+}
+
+/* タイトル(英語) */
+.f_resister_en{
+    font-size: 3rem;
+    line-height: 1rem;
+    letter-spacing: 0.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.f_document_jp_bottom{
+    font-weight: normal;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    line-height: 5rem;
+    color: #fff;
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+    .resi_box{
+        height: 45rem;
+    }
+
+    /* 画像フィルタ */
+    .resi_img_filter {
+        height:45rem;
+    }
+
+    /* タイトル(日本語) */
+    .f_resister_jp{
+        font-size: 1.5em;
+        line-height: 8rem;
+    }
+
+    /* タイトル(英語) */
+    .f_resister_en{
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        letter-spacing: 1rem;
+    }
+
+    .f_resister_jp_bottom{
+        font-weight: normal;
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        line-height: 2rem;
+    } 
+}
+
+/* ipad、ipadPro */
+@media (max-width: 1024px) {
+    .f_resister_en {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        letter-spacing: 1rem;
+    }
+
+    .f_resister_jp_bottom{
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        line-height: 2rem;
+    } 
+}
+
+/* 無料登録ボタンの設定 */
+a.btn-register {
+    border: 2px solid #4162a7;
+    border-radius: 0;
+    color: #fff;
+    background: #4162a7;
+    width: 16rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.3rem;
+    padding: 10px 30px;
+}
+
+/* 無料登録ボタンの設定(hover) */
+a.btn-register:hover {
+    border: 2px solid #fff;
+    color: #4162a7;
+    background: #fff;
 }
