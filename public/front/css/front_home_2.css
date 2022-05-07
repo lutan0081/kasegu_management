@@ -674,7 +674,7 @@ hr {
     background-image: url(../img/document_send.jpg);
     background-size: cover;
     background-position: center; 
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     width: 100%;
     height: 30rem;
     /* センター寄せ */
@@ -682,7 +682,7 @@ hr {
 }
 
 .document_contents{
-    height: 25rem;
+    /* height: 25rem; */
     text-align: center;
     /* センター寄せ */
     position: absolute;
