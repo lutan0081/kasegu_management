@@ -172,7 +172,7 @@
                     <!-- 右ボックス -->
 
                     <!-- 左ボックス -->
-                    <div class="col-12 col-md-12 col-lg-6 app_box_right box fadeRightTrigger order-xl-1">
+                    <div class="col-12 col-md-12 col-lg-6 contract_left_box box fadeRightTrigger order-xl-1">
 
                         <span class="contract_left_text">
                             「契約管理」は、賃貸物件の契約管理とそれに伴う業務をWeb上で完結できるサービスです。<br><br>
@@ -189,7 +189,7 @@
 
                         <!-- メッセージボタン -->
                         <div class="col-12 col-md-12 col-lg-12 btn_box mt-5 box fadeRightTrigger float-end">
-                            <a href="#" class="btn bgleft float-start">
+                            <a href="#" class="btn bgleft float-xl-end">
                                 <span>詳細はこちら<i class="fas fa-download ms-1"></i></span>
                             </a>
                         </div>

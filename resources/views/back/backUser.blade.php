@@ -444,7 +444,7 @@
                                                         <select class="form-select" name="guaranty_association_region_id" id="guaranty_association_region_id" value="{{ $user_list->guaranty_association_id }}">
                                                             <option></option>
                                                             @foreach($guaranty_association_list as $guaranty_associations)
-                                                                <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
+                                                                <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_region_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         <div class="invalid-feedback" id="guaranty_association_region_id_error">
@@ -458,7 +458,7 @@
                                                     <!-- 郵便番号 -->
                                                     <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>郵便番号
-                                                        <input type="text" class="form-control" name="guaranty_association_region_post_number" id="guaranty_association_region_post_number" value="{{ $user_list->guaranty_association_post_number }}" readonly>
+                                                        <input type="text" class="form-control" name="guaranty_association_region_post_number" id="guaranty_association_region_post_number" value="{{ $user_list->guaranty_association_region_post_number }}" readonly>
                                                         <div class="invalid-feedback" id ="guaranty_association_region_post_number_error"> 
                                                             郵便番号は必須です。
                                                         </div>
@@ -470,7 +470,7 @@
                                                     <!-- 所在地 -->
                                                     <div class="col-12 col-md-12 col-lg-8 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>所在地
-                                                        <input type="text" class="form-control" name="guaranty_association_region_address" id="guaranty_association_region_address" value="{{ $user_list->guaranty_association_address }}" readonly>
+                                                        <input type="text" class="form-control" name="guaranty_association_region_address" id="guaranty_association_region_address" value="{{ $user_list->guaranty_association_region_address }}" readonly>
                                                         <div class="invalid-feedback" id ="guaranty_association_region_address_error">
                                                             所在地は必須です。
                                                         </div>
@@ -482,7 +482,7 @@
                                                     <!-- Tel -->
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Tel
-                                                        <input type="text" class="form-control" name="guaranty_association_region_tel" id="guaranty_association_region_tel" value="{{ $user_list->guaranty_association_tel }}" readonly>
+                                                        <input type="text" class="form-control" name="guaranty_association_region_tel" id="guaranty_association_region_tel" value="{{ $user_list->guaranty_association_region_tel }}" readonly>
                                                         <div class="invalid-feedback" id ="guaranty_association_region_tel_error">
                                                             Telは必須です。
                                                         </div>
@@ -491,7 +491,7 @@
                                                     <!-- Fax -->
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Fax
-                                                        <input type="text" class="form-control" name="guaranty_association_region_fax" id="guaranty_association_region_fax" value="{{ $user_list->guaranty_association_fax }}" readonly>
+                                                        <input type="text" class="form-control" name="guaranty_association_region_fax" id="guaranty_association_region_fax" value="{{ $user_list->guaranty_association_region_fax }}" readonly>
                                                         <div class="invalid-feedback" id ="guaranty_association_region_fax_error">
                                                         </div>
                                                     </div>

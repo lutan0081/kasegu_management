@@ -179,5 +179,7 @@ table, td, th {
     background-color: #0070BD;
 }
 
-
+textarea {
+    resize: none;
+}
 

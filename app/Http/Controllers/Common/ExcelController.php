@@ -1648,6 +1648,12 @@ class ExcelController extends Controller
         // 保証協会住所
         $guaranty_association_address = $contract_detail_list[0]->guaranty_association_address;
         
+        // 保証協会所属地方名称
+        $guaranty_association_region_name = $contract_detail_list[0]->guaranty_association_region_name;   
+
+        // 保証協会所属地方住所
+        $guaranty_association_region_address = $contract_detail_list[0]->guaranty_association_region_address;
+
         // 物件名
         $real_estate_name = $contract_detail_list[0]->real_estate_name;       
     
@@ -2060,6 +2066,12 @@ class ExcelController extends Controller
 
         // 保証協会住所
         $sheet->setCellValue('B168', $guaranty_association_address);
+
+        // 保証協会所属地方名称
+        $sheet->setCellValue('B172', $guaranty_association_region_name);
+
+        // 保証協会所属地方住所
+        $sheet->setCellValue('B173', $guaranty_association_region_address);
 
         // 不動産名
         $sheet->setCellValue('C2', $real_estate_name);
@@ -2489,6 +2501,9 @@ class ExcelController extends Controller
         ."company_licenses.guaranty_association_id as guaranty_association_id, "
         ."guaranty_associations.guaranty_association_name as guaranty_association_name, "
         ."guaranty_associations.guaranty_association_address as guaranty_association_address, "
+        ."company_licenses.guaranty_association_region_id as guaranty_association_region_id, "
+        ."guaranty_association_region.guaranty_association_name as guaranty_association_region_name, "
+        ."guaranty_association_region.guaranty_association_address as guaranty_association_region_address, "
         ."manager_name as manager_name, "
         ."contract_details.user_license_id as user_license_id, "
         ."user_license_name as user_license_name, "
@@ -2665,6 +2680,8 @@ class ExcelController extends Controller
         ."legal_places.legal_place_id = company_licenses.legal_place_id "
         ."left join guaranty_associations on "
         ."guaranty_associations.guaranty_association_id = company_licenses.guaranty_association_id "
+        ."left join guaranty_associations as guaranty_association_region on "
+        ."guaranty_association_region.guaranty_association_id = company_licenses.guaranty_association_region_id "
         ."left join special_contract_details on "
         ."special_contract_details.contract_detail_id = contract_details.contract_detail_id "
         ."left join create_users on "

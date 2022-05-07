@@ -691,9 +691,9 @@
                                                         <!-- 法務局 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>法務局
-                                                            <input type="text" class="form-control" name="guaranty_association_name" id="guaranty_association_name" value="{{ $contract_list->guaranty_association_name }}" disabled="disabled">
+                                                            <input type="text" class="form-control" name="legal_place_name" id="legal_place_name" value="{{ $contract_list->legal_place_name }}" disabled="disabled">
                                                             <!-- エラーメッセージ -->
-                                                            <div class="company-tab invalid-feedback" id ="guaranty_association_name_error">
+                                                            <div class="company-tab invalid-feedback" id ="legal_place_name_error">
                                                             </div>
                                                         </div>
                                                         <!-- 法務局 -->
@@ -701,7 +701,7 @@
                                                         <!-- 保証協会 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>保証協会
-                                                            <input type="text" class="form-control" name="legal_place_name" id="legal_place_name" value="{{ $contract_list->legal_place_name }}" disabled="disabled">
+                                                            <input type="text" class="form-control" name="guaranty_association_name" id="guaranty_association_name" value="{{ $contract_list->guaranty_association_name }}" disabled="disabled">
                                                             <!-- エラーメッセージ -->
                                                             <div class="company-tab invalid-feedback" id ="legal_place_name_error">
                                                             </div>
@@ -711,9 +711,9 @@
                                                         <!-- 保証協会所属地方 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
                                                             <label class="label_required mb-2" for="textBox"></label>保証協会所属地方
-                                                            <input type="text" class="form-control" name="legal_place_name" id="legal_place_name" value="{{ $contract_list->legal_place_name }}" disabled="disabled">
+                                                            <input type="text" class="form-control" name="guaranty_association_region_name" id="guaranty_association_region_name" value="{{ $contract_list->guaranty_association_region_name }}" disabled="disabled">
                                                             <!-- エラーメッセージ -->
-                                                            <div class="company-tab invalid-feedback" id ="legal_place_name_error">
+                                                            <div class="company-tab invalid-feedback" id ="guaranty_association_region_name_error">
                                                             </div>
                                                         </div>
                                                         <!-- 保証協会所属地方 -->
@@ -754,11 +754,11 @@
 
                                                         <!-- 担当者 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
-                                                            <label class="label_required mb-2" for="textBox"></label>担当者
+                                                            <label class="label_required mb-2" for="textBox"></label>契約担当
                                                             <input type="text" class="form-control" name="manager_name" id="manager_name" value="{{ $contract_list->manager_name }}" placeholder="例：大阪　太郎" required>
                                                             <!-- エラーメッセージ -->
                                                             <div class="company-tab invalid-feedback" id ="manager_name_error">
-                                                                担当者は必須です。
+                                                                契約担当は必須です。
                                                             </div>
                                                         </div>
                                                         <!-- 担当者 -->

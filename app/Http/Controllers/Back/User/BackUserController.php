@@ -75,7 +75,6 @@ class BackUserController extends Controller
             // 値取得
             $session_id = $request->session()->get('create_user_id');
 
-
             $str = "select "
             ."create_users.create_user_id as create_user_id, "
             ."create_users.create_user_name as create_user_name, "
@@ -110,6 +109,12 @@ class BackUserController extends Controller
             ."guaranty_associations.guaranty_association_address as guaranty_association_address, "
             ."guaranty_associations.guaranty_association_tel as guaranty_association_tel, "
             ."guaranty_associations.guaranty_association_fax as guaranty_association_fax, "
+            ."guaranty_association_region.guaranty_association_id as guaranty_association_region_id, "
+            ."guaranty_association_region.guaranty_association_name as guaranty_association_region_name, "
+            ."guaranty_association_region.guaranty_association_post_number as guaranty_association_region_post_number, "
+            ."guaranty_association_region.guaranty_association_address as guaranty_association_region_address, "
+            ."guaranty_association_region.guaranty_association_tel as guaranty_association_region_tel, "
+            ."guaranty_association_region.guaranty_association_fax as guaranty_association_region_fax, "
             ."create_users.entry_date, "
             ."create_users.update_user_id, "
             ."create_users.update_date "
@@ -123,6 +128,8 @@ class BackUserController extends Controller
             ."legal_places.legal_place_id = company_licenses.legal_place_id "
             ."left join guaranty_associations on "
             ."guaranty_associations.guaranty_association_id = company_licenses.guaranty_association_id "
+            ."left join guaranty_associations as guaranty_association_region on "
+            ."guaranty_association_region.guaranty_association_id = company_licenses.guaranty_association_region_id "
             ."where "
             ."create_users.create_user_id = $session_id ";
 

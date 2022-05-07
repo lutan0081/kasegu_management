@@ -77,6 +77,10 @@ $(function() {
             console.log("guaranty_association_name:" + data.company_license_list['guaranty_association_name']);
             $('#guaranty_association_name').val(data.company_license_list['guaranty_association_name']);
 
+            // 保証協会所属地方
+            console.log("guaranty_association_region_name:" + data.company_license_list['guaranty_association_region_name']);
+            $('#guaranty_association_region_name').val(data.company_license_list['guaranty_association_region_name']);
+
             // 法務局
             console.log("legal_place_name:" + data.company_license_list['legal_place_name']);
             $('#legal_place_name').val(data.company_license_list['legal_place_name']);

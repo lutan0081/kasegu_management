@@ -92,9 +92,6 @@ class BackContractController extends Controller
             $end_date = $request->input('end_date');
             Log::debug('$end_date:' .$end_date);
 
-            // 管理会社
-
-
             $str = "select "
             ."contract_details.contract_detail_id as contract_detail_id, "
             ."contract_details.create_user_id as create_user_id, "
@@ -436,6 +433,7 @@ class BackContractController extends Controller
         $obj->company_nick_name= '';
         $obj->company_nick_address= '';
         $obj->guaranty_association_name = '';
+        $obj->guaranty_association_region_name = '';
         $obj->legal_place_name= '';
         $obj->user_license_id= '';
         $obj->user_license_name= '';
@@ -832,6 +830,8 @@ class BackContractController extends Controller
             ."legal_places.legal_place_name as legal_place_name, "
             ."company_licenses.guaranty_association_id as guaranty_association_id, "
             ."guaranty_associations.guaranty_association_name as guaranty_association_name, "
+            ."company_licenses.guaranty_association_id as guaranty_association_region_id, "
+            ."guaranty_association_region.guaranty_association_name as guaranty_association_region_name, "
             ."manager_name as manager_name, "
             ."contract_details.user_license_id as user_license_id, "
             ."user_license_name as user_license_name, "
@@ -971,6 +971,8 @@ class BackContractController extends Controller
             ."on legal_places.legal_place_id = company_licenses.legal_place_id "
             ."left join guaranty_associations "
             ."on guaranty_associations.guaranty_association_id = company_licenses.guaranty_association_id "
+            ."left join guaranty_associations as guaranty_association_region on "
+            ."guaranty_association_region.guaranty_association_id = company_licenses.guaranty_association_region_id "
             ."left join special_contract_details "
             ."on special_contract_details.contract_detail_id = contract_details.contract_detail_id "           
             ."where "
