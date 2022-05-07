@@ -6,14 +6,14 @@
     background-size: cover;
     background-position: center; 
     background-attachment: fixed;
-    height: 40rem;
+    height: 35rem;
     /* センター寄せ */
     position: relative;
     /* センター寄せ */
 }
 
 .resi_contents{
-    height: 25rem;
+    /* height: 25rem; */
     text-align: center;
     /* センター寄せ */
     position: absolute;
@@ -26,7 +26,7 @@
 /* 画像フィルタ */
 .resi_img_filter {
     width: 100%;
-    height:40rem;
+    height:35rem;
     background: rgba(0, 0, 0, 0.637);
     text-align: center;
     padding-top:200px;
@@ -62,12 +62,12 @@
 /* スマホ */
 @media (max-width: 768px) {
     .resi_box{
-        height: 45rem;
+        height: 35rem;
     }
 
     /* 画像フィルタ */
     .resi_img_filter {
-        height:45rem;
+        height: 35rem;
     }
 
     /* タイトル(日本語) */
@@ -123,4 +123,12 @@ a.btn-register:hover {
     border: 2px solid #fff;
     color: #4162a7;
     background: #fff;
+}
+
+@media (max-width: 768px) {
+    a.btn-register {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.3rem;
+    }
 }

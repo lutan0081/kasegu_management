@@ -722,12 +722,12 @@ hr {
 /* スマホ */
 @media (max-width: 768px) {
     .document_box{
-        height: 45rem;
+        height: 30rem;
     }
 
     /* 画像フィルタ */
     .document_img_filter {
-        height:45rem;
+        height:30rem;
     }
 
     /* タイトル(日本語) */
@@ -753,7 +753,7 @@ hr {
     } 
 }
 
-/* 無料登録ボタンの設定 */
+/* ボタンの設定 */
 a.btn-document {
     border: 2px solid #4162a7;
     border-radius: 0;
@@ -765,13 +765,14 @@ a.btn-document {
     padding: 10px 30px;
 }
 
-/* 無料登録ボタンの設定(hover) */
+/* ボタンの設定(hover) */
 a.btn-document:hover {
     border: 2px solid #fff;
     color: #4162a7;
     background: #fff;
 }
 
+/* モバイル */
 @media (max-width: 768px) {
     a.btn-document {
         margin-top: 2rem;
