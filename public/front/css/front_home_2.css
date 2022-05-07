@@ -711,15 +711,6 @@ hr {
     letter-spacing: 0.3rem;
 }
 
-/* タイトル(英語) */
-.f_resister_en{
-    font-size: 3rem;
-    line-height: 1rem;
-    letter-spacing: 0.5rem;
-    color: #fff;
-    text-align: center;
-}
-
 .f_document_jp_bottom{
     font-weight: normal;
     font-size: 1.5rem;
@@ -730,29 +721,22 @@ hr {
 
 /* スマホ */
 @media (max-width: 768px) {
-    .resi_box{
+    .document_box{
         height: 45rem;
     }
 
     /* 画像フィルタ */
-    .resi_img_filter {
+    .document_img_filter {
         height:45rem;
     }
 
     /* タイトル(日本語) */
-    .f_resister_jp{
+    .f_document_jp{
         font-size: 1.5em;
-        line-height: 8rem;
+        line-height: 2.5rem;
     }
 
-    /* タイトル(英語) */
-    .f_resister_en{
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: 1rem;
-    }
-
-    .f_resister_jp_bottom{
+    .f_document_jp_bottom{
         font-weight: normal;
         font-size: 1rem;
         letter-spacing: 0.3rem;
@@ -762,13 +746,7 @@ hr {
 
 /* ipad、ipadPro */
 @media (max-width: 1024px) {
-    .f_resister_en {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: 1rem;
-    }
-
-    .f_resister_jp_bottom{
+    .f_document_jp_bottom{
         font-size: 1rem;
         letter-spacing: 0.3rem;
         line-height: 2rem;
@@ -776,20 +754,28 @@ hr {
 }
 
 /* 無料登録ボタンの設定 */
-a.btn-register {
+a.btn-document {
     border: 2px solid #4162a7;
     border-radius: 0;
     color: #fff;
     background: #4162a7;
     width: 16rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     letter-spacing: 0.3rem;
     padding: 10px 30px;
 }
 
 /* 無料登録ボタンの設定(hover) */
-a.btn-register:hover {
+a.btn-document:hover {
     border: 2px solid #fff;
     color: #4162a7;
     background: #fff;
+}
+
+@media (max-width: 768px) {
+    a.btn-document {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.3rem;
+    }
 }
