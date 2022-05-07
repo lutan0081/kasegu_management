@@ -213,7 +213,7 @@
                                 
                                     <div class="document_contents">
                                         <span class="f_document_jp">効率的に仕事をしたくないですか？<br></span>
-                                        <a href="#" class="btn btn-register box zoomInTrigger"><i class="far fa-gem me-2"></i>今すぐ資料請求</a><br>
+                                        <a href="" class="btn btn-register box zoomInTrigger"><i class="far fa-gem me-2"></i>今すぐ資料請求</a><br>
                                         <span class="f_document_jp_bottom">今までの「非効率」を「効率的」に<br></span>
                                     </div>
 

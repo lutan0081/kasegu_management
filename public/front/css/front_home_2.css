@@ -675,10 +675,10 @@ hr {
     background-size: cover;
     background-position: center; 
     background-attachment: fixed;
+    width: 100%;
     height: 30rem;
     /* センター寄せ */
     position: relative;
-    /* センター寄せ */
 }
 
 .document_contents{
