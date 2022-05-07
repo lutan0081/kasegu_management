@@ -73,11 +73,11 @@ $(function() {
             console.log("company_nick_address:" + data.company_license_list['company_nick_address']);
             $('#company_nick_address').val(data.company_license_list['company_nick_address']);
 
-            // 法務局
+            // 保証協会
             console.log("guaranty_association_name:" + data.company_license_list['guaranty_association_name']);
             $('#guaranty_association_name').val(data.company_license_list['guaranty_association_name']);
 
-            // 保証協会
+            // 法務局
             console.log("legal_place_name:" + data.company_license_list['legal_place_name']);
             $('#legal_place_name').val(data.company_license_list['legal_place_name']);
 

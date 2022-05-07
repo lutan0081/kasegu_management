@@ -698,15 +698,25 @@
                                                         </div>
                                                         <!-- 法務局 -->
 
-                                                        <!-- 不動産保証協会 -->
+                                                        <!-- 保証協会 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
-                                                            <label class="label_required mb-2" for="textBox"></label>不動産保証協会
+                                                            <label class="label_required mb-2" for="textBox"></label>保証協会
                                                             <input type="text" class="form-control" name="legal_place_name" id="legal_place_name" value="{{ $contract_list->legal_place_name }}" disabled="disabled">
                                                             <!-- エラーメッセージ -->
                                                             <div class="company-tab invalid-feedback" id ="legal_place_name_error">
                                                             </div>
                                                         </div>
-                                                        <!-- 不動産保証協会 -->
+                                                        <!-- 保証協会 -->
+
+                                                        <!-- 保証協会所属地方 -->
+                                                        <div class="col-12 col-md-10 col-lg-4 mt-3">
+                                                            <label class="label_required mb-2" for="textBox"></label>保証協会所属地方
+                                                            <input type="text" class="form-control" name="legal_place_name" id="legal_place_name" value="{{ $contract_list->legal_place_name }}" disabled="disabled">
+                                                            <!-- エラーメッセージ -->
+                                                            <div class="company-tab invalid-feedback" id ="legal_place_name_error">
+                                                            </div>
+                                                        </div>
+                                                        <!-- 保証協会所属地方 -->
 
                                                         <div class="col-12 col-md-6 col-lg-12 mt-3">
                                                             <hr>

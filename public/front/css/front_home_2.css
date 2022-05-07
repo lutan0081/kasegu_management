@@ -136,7 +136,7 @@ h1{
 
 .top_font_en{
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 3.3rem;
     letter-spacing: 0.6rem;
     line-height: 1rem;
 }
@@ -620,6 +620,16 @@ div.bg_dark {
     background: linear-gradient(transparent 50%, #89c8f5 0%);
 }
 
+@media (max-width: 768px) {
+
+    .mb_contract_box{
+        
+        flex-direction: column;
+
+    }
+
+}
+
 /* 下線描写アニメーション */
 .Text-Span {
     position: relative;
@@ -653,4 +663,13 @@ hr {
 	transition: 2s;
     /* 半透明を無くす */
     opacity: inherit;
+}
+
+/*==================================
+資料請求
+===================================*/
+.document_request_box {
+
+    height: 25rem;
+
 }

@@ -247,7 +247,7 @@ class BackUserController extends Controller
     }
 
     /**
-     * 不動産保証協会(コンボボックス変更)
+     * 保証協会(コンボボックス変更)
      *
      * @param Request $request
      * @return $response(不動産保証協会)
@@ -262,6 +262,33 @@ class BackUserController extends Controller
         ."from "
         ."guaranty_associations "
         ."where guaranty_associations.guaranty_association_id = $guaranty_association_id ";
+        Log::debug('sql:' .$str);
+        $guaranty_association_list = DB::select($str);
+        
+        // return
+        $response = [];
+        $response['guaranty_association_list'] = $guaranty_association_list;
+
+        Log::debug('log_end:' .__FUNCTION__);
+        return response()->json($response);
+    }
+
+    /**
+     * 保証協会：所属地方(コンボボックス変更)
+     *
+     * @param Request $request
+     * @return $response(不動産保証協会)
+     */
+    public function backGuarantyAssociationRegionsregionChange(Request $request){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        // 保証協会id
+        $guaranty_association_region_id = $request->input('guaranty_association_region_id');
+
+        $str = "select * "
+        ."from "
+        ."guaranty_associations "
+        ."where guaranty_associations.guaranty_association_id = $guaranty_association_region_id ";
         Log::debug('sql:' .$str);
         $guaranty_association_list = DB::select($str);
         
@@ -623,6 +650,7 @@ class BackUserController extends Controller
             $company_nick_address = $request->input('company_nick_address');
             $legal_place_id = $request->input('legal_place_id');
             $guaranty_association_id = $request->input('guaranty_association_id');
+            $guaranty_association_region_id = $request->input('guaranty_association_region_id');
 
             // 現在の日付取得
             $date = now() .'.000';
@@ -719,6 +747,13 @@ class BackUserController extends Controller
 
             }
 
+            // 不動産保証協会
+            if($guaranty_association_region_id == null){
+
+                $guaranty_association_region_id = 0;
+
+            }
+
             $str = "update "
             ."company_licenses "
             ."set "
@@ -735,6 +770,7 @@ class BackUserController extends Controller
             ."user_license_id = $full_time_user_license_id, "
             ."legal_place_id = $legal_place_id, "
             ."guaranty_association_id = $guaranty_association_id, "
+            ."guaranty_association_region_id = $guaranty_association_region_id, "
             ."entry_user_id = $session_id, "
             ."entry_date = '$date', "
             ."update_user_id = $session_id, "

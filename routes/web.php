@@ -159,8 +159,11 @@ Route::post('backUserLicenseChange', 'Back\User\BackUserController@backUserLicen
 // アカウント情報(法務局)
 Route::post('backLegalPlaceChange', 'Back\User\BackUserController@backLegalPlaceChange')->middleware("kasegu_auth");
 
-// アカウント情報(不動産保証協会)
+// アカウント情報：コンボボックス変更(保証協会)
 Route::post('backGuarantyAssociationChange', 'Back\User\BackUserController@backGuarantyAssociationChange')->middleware("kasegu_auth");
+
+// アカウント情報：コンボボックス変更(保証協会所属地方)
+Route::post('backGuarantyAssociationRegionsregionChange', 'Back\User\BackUserController@backGuarantyAssociationRegionsregionChange')->middleware("kasegu_auth");
 
 // アカウント情報(登録・編集)
 Route::post('backUserEditEntry', 'Back\User\BackUserController@backUserEditEntry')->middleware("kasegu_auth");

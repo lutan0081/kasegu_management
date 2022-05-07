@@ -355,7 +355,7 @@
                                                             </div>  
                                                         </div>
 
-                                                        <div class="col-6 col-md-8 col-lg-12 mt-3">
+                                                        <div class="col-12 col-md-12 col-lg-12 mt-3">
                                                             <hr>
                                                         </div>
 

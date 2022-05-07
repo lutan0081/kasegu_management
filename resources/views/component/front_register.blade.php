@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="resi_img_filter">
-                    <div class="col-8 col-md-8 col-lg-6 mx-auto">
+                    <div class="col-12 col-md-12 col-lg-12 mx-auto">
                     
                         <div class="resi_contents">
                             <span class="f_resister_jp">今すぐ無料登録<br></span>

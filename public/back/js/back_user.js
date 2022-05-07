@@ -144,7 +144,7 @@ $(function() {
     });
 
     /**
-     * 不動産保証協会(コンボボックス変更の処理)
+     * 保証協会(コンボボックス変更の処理)
      */
     $("#guaranty_association_id").change(function(e) {
 
@@ -199,6 +199,83 @@ $(function() {
             // fax
             console.log("guaranty_association_fax:" + data.guaranty_association_list[0]['guaranty_association_fax']);
             $('#guaranty_association_fax').val(data.guaranty_association_list[0]['guaranty_association_fax']);
+
+            // ローディング画面終了の処理
+            setTimeout(function(){
+                $("#overlay").fadeOut(300);
+            },500);
+
+        // ajax接続が出来なかった場合の処理
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+
+            // ローディング画面終了の処理
+            setTimeout(function(){
+                $("#overlay").fadeOut(300);
+            },500);
+            
+        });
+    });
+
+    /**
+     * 保証協会所属地方(コンボボックス変更の処理)
+     */
+    $("#guaranty_association_region_id").change(function(e) {
+
+        console.log('コンボボックス変更の処理');
+
+        e.preventDefault();
+
+        // ローディング画面
+        $("#overlay").fadeIn(300);
+
+        // id
+        let guaranty_association_region_id = $("#guaranty_association_region_id").val();
+        console.log(guaranty_association_region_id);
+
+        // 送信データ設定
+        var sendData = new FormData();
+        
+        sendData.append('guaranty_association_region_id', guaranty_association_region_id);
+        
+        // ajaxヘッダー
+        $.ajaxSetup({
+
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            
+        });
+
+        $.ajax({
+
+            type: 'post',
+            url: 'backGuarantyAssociationRegionsregionChange',
+            dataType: 'json',
+            data: sendData,
+            cache:false,
+            processData : false,
+            contentType : false,
+
+        // 接続が出来た場合の処理
+        }).done(function(data) {
+
+            // 郵便番号
+            console.log("guaranty_association_post_number:" + data.guaranty_association_list[0]['guaranty_association_post_number']);
+            $('#guaranty_association_region_post_number').val(data.guaranty_association_list[0]['guaranty_association_post_number']);
+
+            // 住所
+            console.log("guaranty_association_address:" + data.guaranty_association_list[0]['guaranty_association_address']);
+            $('#guaranty_association_region_address').val(data.guaranty_association_list[0]['guaranty_association_address']);
+
+            // tel
+            console.log("guaranty_association_tel:" + data.guaranty_association_list[0]['guaranty_association_tel']);
+            $('#guaranty_association_region_tel').val(data.guaranty_association_list[0]['guaranty_association_tel']);
+
+            // fax
+            console.log("guaranty_association_fax:" + data.guaranty_association_list[0]['guaranty_association_fax']);
+            $('#guaranty_association_region_fax').val(data.guaranty_association_list[0]['guaranty_association_fax']);
 
             // ローディング画面終了の処理
             setTimeout(function(){
@@ -407,6 +484,25 @@ $(function() {
         // fax
         let guaranty_association_fax = $("#guaranty_association_fax").val();
 
+        /**
+         * 不動産保証協会所属地方
+         */
+        // id
+        let guaranty_association_region_id = $("#guaranty_association_region_id").val();
+
+        // 郵便番号
+        let guaranty_association_region_post_number = $("#guaranty_association_region_post_number").val();
+
+        // 住所
+        let guaranty_association_region_address = $("#guaranty_association_region_address").val();
+
+        // 電話番号
+        let guaranty_association_region_tel = $("#guaranty_association_region_tel").val();
+
+        // ファックス
+        let guaranty_association_region_fax = $("#guaranty_association_region_fax").val();
+
+
         // 送信データインスタンス化
         var sendData = new FormData();
 
@@ -441,12 +537,19 @@ $(function() {
         sendData.append('legal_place_tel', legal_place_tel);
         sendData.append('legal_place_fax', legal_place_fax);
 
-        // 不動産保証協会
+        // 保証協会
         sendData.append('guaranty_association_id', guaranty_association_id);
         sendData.append('guaranty_association_post_number', guaranty_association_post_number);
         sendData.append('guaranty_association_address', guaranty_association_address);
         sendData.append('guaranty_association_tel', guaranty_association_tel);
         sendData.append('guaranty_association_fax', guaranty_association_fax);
+
+        // 保証協会地方所属
+        sendData.append('guaranty_association_region_id', guaranty_association_region_id);
+        sendData.append('guaranty_association_region_post_number', guaranty_association_region_post_number);
+        sendData.append('guaranty_association_region_address', guaranty_association_region_address);
+        sendData.append('guaranty_association_region_tel', guaranty_association_region_tel);
+        sendData.append('guaranty_association_region_fax', guaranty_association_region_fax);
 
         // id
         sendData.append('create_user_id', create_user_id);

@@ -71,7 +71,7 @@
                                                 <a class="nav-link active" id="nav-user-tab" data-bs-toggle="tab" href="#nav-user" role="tab" aria-controls="nav-user" aria-selected="true">アカウント情報</a>
                                                 <a class="nav-link" id="nav-company_license-tab" data-bs-toggle="tab" href="#nav-company_license" role="tab" aria-controls="nav-company_license" aria-selected="false">免許情報</a>
                                                 <a class="nav-link" id="nav-legal_places-tab" data-bs-toggle="tab" href="#nav-legal_places" role="tab" aria-controls="nav-legal_places" aria-selected="false">法務局</a>
-                                                <a class="nav-link" id="nav-guaranty_societies-tab" data-bs-toggle="tab" href="#nav-guaranty_societies" role="tab" aria-controls="nav-guaranty_societies" aria-selected="false">不動産保証協会</a>
+                                                <a class="nav-link" id="nav-guaranty_societies-tab" data-bs-toggle="tab" href="#nav-guaranty_societies" role="tab" aria-controls="nav-guaranty_societies" aria-selected="false">保証協会</a>
                                             </div>
                                         </nav>
                                         <!-- ナビゲーションの設定 -->
@@ -378,7 +378,7 @@
 
                                                     <!-- 名称 -->
                                                     <div class="col-5 col-md-12 col-lg-4 mt-4">
-                                                        <label class="label_any mb-2" for="textBox"></label>不動産保証協会名
+                                                        <label class="label_any mb-2" for="textBox"></label>保証協会
                                                         <select class="form-select" name="guaranty_association_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_id }}">
                                                             <option></option>
                                                             @foreach($guaranty_association_list as $guaranty_associations)
@@ -386,7 +386,7 @@
                                                             @endforeach
                                                         </select>
                                                         <div class="invalid-feedback" id="guaranty_association_id_error">
-                                                            申込区分は必須です。
+                                                            保証協会は必須です。
                                                         </div>
                                                     </div>
                                                     <!-- 名称 -->
@@ -434,6 +434,68 @@
                                                         </div>
                                                     </div>
                                                 
+                                                    <div class="col-12 col-md-12 col-lg-12 mt-3">
+                                                        <hr>
+                                                    </div>
+
+                                                    <!-- 保証協会所属地方 -->
+                                                    <div class="col-5 col-md-12 col-lg-4 mt-4">
+                                                        <label class="label_any mb-2" for="textBox"></label>保証協会所属地方
+                                                        <select class="form-select" name="guaranty_association_region_id" id="guaranty_association_region_id" value="{{ $user_list->guaranty_association_id }}">
+                                                            <option></option>
+                                                            @foreach($guaranty_association_list as $guaranty_associations)
+                                                                <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="invalid-feedback" id="guaranty_association_region_id_error">
+                                                            保証協会所属地方は必須です。
+                                                        </div>
+                                                    </div>
+                                                    <!-- 名称 -->
+
+                                                    <div class="w-100"></div>
+
+                                                    <!-- 郵便番号 -->
+                                                    <div class="col-12 col-md-12 col-lg-2 mt-3">
+                                                        <label class="label_any mb-2" for="textBox"></label>郵便番号
+                                                        <input type="text" class="form-control" name="guaranty_association_region_post_number" id="guaranty_association_region_post_number" value="{{ $user_list->guaranty_association_post_number }}" readonly>
+                                                        <div class="invalid-feedback" id ="guaranty_association_region_post_number_error"> 
+                                                            郵便番号は必須です。
+                                                        </div>
+                                                    </div>
+                                                    <!-- 郵便番号 -->
+
+                                                    <div class="w-100"></div>
+
+                                                    <!-- 所在地 -->
+                                                    <div class="col-12 col-md-12 col-lg-8 mt-3">
+                                                        <label class="label_any mb-2" for="textBox"></label>所在地
+                                                        <input type="text" class="form-control" name="guaranty_association_region_address" id="guaranty_association_region_address" value="{{ $user_list->guaranty_association_address }}" readonly>
+                                                        <div class="invalid-feedback" id ="guaranty_association_region_address_error">
+                                                            所在地は必須です。
+                                                        </div>
+                                                    </div>
+                                                    <!-- 所在地 -->
+
+                                                    <div class="w-100"></div>
+
+                                                    <!-- Tel -->
+                                                    <div class="col-12 col-md-6 col-lg-4 mt-3">
+                                                        <label class="label_any mb-2" for="textBox"></label>Tel
+                                                        <input type="text" class="form-control" name="guaranty_association_region_tel" id="guaranty_association_region_tel" value="{{ $user_list->guaranty_association_tel }}" readonly>
+                                                        <div class="invalid-feedback" id ="guaranty_association_region_tel_error">
+                                                            Telは必須です。
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Fax -->
+                                                    <div class="col-12 col-md-6 col-lg-4 mt-3">
+                                                        <label class="label_any mb-2" for="textBox"></label>Fax
+                                                        <input type="text" class="form-control" name="guaranty_association_region_fax" id="guaranty_association_region_fax" value="{{ $user_list->guaranty_association_fax }}" readonly>
+                                                        <div class="invalid-feedback" id ="guaranty_association_region_fax_error">
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <!-- 保証協会 -->
