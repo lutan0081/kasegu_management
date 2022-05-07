@@ -572,7 +572,7 @@ div.bg_dark {
 
     .top_bottom_title_box{
 
-        font-size: 1.2rem;
+        font-size: 1.1rem;
 
         margin-bottom: 3rem;
     }
@@ -620,12 +620,14 @@ div.bg_dark {
     background: linear-gradient(transparent 50%, #89c8f5 0%);
 }
 
+/* 左ボックス */
 @media (max-width: 768px) {
 
-    .mb_contract_box{
+    .contract_left_box{
         
-        flex-direction: column;
+        text-align: center;
 
+        margin-top: 1rem;
     }
 
 }
