@@ -674,7 +674,7 @@ hr {
     background-image: url(../img/document_send.jpg);
     background-size: cover;
     background-position: center; 
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
     width: 100%;
     height: 30rem;
     /* センター寄せ */
@@ -723,6 +723,7 @@ hr {
 @media (max-width: 768px) {
     .document_box{
         height: 30rem;
+        background-attachment: local;
     }
 
     /* 画像フィルタ */

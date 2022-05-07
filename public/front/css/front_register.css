@@ -63,6 +63,7 @@
 @media (max-width: 768px) {
     .resi_box{
         height: 35rem;
+        background-attachment: local;
     }
 
     /* 画像フィルタ */
@@ -79,27 +80,12 @@
     /* タイトル(英語) */
     .f_resister_en{
         font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: 1rem;
+        line-height: 2.5rem;
+        letter-spacing: 0.5rem;
     }
 
     .f_resister_jp_bottom{
         font-weight: normal;
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
-        line-height: 2rem;
-    } 
-}
-
-/* ipad、ipadPro */
-@media (max-width: 1024px) {
-    .f_resister_en {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: 1rem;
-    }
-
-    .f_resister_jp_bottom{
         font-size: 1rem;
         letter-spacing: 0.3rem;
         line-height: 2rem;
