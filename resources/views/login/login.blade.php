@@ -56,7 +56,7 @@
                                 <a class="underlineHover float-lg-start" href="createUserInit">パスワードを忘れた</a>
                             </div>
                             <div class="col-12 col-md-12 col-lg-6">
-                                <a class="underlineHover float-lg-end" href="createUserInit">ユーザ登録</a>
+                                <a class="underlineHover float-lg-end" href="frontUserInit">ユーザ登録</a>
                             </div>
                         </div>
                     </div>

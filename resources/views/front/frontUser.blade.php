@@ -46,9 +46,8 @@
                             <div class="col-8 col-md-8 col-lg-6 mx-auto">
                             
                                 <div class="top_contents">
-                                    <p class="title_en">Account Registration</p>
+                                    <p class="title_en">Account</p>
                                     <p class="title_jp">アカウント作成<br></p>
-                                
                                 </div>
 
                             </div>

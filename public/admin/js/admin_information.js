@@ -1,5 +1,28 @@
 $(function(){
+    /**
+     * イニシャライズ
+     */
+    $(window).on('load', function(){
 
+        modalClear();
+
+    });
+
+    /**
+     * 初期化
+     */
+    function modalClear() {
+
+        // タイトル
+        $('#information_title').val('');
+
+        // 種別
+        $('#information_type').val('');
+
+        // 内容
+        $('#information_contents').val('');
+    }
+    
     /**
      * ページネーションセンター
      */

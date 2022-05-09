@@ -136,7 +136,7 @@ h1{
 
 .top_font_en{
     font-weight: normal;
-    font-size: 3rem;
+    font-size: 3.3rem;
     letter-spacing: 0.6rem;
     line-height: 1rem;
 }
@@ -377,23 +377,6 @@ a.btn-border:hover {
     }
 }
 
-/*==================================
-about_kaseguの設定
-===================================*/
-/*「改革」の文字設定*/
-.about_change_task{
-    font-size: 2rem;
-    margin-top: 3rem;
-}
-
-/* KASEGUについての背景画像 */
-.img_bg {
-    width: 100%;
-    height: 100%;
-    background-image: url(../img/about_img.jpg);
-    background-size: cover;
-}
-
 /* 画像フィルタ */
 .img_filter {
     width: 100%;
@@ -415,7 +398,8 @@ about_kaseguの設定
 }
 
 .img_text_en{
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-family: 'Ms Madi', cursive;
 }
 
 .img_text_jp{
@@ -440,7 +424,7 @@ about_kaseguの設定
 /* ipad、ipadPro */
 @media (min-width: 1024px) {
     .img_text_en{
-        font-size: 1rem!important;
+        font-size: 2.5rem;
     }
 
     .about_change_task{
@@ -508,7 +492,6 @@ about_kaseguの設定
     }
 }
 
-
 /*==================================
 画像(申込管理・契約書、重要事項説明書、工事業者)
 ===================================*/
@@ -520,7 +503,7 @@ about_kaseguの設定
 }
 
 .img_text_en{
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 
 .img_text_jp{
@@ -567,5 +550,234 @@ div.bg_dark {
     /* ボックスサイズ */
     .img_size{
         height: 25rem;
+    }
+}
+
+/*==================================
+効率の悪い業務をしてませんか？
+===================================*/
+.top_bottom_title_box{
+
+    text-align: center;
+    
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    line-height: 3.5rem;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+
+    .top_bottom_title_box{
+
+        font-size: 1.1rem;
+
+        margin-bottom: 3rem;
+    }
+
+}
+
+/*==================================
+申込管理
+===================================*/
+/* 右テキスト */
+.app_right_text{
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+
+    line-height: 2.5rem;
+
+    background: linear-gradient(transparent 50%, #ffcccc 0%);
+}
+
+/* 右ボックス */
+@media (max-width: 768px) {
+
+    .app_right_box{
+        
+        text-align: center;
+
+        margin-top: 1rem;
+    }
+
+}
+
+/*==================================
+契約管理
+===================================*/
+.contract_left_text{
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+
+    line-height: 2.5rem;
+
+    background: linear-gradient(transparent 50%, #89c8f5 0%);
+}
+
+/* 左ボックス */
+@media (max-width: 768px) {
+
+    .contract_left_box{
+        
+        text-align: center;
+
+        margin-top: 1rem;
+    }
+
+}
+
+/* 下線描写アニメーション */
+.Text-Span {
+    position: relative;
+    z-index: 1;
+}
+
+.Text-Span:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -14px;
+    width: 0%;
+    height: 4px;
+    z-index: -1;
+    transition: all 0.8s;
+    border-bottom: 5px solid #0082e2;
+}
+
+.Text-Span.isActive:after {
+    width: 100%;
+}
+
+
+/* hrのアニメーション設定 */
+hr {
+	margin-top: 5rem;
+	border: none;
+	width: 0%;
+	height: 8px;
+    border-bottom: 5px solid #0082e2;
+	transition: 2s;
+    /* 半透明を無くす */
+    opacity: inherit;
+}
+
+/*==================================
+資料請求
+===================================*/
+.document_box{
+    background-image: url(../img/document_send.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed;
+    width: 100%;
+    height: 30rem;
+    /* センター寄せ */
+    position: relative;
+}
+
+.document_contents{
+    /* height: 25rem; */
+    text-align: center;
+    /* センター寄せ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* センター寄せ */
+}
+
+/* 画像フィルタ */
+.document_img_filter{
+    width: 100%;
+    height:30rem;
+    background: rgba(0, 0, 0, 0.637);
+    text-align: center;
+    padding-top:200px;
+}
+
+/* タイトル(日本語) */
+.f_document_jp{
+    font-size: 30px;
+    line-height: 8rem;
+    color: #fff;
+    text-align: center;
+    /* 文字間隔 */
+    letter-spacing: 0.3rem;
+}
+
+.f_document_jp_bottom{
+    font-weight: normal;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    line-height: 5rem;
+    color: #fff;
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+    .document_box{
+        height: 30rem;
+        background-attachment: local;
+    }
+
+    /* 画像フィルタ */
+    .document_img_filter {
+        height:30rem;
+    }
+
+    /* タイトル(日本語) */
+    .f_document_jp{
+        font-size: 1.5em;
+        line-height: 2.5rem;
+    }
+
+    .f_document_jp_bottom{
+        font-weight: normal;
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        line-height: 2rem;
+    } 
+}
+
+/* ipad、ipadPro */
+@media (max-width: 1024px) {
+    .f_document_jp_bottom{
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        line-height: 2rem;
+    } 
+}
+
+/* ボタンの設定 */
+a.btn-document {
+    border: 2px solid #4162a7;
+    border-radius: 0;
+    color: #fff;
+    background: #4162a7;
+    width: 16rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.3rem;
+    padding: 10px 30px;
+}
+
+/* ボタンの設定(hover) */
+a.btn-document:hover {
+    border: 2px solid #fff;
+    color: #4162a7;
+    background: #fff;
+}
+
+/* モバイル */
+@media (max-width: 768px) {
+    a.btn-document {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.3rem;
     }
 }

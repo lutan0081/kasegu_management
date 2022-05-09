@@ -35,8 +35,15 @@ a:visited{
     background-attachment: fixed;
     /* 親要素の高さ調整 */
     height: 25rem;
+    width: 100%;
     /* センター寄せ */
     position: relative;
+}
+
+@media (max-width: 768px) {
+    .top_box{
+        background-attachment: local;
+    }
 }
 
 .top_contents{

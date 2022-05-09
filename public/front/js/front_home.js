@@ -31,3 +31,31 @@ $(function(){
         BlurTextAnimeControl();/* アニメーション用の関数を呼ぶ*/
     },1000);// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
 });
+
+/**
+ * TOP下画面のborderアニメーション
+ */
+$(window).on('scroll',function(){
+    $(".JS_ScrollAnimationItem").each(function(){
+        var position = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll > position - windowHeight){
+        $(this).addClass('isActive');
+        }
+    });
+});
+
+/**
+ * hrのアニメーション
+ */
+$(window).on('scroll',function(){
+    $(".boderTrigger").each(function(){
+        var position = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll > position - windowHeight){
+            $("hr").css('width', '100%');
+        }
+    });
+});

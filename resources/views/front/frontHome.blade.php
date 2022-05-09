@@ -11,7 +11,7 @@
         @endcomponent
 
         <!-- front_home -->
-        <link rel="stylesheet" href="{{ asset('front/css/front_home_2.css') }}">
+        <link rel="stylesheet" href="{{ asset('front/css/front_home.css') }}">
 
         <!-- front_register -->
         <link rel="stylesheet" href="{{ asset('front/css/front_register.css') }}">
@@ -298,7 +298,7 @@
         <script src="{{ asset('lode/js/lode.js') }}"></script>
         
         <!-- front_home -->
-        <script src="{{ asset('front/js/front_home_2.js') }}"></script>
+        <script src="{{ asset('front/js/front_home.js') }}"></script>
     </body>
 
 </html>
