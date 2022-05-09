@@ -12,6 +12,9 @@ Route::get('loginInit', 'Login\LoginController@loginInit');
 // ログイン画面(バリデーション)
 Route::post('loginApi', 'Login\LoginController@loginApi');
 
+// ログイン画面(パスワードを忘れた)
+Route::post('forgetPassEntry', 'Login\LoginController@forgetPassEntry');
+
 // 表示
 Route::get('/', 'Front\Home\FrontHomeController@frontHomeInit');
 
