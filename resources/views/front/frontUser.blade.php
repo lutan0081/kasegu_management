@@ -38,7 +38,7 @@
         @endcomponent
 
         <!-- 表題 -->
-        <div class="container-fluid mb-5">
+        <div class="container-fluid mb-3">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 top_box">
                     <div class="row">
@@ -59,17 +59,13 @@
         <!-- 表題 -->
 
         <!-- コンテンツ -->
-        <div class="container mb-5">
+        <div class="container mb-3">
             <div class="row">
-                <div class="col-12 col-md-12 col-lg-12 my-4">
-
-                    <!-- カードコンテンツ -->
-                    <div class="card box zoomInTrigger">
+                <div class="col-12 col-md-12 col-lg-12">
 
                         <div class="col-12 col-md-10 col-lg-8 mt-5 mt-4 px-3">
-                            ご登録後、ご入力して頂いたメールアドレスに本登録用URLが届きます。<br>
-                            メール本文中の本登録URLをクリックし、24時間以内に本登録を完了させてください。<br><br>
-                            仮登録後10分経過しても仮登録完了のメールが届かない場合、最初からお手続きください。<br>
+                            <i class="fas fa-bullhorn icon_blue me-2"></i>ご登録後、ご入力して頂いたメールアドレスに本登録用URLが届きます。<br>
+                            メールの本登録URLをクリックして本登録を完了させてください。<br>
                         </div>  
 
                         <form id="form" class="needs-validation p-3" novalidate>
@@ -99,7 +95,7 @@
                                 <label class="label_required mb-2" for="textBox"></label>郵便番号
                                 <div class="input-group">
                                     <input type="text" id="post" class="form-control" name="post_reqest" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-                                    <button class="btn btn-outline-primary btn_zip" type="button" id="user-btn-zip" >検索</button>
+                                    <button class="btn btn-outline-primary btn_zip" type="button" id="user-btn-zip" ><i class="fas fa-search"></i></button>
                                     <div class="invalid-feedback" id="post_error">
                                         郵便番号は必須です。
                                     </div>
@@ -157,7 +153,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-12 col-md-12 col-lg-12 text-center mt-4 mb-3">
+                            <div class="col-12 col-md-12 col-lg-12 text-center mt-3 mb-3">
                                 <div class="invalid-feedback" id ="agree_error">
                                     個人情報保護方針に同意して下さい。
                                 </div>
@@ -177,7 +173,7 @@
                             <input type="hidden" id="top_url" value="{{ url('/') }}" />
 
                         </form>
-                    </div>
+                    
                     <!-- カードコンテンツ -->
                 </div>
             </div>
