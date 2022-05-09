@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
 
-                        <div class="col-12 col-md-10 col-lg-8 mt-5 mt-4 px-3 top_bottom_box">
+                        <div class="col-12 col-md-10 col-lg-8 mt-4 px-3 top_bottom_box">
                             <i class="fas fa-bullhorn icon_blue me-2"></i>ご登録後、ご入力して頂いたメールアドレスに本登録用URLが届きます。<br>
                             メールの本登録URLをクリックして本登録を完了させてください。<br>
                         </div>  
