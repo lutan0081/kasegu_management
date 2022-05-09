@@ -185,3 +185,13 @@ label.label_any:after {
 .form-control, .form-select, .btn, .dropdown-menu{
     font-size: 0.9rem;
 }
+
+/* 説明文（モバイル） */
+@media (max-width: 768px) {
+
+    /* タイトル(日本語) */
+    .top_bottom_box{
+        text-align: center;
+    }
+
+}
