@@ -111,7 +111,7 @@ class AdminHomeController extends Controller
         $alias = DB::raw("({$str}) as alias");
 
         // columnの設定、表示件数
-        $res = DB::table($alias)->selectRaw("*")->orderByRaw("update_date desc")->paginate(3)->onEachSide(1);
+        $res = DB::table($alias)->selectRaw("*")->orderByRaw("update_date desc")->paginate(4)->onEachSide(1);
 
         // resの中に値が代入されている
         $ret = [];
