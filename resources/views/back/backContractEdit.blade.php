@@ -103,7 +103,7 @@
                 </div>
 
                 <!-- 入力項目 -->
-                <div class="container mt-4">
+                <div class="container mt-3">
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12">
 
@@ -2211,7 +2211,7 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th scope="col" id="create_user_id" style="display:none">id</th>
-                                                                                            <th scope="col" id="create_user_name">選択</th>
+                                                                                            <th scope="col" id="create_user_name"><input class="form-check-input me-2" type="checkbox" value="" id="cb_special_contract">全選択</th>
                                                                                             <th scope="col" id="create_user_name">特約事項</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -2220,9 +2220,9 @@
                                                                                     <tbody>
                                                                                         @foreach($special_contract_list as $special_contract)
                                                                                             <tr>
-                                                                                                <td id="special_contract_id_{{$special_contract->special_contract_id}}" class="click_class" style="display:none"></td>
-                                                                                                <td id="special_contract_select_{{$special_contract->special_contract_id}}" class="click_class"><input class="form-check-input" type="checkbox" id="cb_{{$special_contract->special_contract_id}}" @if($special_contract->special_contract_default_id == 1) checked @endif></td>
-                                                                                                <td id="special_contract_detail_{{$special_contract->special_contract_id}}" class="click_class">{{$special_contract->special_contract_name}}</td>
+                                                                                                <td id="special_contract_id_{{$special_contract->special_contract_id}}" style="display:none"></td>
+                                                                                                <td id="special_contract_select_{{$special_contract->special_contract_id}}"><input class="form-check-input" name="all_check" type="checkbox" id="cb_{{$special_contract->special_contract_id}}" @if($special_contract->special_contract_default_id == 1) checked @endif></td>
+                                                                                                <td id="special_contract_detail_{{$special_contract->special_contract_id}}">{{$special_contract->special_contract_name}}</td>
                                                                                             </tr>
                                                                                         @endforeach
                                                                                     </tbody>

@@ -77,7 +77,7 @@
                             <label class="label_required mb-2" for="textBox"></label>郵便番号
                             <div class="input-group">
                                 <input type="text" id="guaranty_association_post_number" class="form-control" name="guaranty_association_post_number" value="{{ $guaranty_association_list->guaranty_association_post_number }}" required placeholder="例：5450021">
-                                <button class="btn btn-outline-primary btn_zip" type="button" id="guaranty_association_post_number-btn-zip" >検索</button>
+                                <button class="btn btn-outline-primary btn_zip" type="button" id="guaranty_association_post_number-btn-zip" ><i class="fas fa-search"></i></button>
                                 <div class="invalid-feedback" id="guaranty_association_post_number_error">
                                     郵便番号は必須です。
                                 </div>

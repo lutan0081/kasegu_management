@@ -109,7 +109,7 @@ class BackSpecialContractController extends Controller
 
             // columnの設定、表示件数
             // $res = DB::table($alias)->selectRaw("*")->orderByRaw("sort_id")->paginate(20)->onEachSide(1);
-            $res = DB::table($alias)->selectRaw("*")->paginate(50)->onEachSide(1);
+            $res = DB::table($alias)->selectRaw("*")->orderByRaw("sort_id ASC")->paginate(50)->onEachSide(1);
 
             // resの中に値が代入されている
             $ret = [];
@@ -683,8 +683,6 @@ class BackSpecialContractController extends Controller
         return response()->json($response);;  
     }
     
-
-
     private function updateSortData(Request $request){
         Log::debug('log_start:' .__FUNCTION__);
 
@@ -698,6 +696,7 @@ class BackSpecialContractController extends Controller
 
             $session_id = $request->session()->get('create_user_id');
 
+            // sortid初期値
             $sort_number = 1;
             
             foreach ($ids as $id){

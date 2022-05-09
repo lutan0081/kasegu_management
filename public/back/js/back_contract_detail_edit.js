@@ -1807,9 +1807,9 @@ $(function() {
         // 反映する特約の初期値
         let special_contract_detail = '';
 
-        // ループ
-        $('input[type="checkbox"]:checked').each(function(i, elem) {
-            
+        // all_checkのみをループ
+        $('input[name="all_check"]:checked').each(function(i, elem) {
+
             // チェックボックスのidを取得
             let ids = $(this).attr('id');
             console.log(ids);
@@ -1818,7 +1818,7 @@ $(function() {
             let id = ids.split('_')[1];
             console.log(id);
 
-            // テキストのidを作成し、値を取得
+            // 値を取得
             let special_contract_detail_text = $('#special_contract_detail_' + id).text();
 
             // 前回の特約に文字列を連結
@@ -3319,4 +3319,45 @@ $(function() {
             
         }
     });
+
+    // const cbSpecialContract = document.getElementsByName("cbSpecialContract")
+    const cbSpecialContract = $('.cbSpecialContract').val();
+
+    function checkAll() {
+        for(i = 0; i < cbSpecialContract.length; i++) {
+            cbSpecialContract[i].checked = true
+        }
+    }
+
+
+    // $('#cb_special_contract').on('change', function(){
+    //     // チェックされた場合の処理
+    //     if(jQuery(this).prop('checked')){
+            
+    //         console.log('チェックされています');
+
+    //         const checkbox1 = document.getElementsByName("all_check")
+
+    //         $('.checkbox1').prop('checked', $(this).is(':checked'));
+    //     }
+    // });
+    
+
+    /**
+     * チェックボックス全選択
+     */
+    $('#cb_special_contract').on('click', function() {
+
+        console.log('チェックされています');
+
+        if (this.checked) {
+        // チェックされていたら全ての個別チェックボックスを選択状態に
+            $('input[name=all_check]').prop('checked', true);
+
+        } else {
+        // チェックされていなければ全ての個別チェックボックスを選択解除
+            $('input[name=all_check]').prop('checked', false);
+        }
+    });
+
 });
