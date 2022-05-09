@@ -51,32 +51,6 @@ class FrontHomeController extends Controller
         return view('front.frontHome',compact('list_info'));
     }
 
-    public function frontHome2Init(Request $request)
-    {   
-        Log::debug('start:' .__FUNCTION__);
-
-        try {
-            // アクセスカウンター(DBに登録)
-            $count = $this->ipInsert($request);
-
-            // 新着情報
-            $list_info = $this->getInfoList();
-            $arrString = print_r($list_info,true);
-            Log::debug('list_info:' .$arrString);
-
-        // 例外処理
-        } catch (\Exception $e) {
-
-            Log::debug('error:'.$e);
-
-        } finally {
-
-        }
-
-        Log::debug('end:' .__FUNCTION__);
-        return view('front.frontHome2',compact('list_info'));
-    }
-
     /**
      * アクセスカウンター(DBに登録)
      *
