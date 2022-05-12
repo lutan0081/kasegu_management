@@ -61,7 +61,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="backAppInit">申込一覧</a>
+                                <a href="adminAppInit">申込一覧</a>
                             </li>
                         </ul>
                     </div>
@@ -75,10 +75,10 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="backContractInit">契約一覧</a>
+                                <a href="">契約一覧</a>
                             </li>
                             <li>
-                                <a href="adminAppInit">取引台帳</a>
+                                <a href="">取引台帳</a>
                             </li>
                             <li>
                                 <a href="backSpecialContractInit">特約事項</a>

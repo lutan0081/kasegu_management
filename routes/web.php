@@ -261,6 +261,17 @@ Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@ad
 // アカウント
 Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
 
+// 申込管理(一覧表示)
+Route::any('adminAppInit', 'Admin\App\AdminAppController@adminAppInit')->middleware("kasegu_auth");
+
+// 申込管理(新規表示)
+Route::get('adminAppNewInit', 'Admin\App\AdminAppController@adminAppNewInit')->middleware("kasegu_auth");
+
+// 申込管理(編集表示)
+Route::any('adminAppEditInit', 'Admin\App\AdminAppController@adminAppEditInit')->middleware("kasegu_auth");
+
+// 申込管理(登録)
+Route::post('adminAppEditEntry', 'Admin\App\AdminAppController@adminAppEditEntry')->middleware("kasegu_auth");
 
 /**
  * テスト
