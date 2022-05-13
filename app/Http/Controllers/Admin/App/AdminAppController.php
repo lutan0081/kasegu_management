@@ -98,22 +98,30 @@ class AdminAppController extends Controller
             Log::debug('$display_filter:' .$display_filter);
 
             $str = "select "
-            ."applications.application_id as application_id , "
-            ."broker_company_name as broker_company_name , "
-            ."broker_tel as broker_tel , "
-            ."broker_mail as broker_mail , "
-            ."real_estate_name as real_estate_name , "
-            ."room_name as room_name , "
+            ."applications.application_id as application_id, "
+            ."applications.broker_company_name as broker_company_name, "
+            ."applications.broker_tel as broker_tel, "
+            ."applications.broker_mail as broker_mail, "
+            ."applications.real_estate_name as real_estate_name, "
+            ."applications.room_name as room_name, "
             ."entry_contracts.entry_contract_name as entry_contract_name, "
             ."entry_contracts.entry_contract_mobile_tel as entry_contract_mobile_tel, "
-            ."contract_start_date as contract_start_date, "
-            ."contract_progress_name as contract_progress_name, "
-            ."applications.contract_progress_id as contract_progress_id "
-            ."from applications "
-            ."left join entry_contracts "
-            ."on applications.application_id = entry_contracts.application_id "
-            ."left join contract_progress "
-            ."on contract_progress.contract_progress_id = applications.contract_progress_id ";
+            ."applications.contract_start_date as contract_start_date, "
+            ."contract_progress.contract_progress_name as contract_progress_name, "
+            ."applications.contract_progress_id as contract_progress_id, "
+            ."applications.create_user_id, "
+            ."create_users.create_user_name, "
+            ."applications.entry_date, "
+            ."applications.update_user_id, "
+            ."applications.update_date "
+            ."from "
+            ."applications "
+            ."left join entry_contracts on "
+            ."applications.application_id = entry_contracts.application_id "
+            ."left join contract_progress on "
+            ."contract_progress.contract_progress_id = applications.contract_progress_id "
+            ."left join create_users on "
+            ."create_users.create_user_id = applications.create_user_id ";
 
             // where句
             $where = "";
@@ -226,17 +234,17 @@ class AdminAppController extends Controller
                 $where = $where ."applications.contract_progress_id = 7 ";
             };
 
-            // id
-            if($where == ""){
+            // // id
+            // if($where == ""){
 
-                $where = $where ."where "
-                ."applications.entry_user_id = '$session_id' ";
+            //     $where = $where ."where "
+            //     ."applications.entry_user_id = '$session_id' ";
 
-            }else{
+            // }else{
 
-                $where = $where ."and "
-                ."applications.entry_user_id = '$session_id' ";
-            }  
+            //     $where = $where ."and "
+            //     ."applications.entry_user_id = '$session_id' ";
+            // }  
 
             $str = $str .$where;
             Log::debug('$sql:' .$str);

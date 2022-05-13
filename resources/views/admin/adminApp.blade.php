@@ -161,7 +161,8 @@
                                                     <tr>
                                                         <th scope="col" id="create_user_id" style="display:none">id</th>
                                                         <th>選択</th>
-                                                        <th scope="col" id="create_user_name">仲介業者</th>
+                                                        <th scope="col" id="create_user_name">アカウント</th>
+                                                        <th scope="col" id="broker_coompany_name">仲介業者</th>
                                                         <th scope="col" id="create_user_name">Tel</th>
                                                         <th scope="col" id="create_user_name">E-mail</th>
                                                         <th scope="col" id="post_number">物件名</th>
@@ -179,6 +180,7 @@
                                                         <tr @if($app->contract_progress_id == 4) class="table table-danger" @endif>
                                                             <td id="{{ $app->application_id }}" class="click_class" style="display:none">{{ $app->application_id }}</td>
                                                             <td id="{{ $app->application_id }}" class="click_class"><input id="{{ $app->application_id }}" type="radio" class="align-middle" name="flexRadioDisabled"></td>
+                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->create_user_name }}</td>
                                                             <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_company_name }}</td>
                                                             <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_tel }}</td>
                                                             <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_mail }}</td>
