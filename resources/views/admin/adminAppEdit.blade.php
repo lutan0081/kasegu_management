@@ -1494,7 +1494,7 @@
 		@endcomponent
 
 		<!-- 自作js -->
-		<script src="{{ asset('back/js/admin_app_edit.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_app_edit.js') }}"></script>
 
         <script>
 

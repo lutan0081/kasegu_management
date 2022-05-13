@@ -327,7 +327,7 @@ class AdminAppController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('back.backAppEdit' ,compact('contract_progress' ,'app_types' ,'app_uses' ,'app_links' ,'app_insurances' ,'needs' ,'app_sexes' ,'app_list' ,'houseMate_list' ,'img_type' ,'img_list' ,'private_or_companies' ,'guarantee_companies'));    
+        return view('admin.adminAppEdit' ,compact('contract_progress' ,'app_types' ,'app_uses' ,'app_links' ,'app_insurances' ,'needs' ,'app_sexes' ,'app_list' ,'houseMate_list' ,'img_type' ,'img_list' ,'private_or_companies' ,'guarantee_companies'));    
     }
     
     /**
@@ -3392,7 +3392,7 @@ class AdminAppController extends Controller
      *
      * @return void
      */
-    public function backAppHouseMateInit(Request $request){
+    public function adminAppHouseMateInit(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try {
@@ -3656,7 +3656,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backAppHouseMateDeleteEntry(Request $request){
+    public function adminAppHouseMateDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -3743,7 +3743,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backAppDeleteEntry(Request $request){
+    public function adminAppDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -4129,7 +4129,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return $ret['status'] OK=true/NG=false
      */
-    public function backDeleteEntryImgDetail(Request $request){
+    public function adminDeleteEntryImgDetail(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -4247,7 +4247,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return $ret['status'] OK=true/NG=false
      */
-    public function backAppNextStageEntry(Request $request){
+    public function adminAppNextStageEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -4730,7 +4730,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backAppModalInit(Request $request){
+    public function adminAppModalInit(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -4800,7 +4800,7 @@ class AdminAppController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backAppMailEntry(Request $request){
+    public function adminAppMailEntry(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {

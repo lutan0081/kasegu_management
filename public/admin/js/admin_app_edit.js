@@ -945,7 +945,7 @@ $(function() {
 
         $.ajax({
             type: 'post',
-            url: 'backAppHouseMateInit',
+            url: 'adminAppHouseMateInit',
             dataType: 'json',
             data: sendData,
         
@@ -1092,7 +1092,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backAppHouseMateDeleteEntry',
+                    url: 'adminAppHouseMateDeleteEntry',
                     dataType: 'json',
                     data: sendData,
                 
@@ -1227,7 +1227,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backDeleteEntryImgDetail',
+                    url: 'adminDeleteEntryImgDetail',
                     dataType: 'json',
                     data: sendData,
                 
@@ -1326,7 +1326,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backAppDeleteEntry',
+                    url: 'adminAppDeleteEntry',
                     dataType: 'json',
                     data: sendData,
                 
@@ -1348,7 +1348,7 @@ $(function() {
                         .then(function(val) {
                         if (val) {
 
-                            location.href="backAppInit"
+                            location.href="adminAppInit"
                             
                         }
                     });
@@ -1821,7 +1821,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backAppEditEntry',
+            url: 'adminAppEditEntry',
             dataType: 'json',
             data: sendData,
             /**
@@ -1858,7 +1858,7 @@ $(function() {
                     .then(function(val) {
                     if (val) {
 
-                        location.href = 'backAppInit';
+                        location.href = 'adminAppInit';
                     };
                 });
 
@@ -2094,7 +2094,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backAppNextStageEntry',
+                    url: 'adminAppNextStageEntry',
                     dataType: 'json',
                     data: sendData,
                 
@@ -2459,7 +2459,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backAppModalInit',
+            url: 'adminAppModalInit',
             dataType: 'json',
             data: sendData,
             /**
@@ -2645,7 +2645,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backAppMailEntry',
+            url: 'adminAppMailEntry',
             dataType: 'json',
             data: sendData,
             /**
