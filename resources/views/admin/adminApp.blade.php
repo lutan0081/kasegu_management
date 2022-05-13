@@ -65,7 +65,7 @@
                         
                             <!-- 上部検索 -->
                             <div class="row">
-                                <form action="backAppInit" method="post">
+                                <form action="adminAppInit" method="post">
                                     {{ csrf_field() }}
                                     <div class="col-sm-12">
                                         <div class="card border border-0">
