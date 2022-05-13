@@ -2451,7 +2451,7 @@
 
                             <div class="modal-footer">
                                 <!-- id -->
-                                <input type="text" name="contract_housemate_id" id="contract_housemate_id" value="">
+                                <input type="hidden" name="contract_housemate_id" id="contract_housemate_id" value="">
                                 <button type="button" class="btn btn-default btn-secondary" data-bs-dismiss="modal">閉じる</button>
                                 <button type="button" id="btn_houseMate_edit" class="btn btn-default btn-outline-primary">登録</button>
                             </div>
