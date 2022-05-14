@@ -584,19 +584,27 @@
                                                     
                                                     <div class="row row-cols-2">
 
-                                                        <!-- 商号 -->
-                                                        <div class="col-6 col-md-8 col-lg-4 mt-3">
-                                                            <label class="label_required mb-2" for="textBox"></label>商号
-                                                            <select class="form-select " name="company_license_id" id="company_license_id" required>
-                                                                <option></option>
-                                                                @foreach($company_license_list as $company_license)
-                                                                    <option value="{{$company_license->company_license_id}}" @if($contract_list->company_license_id == $company_license->company_license_id) selected @endif>{{$company_license->company_license_name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <div class="company-tab invalid-feedback" id ="company_license_id_error">
-                                                                商号は必須です。
+                                                        @if($contract_list->admin_user_flag == 1)
+                                                            <div class="col-6 col-md-8 col-lg-4 mt-3">
+                                                                <label class="label_required mb-2" for="textBox"></label>商号
+                                                                <select class="form-select " name="company_license_id" id="company_license_id" required>
+                                                                    <option></option>
+                                                                    @foreach($company_license_list as $company_license)
+                                                                        <option value="{{$company_license->company_license_id}}" @if($contract_list->company_license_id == $company_license->company_license_id) selected @endif>{{$company_license->company_license_name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <div class="company-tab invalid-feedback" id ="company_license_id_error">
+                                                                    商号は必須です。
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @else
+                                                            <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                                <label class="label_any mb-2" for="textBox"></label>商号
+                                                                <input type="text" class="form-control" name="company_license_id" id="company_license_id" value="{{ $contract_list->company_license_name }}" readonly>
+                                                                <div class="company-tab invalid-feedback" id ="company_license_id_error"> 
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                         <!-- 商号 -->
 
                                                         <div class="w-100"></div> 
@@ -722,22 +730,31 @@
                                                             <hr>
                                                         </div>
 
-                                                        <!-- 宅地建物取引士 -->
-                                                        <div class="col-6 col-md-8 col-lg-4 mt-3">
-                                                            <label class="label_required mb-2" for="textBox"></label>宅地建物取引士
-                                                            
-                                                            <select class="form-select" name="user_license_id" id="user_license_id" required>
-                                                                <!-- タグ内に値を追加、値追加後同一の場合選択する -->
-                                                                <option></option>
-                                                                @foreach($user_license_list as $user_license)
-                                                                    <option value="{{$user_license->user_license_id}}" @if($contract_list->user_license_id == $user_license->user_license_id) selected @endif>{{$user_license->user_license_name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <div class="company-tab invalid-feedback" id ="user_license_id_error">
-                                                                宅地建物取引士は必須です。
+                                                        @if($contract_list->admin_user_flag == 1)
+                                                            <!-- 宅地建物取引士 -->
+                                                            <div class="col-6 col-md-8 col-lg-4 mt-3">
+                                                                <label class="label_required mb-2" for="textBox"></label>宅地建物取引士
+                                                                
+                                                                <select class="form-select" name="user_license_id" id="user_license_id" required>
+                                                                    <!-- タグ内に値を追加、値追加後同一の場合選択する -->
+                                                                    <option></option>
+                                                                    @foreach($user_license_list as $user_license)
+                                                                        <option value="{{$user_license->user_license_id}}" @if($contract_list->user_license_id == $user_license->user_license_id) selected @endif>{{$user_license->user_license_name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <div class="company-tab invalid-feedback" id ="user_license_id_error">
+                                                                    宅地建物取引士は必須です。
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- 宅地建物取引士 -->
+                                                            <!-- 宅地建物取引士 -->
+                                                        @else
+                                                            <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                                <label class="label_any mb-2" for="textBox"></label>宅地建物取引士
+                                                                <input type="text" class="form-control" name="user_license_id" id="user_license_id" value="{{ $contract_list->user_license_name }}" readonly>
+                                                                <div class="company-tab invalid-feedback" id ="user_license_id_error"> 
+                                                                </div>
+                                                            </div>
+                                                        @endif
 
                                                         <!-- 登録番号 -->
                                                         <div class="col-12 col-md-10 col-lg-4 mt-3">
@@ -2274,10 +2291,10 @@
                                             <div class="btn-group float-end" role="group">
                                                 <!-- 契約詳細id='':帳票ボタン非表示 -->
                                                 @if( $contract_list->contract_detail_id !== '')
-                                                    <button id="btn_contract" class="btn btn-outline-primary btn-default">帳票作成</button>
+                                                    <button id="btn_contract" class="btn btn-outline-primary btn-default" @if($contract_list->admin_user_flag == 0) disabled @endif>帳票作成</button>
                                                 @endif
-                                                <button id="btn_temporarily" class="btn btn-outline-primary btn-default">一時登録</button>
-                                                <button id="btn_edit" class="btn btn-outline-primary btn-default">登録</button>
+                                                <button id="btn_temporarily" class="btn btn-outline-primary btn-default" @if($contract_list->admin_user_flag == 0) disabled @endif>一時登録</button>
+                                                <button id="btn_edit" class="btn btn-outline-primary btn-default" @if($contract_list->admin_user_flag == 0) disabled @endif>登録</button>
                                             </div>
                                         </div>
 

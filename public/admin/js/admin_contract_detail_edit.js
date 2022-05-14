@@ -1103,7 +1103,7 @@ $(function() {
                     .then(function(val) {
                     if (val) {
 
-                        location.href = 'backContractInit';
+                        location.href = 'adminContractInit';
 
                     };
                 });

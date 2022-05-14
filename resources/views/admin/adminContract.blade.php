@@ -169,7 +169,7 @@
                                     <!-- スクロール -->
                                     <div class="overflow-auto" style="height:34rem;">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-condensed table-striped">
+                                            <table class="table table-hover table-condensed">
                                                 <!-- テーブルヘッド -->
                                                 <thead>
                                                     <tr>
