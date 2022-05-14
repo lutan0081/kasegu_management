@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* テキストボックス、コンボボックスの文字の大きさ */
 .form-control, .form-select, .btn, .dropdown-menu{
     font-size: 0.9rem;

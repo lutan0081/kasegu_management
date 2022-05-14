@@ -54,7 +54,7 @@ class AdminHomeController extends Controller
             $app_mine_info = $this->getAppMineList($request);
             $app_mine_list = $app_mine_info[0];
 
-            // 申込件数（自社）
+            // 申込件数（合計）
             $app_info = $this->getAppList($request);
             $app_list = $app_info[0];
         

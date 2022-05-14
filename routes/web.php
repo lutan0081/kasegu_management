@@ -246,9 +246,14 @@ Route::get('backApplicationExcelEntry', 'Common\ExcelController@backApplicationE
 /**
  * admin(管理者)
  */
-// ホーム画面
+/**
+ * ホーム画面
+ */
 Route::get('adminHomeInit', 'Admin\Home\AdminHomeController@adminHomeInit')->middleware("kasegu_auth");
 
+/**
+ * 新着情報
+ */
 // 新着情報(一覧表示)
 Route::any('adminInformationInit', 'Admin\Information\AdminInformationController@adminInformationInit')->middleware("kasegu_auth");
 
@@ -261,11 +266,24 @@ Route::post('adminInformationEditEntry', 'Admin\Information\AdminInformationCont
 // 新着情報(削除)
 Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@adminDeleteEntry')->middleware("kasegu_auth");
 
-
-// アカウント
+/**
+ * アカウント
+ */
+// アカウント(一覧表示)
 Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
 
+// アカウント(編集表示)
+Route::get('adminUserEditInit', 'Admin\User\AdminUserController@adminUserEditInit')->middleware("kasegu_auth");
 
+// アカウント(登録分岐)
+Route::post('adminUserEditEntry', 'Admin\User\AdminUserController@adminUserEditEntry')->middleware("kasegu_auth");
+
+// アカウント(削除)
+Route::post('adminUserDeleteEntry', 'Admin\User\AdminUserController@adminUserDeleteEntry')->middleware("kasegu_auth");
+
+/**
+ * 申込管理
+ */
 // 申込管理(一覧表示)
 Route::any('adminAppInit', 'Admin\App\AdminAppController@adminAppInit')->middleware("kasegu_auth");
 
@@ -296,8 +314,11 @@ Route::post('adminAppNextStageEntry', 'Admin\App\AdminAppController@adminAppNext
 // 申込管理(メール送信)
 Route::post('adminAppMailEntry', 'Admin\App\AdminAppController@adminAppMailEntry')->middleware("kasegu_auth");
 
+/**
+ * 契約管理
+ */
 // 契約一覧(表示)
-Route::any('ContractInit', 'Admin\Contract\BackContractController@backContractInit')->middleware("kasegu_auth");
+Route::any('adminContractInit', 'Admin\Contract\BackContractController@backContractInit')->middleware("kasegu_auth");
 
 // 契約詳細(新規表示)
 Route::get('backContractNewInit', 'Admin\Contract\BackContractController@backContractNewInit')->middleware("kasegu_auth");

@@ -121,25 +121,6 @@ class AdminUserController extends Controller
     }
 
     /**
-     * 新着情報種別
-     */
-    private function getInformationTypeList(Request $request){
-        Log::debug('log_start:'.__FUNCTION__);
-
-        // session_id
-        $session_id = $request->session()->get('create_user_id');
-        
-        $str = "select * "
-        ."from information_types";
-        Log::debug('$sql:' .$str);
-
-        $ret = DB::select($str);
-
-        Log::debug('log_end:'.__FUNCTION__);
-        return $ret;
-    }
-
-    /**
      *  新規(表示)
      *
      * @param Request $request(フォームデータ)
@@ -190,88 +171,121 @@ class AdminUserController extends Controller
     }
 
     /**
-     *  編集(表示)
+     * 編集(表示)
      *
-     * @param Request $request(フォームデータ)
-     * @return
+     * @param Request $request
+     * @return void
      */
-    public function adminInformationEditInit(Request $request){ 
-        
-        Log::debug('log_start:'.__FUNCTION__);
+    public function adminUserEditInit(Request $request){
 
-        try{
+        Log::debug('start:' .__FUNCTION__);
 
-            // return初期値
-            $response = [];
+        try {
 
-            // 一覧取得
-            $information_info = $this->getEditList($request);
+            // ユーザ情報
+            $user_info = $this->getUserEditList($request);
+            $user_list = $user_info[0];
+            // dd($user_list);
 
-            // jtrue:OK/false:NG
-            $response['status'] = $information_info['status'];
+            // リスト作成
+            $common = new Common();
 
-            // information_list
-            $response['information_list'] = $information_info['information_list'];
+            // 宅地建物取引士(コンボボックス)
+            $user_license_list = $common->getUserLicense($request);
+            
+            // 保証協会一覧
+            $guaranty_association_list = $common->getGuarantyAssociation($request);
+
+            // 法務局リスト
+            $legal_place_list = $common->getLegalPlace($request);
+            
 
         // 例外処理
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
 
-            Log::debug(__FUNCTION__ .':' .$e);
+            Log::debug('error:'.$e);
 
-            $response['status'] = 0;
-
-        // status:OK=1/NG=0
         } finally {
-
-            if($response['status'] == 1){
-
-                Log::debug('status:trueの処理');
-
-                $response['status'] = true;
-
-            }else{
-
-                Log::debug('status:falseの処理');
-                
-                $response['status'] = false;
-            }
 
         }
 
-        Log::debug('log_end:' .__FUNCTION__);
-        return response()->json($response);
+        Log::debug('end:' .__FUNCTION__);
+        return view('admin.adminUserEdit' ,compact('user_license_list' ,'guaranty_association_list' ,'legal_place_list' ,'user_list'));    
     }
 
     /**
-     * 編集(sql)
+     * 編集(申込情報取得:sql)
      *
      * @return void
      */
-    private function getEditList(Request $request){
+    private function getUserEditList(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try{
-            
-            /**
-             * 値取得
-             */
-            $information_id = $request->input('information_id');
+            // 値取得
+            $create_user_id = $request->input('create_user_id');
 
-            /**
-             * sql
-             */
-            $str = "select * "
-            ."from informations "
-            ."left join information_types "
-            ."on informations.information_type_id = information_types.information_type_id "
-            ."where informations.information_id = $information_id ";
+            $str = "select "
+            ."create_users.create_user_id as create_user_id, "
+            ."create_users.create_user_name as create_user_name, "
+            ."create_users.create_user_post_number as create_user_post_number, "
+            ."create_users.create_user_address as create_user_address, "
+            ."create_users.create_user_tel as create_user_tel, "
+            ."create_users.create_user_fax as create_user_fax, "
+            ."create_users.create_user_mail as create_user_mail, "
+            ."create_users.password as password, "
+            ."company_licenses.company_license_id as company_license_id, "
+            ."company_licenses.company_license_name as company_license_name, "
+            ."company_licenses.company_license_representative as company_license_representative, "
+            ."company_licenses.company_license_address as company_license_address, "
+            ."company_licenses.company_license_tel as company_license_tel, "
+            ."company_licenses.company_license_fax as company_license_fax, "
+            ."company_licenses.company_license_number as company_license_number, "
+            ."company_licenses.company_license_span as company_license_span, "
+            ."company_licenses.company_nick_name as company_nick_name, "
+            ."company_licenses.company_nick_address as company_nick_address, "
+            ."company_licenses.user_license_id as full_time_user_license_id, "
+            ."user_licenses.user_license_name as full_time_user_license_name, "
+            ."user_licenses.user_license_number as full_time_user_license_number, "
+            ."company_licenses.legal_place_id as legal_place_id, "
+            ."legal_places.legal_place_name as legal_place_name, "
+            ."legal_places.legal_place_post_number as legal_place_post_number, "
+            ."legal_places.legal_place_address as legal_place_address, "
+            ."legal_places.legal_place_tel as legal_place_tel, "
+            ."legal_places.legal_place_fax as legal_place_fax, "
+            ."company_licenses.guaranty_association_id as guaranty_association_id, "
+            ."guaranty_associations.guaranty_association_name as guaranty_association_name, "
+            ."guaranty_associations.guaranty_association_post_number as guaranty_association_post_number, "
+            ."guaranty_associations.guaranty_association_address as guaranty_association_address, "
+            ."guaranty_associations.guaranty_association_tel as guaranty_association_tel, "
+            ."guaranty_associations.guaranty_association_fax as guaranty_association_fax, "
+            ."guaranty_association_region.guaranty_association_id as guaranty_association_region_id, "
+            ."guaranty_association_region.guaranty_association_name as guaranty_association_region_name, "
+            ."guaranty_association_region.guaranty_association_post_number as guaranty_association_region_post_number, "
+            ."guaranty_association_region.guaranty_association_address as guaranty_association_region_address, "
+            ."guaranty_association_region.guaranty_association_tel as guaranty_association_region_tel, "
+            ."guaranty_association_region.guaranty_association_fax as guaranty_association_region_fax, "
+            ."create_users.admin_user_flag, "
+            ."create_users.entry_date, "
+            ."create_users.update_user_id, "
+            ."create_users.update_date "
+            ."from "
+            ."create_users "
+            ."left join company_licenses on "
+            ."company_licenses.create_user_id = create_users.create_user_id "
+            ."left join user_licenses on "
+            ."user_licenses.user_license_id = company_licenses.user_license_id "
+            ."left join legal_places on "
+            ."legal_places.legal_place_id = company_licenses.legal_place_id "
+            ."left join guaranty_associations on "
+            ."guaranty_associations.guaranty_association_id = company_licenses.guaranty_association_id "
+            ."left join guaranty_associations as guaranty_association_region on "
+            ."guaranty_association_region.guaranty_association_id = company_licenses.guaranty_association_region_id "
+            ."where "
+            ."create_users.create_user_id = $create_user_id ";
             Log::debug('sql:' .$str);
             
-            $ret['information_list'] = DB::select($str);
-            $ret['status'] = 1;
-
-            $arrString = print_r($ret , true);
-            Log::debug('messages:'.$arrString);
+            $ret = DB::select($str);
 
         // 例外処理
         } catch (\Exception $e) {
@@ -286,20 +300,19 @@ class AdminUserController extends Controller
         return $ret;
     }
 
-
     /**
      * 登録分岐(新規/編集)
      *
      * @param $request(edit.blade.phpの各項目)
      * @return $response(status:true=OK/false=NG)
      */
-    public function adminInformationEditEntry(Request $request){
+    public function adminUserEditEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
         
         // return初期値
         $response = [];
 
-        // バリデーション:OK=true NG=false
+        // OK=true NG=false
         $response = $this->editValidation($request);
 
         if($response["status"] == false){
@@ -309,32 +322,13 @@ class AdminUserController extends Controller
 
         }
 
-        /**
-         * information_id=無:insert
-         * information_id=有:update
-         */
-        $information_id = $request->input('information_id');
-
-        // 新規登録
-        if($request->input('information_id') == ""){
-
-            Log::debug('新規の処理');
-
-            // $responseの値設定
-            $ret = $this->insertData($request);
-
-        // 編集登録
-        }else{
-
-            Log::debug('編集の処理');
-
-            // $responseの値設定
-            $ret = $this->updateData($request);
-
-        }
+        // $responseの値設定
+        $ret = $this->updateData($request);
+        $arrString = print_r($ret , true);
+        Log::debug('ret:'.$arrString);
 
         // js側での判定のステータス(true:OK/false:NG)
-        $response["status"] = $ret['status'];
+        $response['status'] = $ret['status'];
 
         Log::debug('log_end:' .__FUNCTION__);
         return response()->json($response);
@@ -357,24 +351,62 @@ class AdminUserController extends Controller
         /**
          * rules
          */
+        // アカウント情報
         $rules = [];
-        $rules['information_title'] = "required|max:100";
-        $rules['information_contents'] = "required|max:300";
+        $rules['create_user_name'] = "required|max:50";
+        $rules['create_user_mail'] = "required|email";
+        $rules['create_user_post_number'] = "required|zip";
+        $rules['create_user_address'] = "required|max:200";
+        $rules['create_user_tel'] = "required|jptel";
+        $rules['create_user_fax'] = "nullable|jptel";
+        $rules['password'] = "required|alpha_dash|min:8";
 
+        // 免許情報
+        $rules['company_license_name'] = "nullable|max:100";
+        $rules['company_license_representative'] = "nullable|max:50";
+        $rules['company_license_address'] = "nullable|max:100";
+        $rules['company_license_tel'] = "nullable|jptel";
+        $rules['company_license_fax'] = "nullable|jptel";
+        $rules['company_license_number'] = "nullable|max:20";
+        $rules['company_license_span'] = "nullable|max:30";
+        $rules['company_nick_name'] = "nullable|max:100";
+        $rules['company_nick_address'] = "nullable|max:100";
+        
         /**
          * messages
          */
+        // アカウント情報
         $messages = [];
-        $messages['information_title.required'] = "タイトルは必須です。";
-        $messages['information_title.max'] = "タイトルの文字数が超過しています。";
-        $messages['information_contents.required'] = "内容は必須です。";
-        $messages['information_contents.max'] = "内容の文字数が超過しています。";
+        $messages['create_user_name.required'] = "名前は必須です。";
+        $messages['create_user_name.max'] = "名前の文字数が超過しています。";
+        $messages['create_user_mail.required'] = "メールアドレスは必須です。";
+        $messages['create_user_mail.email'] = "メールアドレスの形式が不正です。";
+        $messages['create_user_post_number.required'] = "郵便番号は必須です。";
+        $messages['create_user_post_number.zip'] = "郵便番号の形式が不正です。";
+        $messages['create_user_address.required'] = "住所は必須です。";
+        $messages['create_user_address.max'] = "住所の文字数が超過しています。";
+        $messages['create_user_tel.required'] = "Telは必須です。";
+        $messages['create_user_tel.jptel'] = "Telの形式が不正です。";
+        $messages['create_user_fax.jptel'] = "Faxの形式が不正です-。";
+        $messages['password.required'] = "パスワードは必須です。";
+        $messages['password.alpha_dash'] = "パスワードは半角英数字で入力して下さい。";
 
+        // 免許概要
+        $messages['company_license_name.required'] = "商号の文字数が超過しています。";
+        $messages['company_license_representative.max'] = "代表者の文字数が超過しています。";
+        $messages['company_license_tel.jptel'] = "TELの形式が不正です。";
+        $messages['company_license_fax.jptel'] = "FAXの形式が不正です。";
+        $messages['company_license_number.max'] = "免許番号の文字数が超過しています。";
+        $messages['company_license_span.max'] = "免許年月日の文字数が超過しています。";
+        $messages['company_nick_name.max'] = "取扱店の文字数が超過しています。";
+        $messages['company_nick_address.max'] = "所在地の文字数が超過しています。";
+    
         // validation判定
         $validator = Validator::make($request->all(), $rules, $messages);
 
         // エラーがある場合処理
         if ($validator->fails()) {
+
             Log::debug('validator:失敗');
 
             // response初期値
@@ -409,6 +441,7 @@ class AdminUserController extends Controller
             
             Log::debug('log_end:' .__FUNCTION__);
         }
+
         return $response;
     }
 
@@ -418,29 +451,41 @@ class AdminUserController extends Controller
      * @param Request $request(edit.blade.phpの各項目)
      * @return ret(true:登録OK/false:登録NG、maxId(contract_id)、session_id(create_user_id))
      */
-    private function insertData(Request $request){
+    private function updateData(Request $request){
         Log::debug('log_start:' .__FUNCTION__);
 
         try {
 
+            // トランザクション
+            DB::beginTransaction();
+
             // retrun初期値
             $ret = [];
-            $ret['status'] = true;
 
             /**
-             * status:OK=1 NG=0/application_id:新規登録のid
+             * status:OK=1 NG=0
              */
-            $information_info = $this->insertInformation($request);
+            // アカウント情報
+            $create_user_info = $this->updateCreateUsers($request);
 
-            // returnのステータスにtrueを設定
-            $ret['status'] = $information_info['status'];
+            $ret['status'] = $create_user_info['status'];
+
+            // 免許情報
+            $company_license_info = $this->updateCompanyLicenses($request);
+
+            $ret['status'] = $company_license_info['status'];
+
+            // コミット
+            DB::commit();
 
         // 例外処理
         } catch (\Throwable $e) {
 
-            Log::debug(__FUNCTION__ .':' .$e);
+            DB::rollback();
 
             $ret['status'] = 0;
+
+            Log::debug(__FUNCTION__ .':' .$e);
 
         // status:OK=1/NG=0
         } finally {
@@ -462,82 +507,106 @@ class AdminUserController extends Controller
     }
 
     /**
-     * 新規登録(sql)
+     * アカウント情報(情報)
      * 
      * @param Request $request
      * @return $ret['application_id(登録のapplication_id)']['status:1=OK/0=NG']''
      */
-    private function insertInformation(Request $request){
+    private function updateCreateUsers(Request $request){
         Log::debug('log_start:' .__FUNCTION__);
 
         try {
-
             // returnの初期値
             $ret=[];
 
             // 値取得
             $session_id = $request->session()->get('create_user_id');
-
-            $information_id = $request->input('information_id');
-
-            $information_title = $request->input('information_title');
-
-            $information_type_id = $request->input('information_type_id');
-
-            $information_contents = $request->input('information_contents');
+            $create_user_name = $request->input('create_user_name');
+            $create_user_mail = $request->input('create_user_mail');
+            $create_user_post_number = $request->input('create_user_post_number');
+            $create_user_address = $request->input('create_user_address');
+            $create_user_tel = $request->input('create_user_tel');
+            $create_user_fax = $request->input('create_user_fax');
+            $password = $request->input('password');
 
             // 現在の日付取得
             $date = now() .'.000';
     
-            /**
-             * 数値に関してはNULLで値を代入出来ないので0、''を入れる
-             */
-            // id
-            if($information_id == null){
-                $information_id =0;
+            // 数値に関してはNULLで値を代入出来ないので0、''を入れる
+            // アカウント名
+            if($create_user_name == null){
+
+                $create_user_name ='';
+
             }
 
-            // タイトル
-            if($information_title == null){
-                $information_title ='';
+            // メールアドレス
+            if($create_user_mail == null){
+
+                $create_user_mail =0;
+
             }
 
-            // 内容
-            if($information_contents == null){
-                $information_contents ='';
+            // 郵便番号
+            if($create_user_post_number == null){
+
+                $create_user_post_number =0;
+
             }
 
-            // 種別
-            if($information_type_id == null){
-                $information_type_id = 0;
+            // 所在地
+            if($create_user_address == null){
+
+                $create_user_address = '';
+
             }
 
-            // sql
-            $str = "insert "
-            ."into "
-            ."informations "
-            ."( "
-            ."information_title, "
-            ."information_type_id, "
-            ."information_contents, "
-            ."entry_user_id, "
-            ."entry_date, "
-            ."update_user_id, "
-            ."update_date "
-            .")values( "
-            ."'$information_title', "
-            ."$information_type_id, "
-            ."'$information_contents', "
-            ."1, "
-            ."now(), "
-            ."1, "
-            ."now() "
-            ."); ";
+            // TEL
+            if($create_user_tel == null){
+
+                $create_user_tel = '';
+
+            }
+
+            // FAX
+            if($create_user_fax == null){
+
+                $create_user_fax = '';
+
+            }
+
+            // パスワード
+            if($password == null){
+
+                $password = '';
+
+            }
+
+            $str = "update "
+            ."create_users "
+            ."set "
+            ."create_user_name = '$create_user_name', "
+            ."create_user_post_number = '$create_user_post_number', "
+            ."create_user_address = '$create_user_address', "
+            ."create_user_tel = '$create_user_tel', "
+            ."create_user_fax = '$create_user_fax', "
+            ."create_user_mail = '$create_user_mail', "
+            ."password = '$password', "
+            ."complete_flag = 1, "
+            ."admin_user_flag = 1, "
+            ."entry_date = '$date', "
+            ."update_user_id = $session_id, "
+            ."update_date = '$date' "
+            ."where "
+            ."create_user_id = $session_id; ";
             
             Log::debug('sql:'.$str);
 
             // OK=1/NG=0
-            $ret['status'] = DB::insert($str);
+            $ret['status'] = DB::update($str);
+
+            $arrString = print_r($ret , true);
+            Log::debug('status:'.$arrString);
 
         // 例外処理
         } catch (\Throwable  $e) {
@@ -554,64 +623,12 @@ class AdminUserController extends Controller
     }
 
     /**
-     * 編集登録(各テーブルに分岐)
-     *
-     * @param Request $request(edit.blade.phpの各項目)
-     * @return ret(true:登録OK/false:登録NG)
-     */
-    private function updateData(Request $request){
-        Log::debug('log_start:' .__FUNCTION__);
-
-        try {
-            
-            // retrun初期値
-            $ret = [];
-            $ret['status'] = true;
-
-            /**
-             * status:OK=1 NG=0
-             */
-            $information_info = $this->updateInformation($request);
-
-            // returnのステータスにtrueを設定
-            $ret['status'] = $information_info['status'];
-
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug(__FUNCTION__ .':' .$e);
-
-            $ret['status'] = 0;
-
-        // status:OK=1/NG=0
-        } finally {
-
-            if($ret['status'] == 1){
-
-                Log::debug('status:trueの処理');
-
-                $ret['status'] = true;
-
-            }else{
-
-                Log::debug('status:falseの処理');
-
-                $ret['status'] = false;
-            }
-
-            Log::debug('log_end:'.__FUNCTION__);
-            return $ret;
-        }
-    }
-
-    /**
-     * 編集登録(sql)
+     * 免許情報(編集)
      * 
      * @param Request $request
      * @return $ret['application_id(登録のapplication_id)']['status:1=OK/0=NG']''
      */
-    private function updateInformation(Request $request){
-
+    private function updateCompanyLicenses(Request $request){
         Log::debug('log_start:' .__FUNCTION__);
 
         try {
@@ -620,58 +637,154 @@ class AdminUserController extends Controller
 
             // 値取得
             $session_id = $request->session()->get('create_user_id');
-
-            $information_id = $request->input('information_id');
-
-            $information_title = $request->input('information_title');
-
-            $information_type_id = $request->input('information_type_id');
-
-            $information_contents = $request->input('information_contents');
+            $company_license_name = $request->input('company_license_name');
+            $company_license_representative = $request->input('company_license_representative');
+            $company_license_address = $request->input('company_license_address');
+            $company_license_tel = $request->input('company_license_tel');
+            $company_license_fax = $request->input('company_license_fax');
+            $company_license_number = $request->input('company_license_number');
+            $company_license_span = $request->input('company_license_span');
+            $full_time_user_license_id = $request->input('full_time_user_license_id');
+            $full_time_user_license_number = $request->input('full_time_user_license_number');
+            $company_nick_name = $request->input('company_nick_name');
+            $company_nick_address = $request->input('company_nick_address');
+            $legal_place_id = $request->input('legal_place_id');
+            $guaranty_association_id = $request->input('guaranty_association_id');
+            $guaranty_association_region_id = $request->input('guaranty_association_region_id');
 
             // 現在の日付取得
             $date = now() .'.000';
     
-            /**
-             * 数値に関してはNULLで値を代入出来ないので0、''を入れる
-             */
-            // id
-            if($information_id == null){
-                $information_id =0;
+            // 数値に関してはNULLで値を代入出来ないので0、''を入れる
+            // 商号
+            if($company_license_name == null){
+
+                $company_license_name = '';
+
             }
 
-            // タイトル
-            if($information_title == null){
-                $information_title ='';
+            // 代表者
+            if($company_license_representative == null){
+
+                $company_license_representative = '';
+
             }
 
-            // 内容
-            if($information_contents == null){
-                $information_contents ='';
+            // 所在地
+            if($company_license_address == null){
+
+                $company_license_address = '';
+
             }
 
-            // 種別
-            if($information_type_id == null){
-                $information_type_id = 0;
+            // TEL
+            if($company_license_tel == null){
+
+                $company_license_tel = '';
+
+            }
+
+            // FAX
+            if($company_license_fax == null){
+
+                $company_license_fax = '';
+
+            }
+
+            // 免許番号
+            if($company_license_number == null){
+
+                $company_license_number = '';
+
+            }
+
+            // 免許年月日
+            if($company_license_span == null){
+
+                $company_license_span = '';
+
+            }
+
+            // 宅建取引士id
+            if($full_time_user_license_id == null){
+
+                $full_time_user_license_id = 0;
+
+            }
+
+            // 登録番号
+            if($full_time_user_license_number == null){
+
+                $full_time_user_license_number = '';
+
+            }
+
+            // 取扱店
+            if($company_nick_name == null){
+
+                $company_nick_name = '';
+
+            }
+
+            // 所在地
+            if($company_nick_address == null){
+
+                $company_nick_address = '';
+
+            }
+
+            // 法務局
+            if($legal_place_id == null){
+
+                $legal_place_id = 0;
+
+            }
+
+            // 不動産保証協会
+            if($guaranty_association_id == null){
+
+                $guaranty_association_id = 0;
+
+            }
+
+            // 不動産保証協会
+            if($guaranty_association_region_id == null){
+
+                $guaranty_association_region_id = 0;
+
             }
 
             $str = "update "
-            ."informations "
+            ."company_licenses "
             ."set "
-            ."information_title = '$information_title', "
-            ."information_type_id = $information_type_id, "
-            ."information_contents = '$information_contents', "
+            ."create_user_id = $session_id, "
+            ."company_license_name = '$company_license_name', "
+            ."company_license_representative = '$company_license_representative', "
+            ."company_license_address = '$company_license_address', "
+            ."company_license_tel = '$company_license_tel', "
+            ."company_license_fax = '$company_license_fax', "
+            ."company_license_number = '$company_license_number', "
+            ."company_license_span = '$company_license_span', "
+            ."company_nick_name = '$company_nick_name', "
+            ."company_nick_address = '$company_nick_address', "
+            ."user_license_id = $full_time_user_license_id, "
+            ."legal_place_id = $legal_place_id, "
+            ."guaranty_association_id = $guaranty_association_id, "
+            ."guaranty_association_region_id = $guaranty_association_region_id, "
             ."entry_user_id = $session_id, "
             ."entry_date = '$date', "
             ."update_user_id = $session_id, "
             ."update_date = '$date' "
             ."where "
-            ."information_id = $information_id; ";
+            ."create_user_id = $session_id; ";
             
             Log::debug('sql:'.$str);
 
             // OK=1/NG=0
             $ret['status'] = DB::update($str);
+
+            $arrString = print_r($ret , true);
+            Log::debug('status:'.$arrString);
 
         // 例外処理
         } catch (\Throwable  $e) {
@@ -693,7 +806,7 @@ class AdminUserController extends Controller
      * @param Request $request
      * @return void
      */
-    public function adminDeleteEntry(Request $request){
+    public function adminUserDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -704,10 +817,10 @@ class AdminUserController extends Controller
             /**
              * 不動産業者
              */
-            $legal_place_info = $this->deleteInformation($request);
+            $user_info = $this->deleteUser($request);
 
             // js側での判定のステータス(true:OK/false:NG)
-            $response['status'] = $legal_place_info['status'];
+            $response['status'] = $user_info['status'];
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -742,7 +855,7 @@ class AdminUserController extends Controller
      * @param Request $request
      * @return void
      */
-    private function deleteInformation(Request $request){
+    private function deleteUser(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -750,13 +863,13 @@ class AdminUserController extends Controller
             $ret = [];
 
             // 値取得
-            $information_id = $request->input('information_id');
+            $create_user_id = $request->input('create_user_id');
 
             $str = "delete "
             ."from "
-            ."informations "
+            ."create_users "
             ."where "
-            ."information_id = $information_id; ";
+            ."create_user_id = $create_user_id; ";
 
             // OK=1/NG=0
             $ret['status'] = DB::delete($str);

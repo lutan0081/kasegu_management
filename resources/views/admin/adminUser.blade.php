@@ -173,7 +173,6 @@
                                     <!-- 新規、編集 -->
                                     <div class="col-12">
                                         <div class="btn-group float-end" role="group">
-                                            <button type="button" class="btn btn-outline-primary float-end btn-default" data-bs-toggle="modal" data-bs-target="#informaitonModal">新規登録</button>
                                             <button type="button" id="btn_edit" class="btn btn-outline-primary float-end btn-default">編集</button>
                                         </div>
                                     </div>

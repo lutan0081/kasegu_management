@@ -52,7 +52,7 @@
                         <form id="editForm" class="needs-validation" novalidate>
                 
                             <div class="info_title mt-3">
-                                <i class="far fa-gem icon_blue me-2"></i>アカウント情報
+                                <i class="far fa-gem icon_blue me-2"></i>アカウント詳細
                             </div>
 
                             <!-- 境界線 -->
@@ -180,7 +180,7 @@
                                                         <label class="label_any mb-2" for="textBox"></label>商号
                                                         <input type="text" class="form-control" name="company_license_name" id="company_license_name" value="{{ $user_list->company_license_name }}" placeholder="例：株式会社xx不動産">
                                                         <!-- エラーメッセージ -->
-                                                        <div class="company_license-tab invalid-feedback" id ="company_licence_name_error">
+                                                        <div class="company_license-tab invalid-feedback" id ="company_license_name_error">
                                                             商号は必須です。
                                                         </div>
                                                     </div>
@@ -193,7 +193,7 @@
                                                         <label class="label_any mb-2" for="textBox"></label>代表者
                                                         <input type="text" class="form-control" name="company_license_representative" id="company_license_representative" value="{{ $user_list->company_license_representative }}" placeholder="例：大阪　太郎">
                                                         <!-- エラーメッセージ -->
-                                                        <div class="company_license-tab invalid-feedback" id ="company_licence_representative_error">
+                                                        <div class="company_license-tab invalid-feedback" id ="company_license_representative_error">
                                                             代表者は必須です。
                                                         </div>
                                                     </div>
@@ -205,7 +205,7 @@
                                                     <div class="col-12 col-md-12 col-lg-8 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>所在地
                                                         <input type="text" class="form-control" name="company_license_address" id="company_license_address" value="{{ $user_list->company_license_address }}" placeholder="例：大阪府大阪市梅田1丁目xx-yy">
-                                                        <div class="company_license-tab invalid-feedback" id ="company_licence_address_error">
+                                                        <div class="company_license-tab invalid-feedback" id ="company_license_address_error">
                                                             所在地は必須です。
                                                         </div>
                                                     </div>
@@ -217,7 +217,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Tel
                                                         <input type="text" class="form-control" name="company_license_tel" id="company_license_tel" value="{{ $user_list->company_license_tel }}" placeholder="例：0612345678">
-                                                        <div class="company_license-tab invalid-feedback" id ="company_licence_tel_error">
+                                                        <div class="company_license-tab invalid-feedback" id ="company_license_tel_error">
                                                             Telは必須です。
                                                         </div>
                                                     </div>
@@ -226,7 +226,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Fax
                                                         <input type="text" class="form-control" name="company_license_fax" id="company_license_fax" value="{{ $user_list->company_license_fax }}" placeholder="例：0612345678">
-                                                        <div class="company_license-tab invalid-feedback" id ="company_licence_fax_error">
+                                                        <div class="company_license-tab invalid-feedback" id ="company_license_fax_error">
                                                         </div>
                                                     </div>
 
@@ -251,19 +251,29 @@
                                                     <div class="w-100"></div>
 
                                                     <!-- 専任取引士 -->
-                                                    <div class="col-5 col-md-12 col-lg-4 mt-3">
-                                                        <label class="label_any mb-2" for="textBox"></label>専任取引士
-                                                        <select class="form-select" name="full_time_user_license_id" id="full_time_user_license_id" value="{{ $user_list->full_time_user_license_id }}">
-                                                            <option></option>
-                                                            @foreach($user_license_list as $user_license)
-                                                                <option value="{{$user_license->user_license_id}}" @if($user_list->full_time_user_license_id == $user_license->user_license_id) selected @endif>{{ $user_license->user_license_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="company_license-tab invalid-feedback" id="full_time_user_license_id_error">
-                                                            専任取引士は必須です。
+                                                    @if($user_list->admin_user_flag == 1)
+                                                        <!-- 専任取引士 -->
+                                                        <div class="col-5 col-md-12 col-lg-4 mt-3">
+                                                            <label class="label_any mb-2" for="textBox"></label>専任取引士
+                                                            <select class="form-select" name="full_time_user_license_id" id="full_time_user_license_id" value="{{ $user_list->full_time_user_license_id }}">
+                                                                <option></option>
+                                                                @foreach($user_license_list as $user_license)
+                                                                    <option value="{{$user_license->user_license_id}}" @if($user_list->full_time_user_license_id == $user_license->user_license_id) selected @endif>{{ $user_license->user_license_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="company_license-tab invalid-feedback" id="full_time_user_license_id_error">
+                                                                専任取引士は必須です。
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- 専任取引士 -->
+                                                        <!-- 専任取引士 -->
+                                                    @else
+                                                        <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                            <label class="label_any mb-2" for="textBox"></label>専任取引士
+                                                            <input type="text" class="form-control" name="full_time_user_license_id" id="full_time_user_license_id" value="{{ $user_list->full_time_user_license_name }}" readonly>
+                                                            <div class="invalid-feedback" id ="full_time_user_license_id_error"> 
+                                                            </div>
+                                                        </div>
+                                                    @endif
 
                                                     <!-- 登録番号 -->
                                                     <div class="col-12 col-md-12 col-lg-4 mt-3">
@@ -309,20 +319,29 @@
                                             <!-- 法務局 -->
                                             <div class="tab-pane fade" id="nav-legal_places" role="tabpanel" aria-labelledby="nav-legal_places-tab">
                                                 <div class="row row-cols-2">
-
+                                                    
                                                     <!-- 名称 -->
-                                                    <div class="col-5 col-md-12 col-lg-4 mt-4">
-                                                        <label class="label_any mb-2" for="textBox"></label>法務局名
-                                                        <select class="form-select" name="legal_place_id" id="legal_place_id" value="{{ $user_list->legal_place_id }}" >
-                                                            <option></option>
-                                                            @foreach($legal_place_list as $legal_place)
-                                                                <option value="{{ $legal_place->legal_place_id }}" @if($user_list->legal_place_id == $legal_place->legal_place_id) selected @endif>{{ $legal_place->legal_place_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="invalid-feedback" id="legal_place_id_error">
-                                                            不動産保証協会
+                                                    @if($user_list->admin_user_flag == 1)
+                                                        <div class="col-5 col-md-12 col-lg-4 mt-4">
+                                                            <label class="label_any mb-2" for="textBox"></label>法務局名
+                                                            <select class="form-select" name="legal_place_id" id="legal_place_id" value="{{ $user_list->legal_place_id }}" >
+                                                                <option></option>
+                                                                @foreach($legal_place_list as $legal_place)
+                                                                    <option value="{{ $legal_place->legal_place_id }}" @if($user_list->legal_place_id == $legal_place->legal_place_id) selected @endif>{{ $legal_place->legal_place_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="invalid-feedback" id="legal_place_id_error">
+                                                                法務局は必須です。
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @else
+                                                        <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                            <label class="label_any mb-2" for="textBox"></label>法務局名
+                                                            <input type="text" class="form-control" name="legal_place_id" id="legal_place_id" value="{{ $user_list->legal_place_name }}" readonly>
+                                                            <div class="legal_places-tab invalid-feedback" id ="legal_place_id_error"> 
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                     <!-- 名称 -->
 
                                                     <div class="w-100"></div>
@@ -331,7 +350,7 @@
                                                     <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>郵便番号
                                                         <input type="text" class="form-control" name="legal_place_post_number" id="legal_place_post_number" value="{{ $user_list->legal_place_post_number }}" readonly>
-                                                        <div class="invalid-feedback" id ="legal_place_post_number_error">
+                                                        <div class="legal_places-tab invalid-feedback" id ="legal_place_post_number_error">
                                                             郵便番号は必須です。
                                                         </div>
                                                     </div>
@@ -343,7 +362,7 @@
                                                     <div class="col-12 col-md-12 col-lg-8 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>所在地
                                                         <input type="text" class="form-control" name="legal_place_address" id="legal_place_address" value="{{ $user_list->legal_place_address }}" readonly>
-                                                        <div class="invalid-feedback" id ="legal_place_address_error">
+                                                        <div class="legal_places-tab invalid-feedback" id ="legal_place_address_error">
                                                             所在地は必須です。
                                                         </div>
                                                     </div>
@@ -355,7 +374,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Tel
                                                         <input type="text" class="form-control" name="legal_place_tel" id="legal_place_tel" value="{{ $user_list->legal_place_tel }}" readonly>
-                                                        <div class="invalid-feedback" id ="legal_place_tel_error">
+                                                        <div class="legal_places-tab invalid-feedback" id ="legal_place_tel_error">
                                                             Telは必須です。
                                                         </div>
                                                     </div>
@@ -364,7 +383,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Fax
                                                         <input type="text" class="form-control" name="legal_place_fax" id="legal_place_fax" value="{{ $user_list->legal_place_fax }}" readonly>
-                                                        <div class="invalid-feedback" id ="legal_place_fax_error">
+                                                        <div class="legal_places-tab invalid-feedback" id ="legal_place_fax_error">
                                                         </div>
                                                     </div>
 
@@ -377,18 +396,29 @@
                                                 <div class="row row-cols-2">
 
                                                     <!-- 名称 -->
-                                                    <div class="col-5 col-md-12 col-lg-4 mt-4">
-                                                        <label class="label_any mb-2" for="textBox"></label>保証協会
-                                                        <select class="form-select" name="guaranty_association_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_id }}">
-                                                            <option></option>
-                                                            @foreach($guaranty_association_list as $guaranty_associations)
-                                                                <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="invalid-feedback" id="guaranty_association_id_error">
-                                                            保証協会は必須です。
+                                                    @if($user_list->admin_user_flag == 1)
+                                                        <div class="col-5 col-md-12 col-lg-4 mt-4">
+                                                            <label class="label_any mb-2" for="textBox"></label>保証協会
+                                                            
+                                                                <select class="form-select" name="guaranty_association_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_id }}">
+                                                                    <option></option>
+                                                                    @foreach($guaranty_association_list as $guaranty_associations)
+                                                                        <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            
+                                                            <div class="guaranty_societies-tab invalid-feedback" id="guaranty_association_id_error">
+                                                                保証協会は必須です。
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @else
+                                                        <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                            <label class="label_any mb-2" for="textBox"></label>保証協会
+                                                            <input type="text" class="form-control" name="guaranty_association_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_name }}" readonly>
+                                                            <div class="invalid-feedback" id ="guaranty_association_id_error"> 
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                     <!-- 名称 -->
 
                                                     <div class="w-100"></div>
@@ -397,7 +427,7 @@
                                                     <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>郵便番号
                                                         <input type="text" class="form-control" name="guaranty_association_post_number" id="guaranty_association_post_number" value="{{ $user_list->guaranty_association_post_number }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_post_number_error"> 
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_post_number_error"> 
                                                             郵便番号は必須です。
                                                         </div>
                                                     </div>
@@ -409,7 +439,7 @@
                                                     <div class="col-12 col-md-12 col-lg-8 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>所在地
                                                         <input type="text" class="form-control" name="guaranty_association_address" id="guaranty_association_address" value="{{ $user_list->guaranty_association_address }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_address_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_address_error">
                                                             所在地は必須です。
                                                         </div>
                                                     </div>
@@ -421,7 +451,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Tel
                                                         <input type="text" class="form-control" name="guaranty_association_tel" id="guaranty_association_tel" value="{{ $user_list->guaranty_association_tel }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_tel_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_tel_error">
                                                             Telは必須です。
                                                         </div>
                                                     </div>
@@ -430,7 +460,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Fax
                                                         <input type="text" class="form-control" name="guaranty_association_fax" id="guaranty_association_fax" value="{{ $user_list->guaranty_association_fax }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_fax_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_fax_error">
                                                         </div>
                                                     </div>
                                                 
@@ -439,19 +469,27 @@
                                                     </div>
 
                                                     <!-- 保証協会所属地方 -->
-                                                    <div class="col-5 col-md-12 col-lg-4 mt-4">
-                                                        <label class="label_any mb-2" for="textBox"></label>保証協会所属地方
-                                                        <select class="form-select" name="guaranty_association_region_id" id="guaranty_association_region_id" value="{{ $user_list->guaranty_association_id }}">
-                                                            <option></option>
-                                                            @foreach($guaranty_association_list as $guaranty_associations)
-                                                                <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_region_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div class="invalid-feedback" id="guaranty_association_region_id_error">
-                                                            保証協会所属地方は必須です。
+                                                    @if($user_list->admin_user_flag == 1)
+                                                        <div class="col-5 col-md-12 col-lg-4 mt-4">
+                                                            <label class="label_any mb-2" for="textBox"></label>保証協会所属地方
+                                                            <select class="form-select" name="guaranty_association_region_id" id="guaranty_association_region_id" value="{{ $user_list->guaranty_association_id }}">
+                                                                <option></option>
+                                                                @foreach($guaranty_association_list as $guaranty_associations)
+                                                                    <option value="{{ $guaranty_associations->guaranty_association_id }}" @if($user_list->guaranty_association_region_id == $guaranty_associations->guaranty_association_id) selected @endif>{{ $guaranty_associations->guaranty_association_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="guaranty_societies-tab invalid-feedback" id="guaranty_association_region_id_error">
+                                                                保証協会所属地方は必須です。
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- 名称 -->
+                                                    @else
+                                                        <div class="col-12 col-md-12 col-lg-4 mt-3">
+                                                            <label class="label_any mb-2" for="textBox"></label>保証協会
+                                                            <input type="text" class="form-control" name="guaranty_association_region_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_region_name }}" readonly>
+                                                            <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_id_error"> 
+                                                            </div>
+                                                        </div>
+                                                    @endif
 
                                                     <div class="w-100"></div>
 
@@ -459,7 +497,7 @@
                                                     <div class="col-12 col-md-12 col-lg-2 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>郵便番号
                                                         <input type="text" class="form-control" name="guaranty_association_region_post_number" id="guaranty_association_region_post_number" value="{{ $user_list->guaranty_association_region_post_number }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_region_post_number_error"> 
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_post_number_error"> 
                                                             郵便番号は必須です。
                                                         </div>
                                                     </div>
@@ -471,7 +509,7 @@
                                                     <div class="col-12 col-md-12 col-lg-8 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>所在地
                                                         <input type="text" class="form-control" name="guaranty_association_region_address" id="guaranty_association_region_address" value="{{ $user_list->guaranty_association_region_address }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_region_address_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_address_error">
                                                             所在地は必須です。
                                                         </div>
                                                     </div>
@@ -483,7 +521,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Tel
                                                         <input type="text" class="form-control" name="guaranty_association_region_tel" id="guaranty_association_region_tel" value="{{ $user_list->guaranty_association_region_tel }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_region_tel_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_tel_error">
                                                             Telは必須です。
                                                         </div>
                                                     </div>
@@ -492,7 +530,7 @@
                                                     <div class="col-12 col-md-6 col-lg-4 mt-3">
                                                         <label class="label_any mb-2" for="textBox"></label>Fax
                                                         <input type="text" class="form-control" name="guaranty_association_region_fax" id="guaranty_association_region_fax" value="{{ $user_list->guaranty_association_region_fax }}" readonly>
-                                                        <div class="invalid-feedback" id ="guaranty_association_region_fax_error">
+                                                        <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_fax_error">
                                                         </div>
                                                     </div>
 
@@ -511,10 +549,17 @@
 
                                 <!-- ボタン -->
                                 <div class="row row-cols-2 mb-5">
-                                    <!-- 登録、帳票 -->
-                                    <div class="col-12 col-md-12 col-lg-12 mt-3">
-                                        <button id="btn_edit" class="btn btn-outline-primary float-end btn-default">登録</button>
+
+                                    <!-- 削除 -->
+                                    <div class="col-6 col-md-6 col-lg-6 mt-3">
+                                        <button id="btn_delete" class="btn btn-outline-danger btn-default">削除</button>
                                     </div>
+                                    
+                                    <!-- 登録、帳票 -->
+                                    <div class="col-6 col-md-6 col-lg-6 mt-3">
+                                        <button id="btn_edit" class="btn btn-outline-primary float-end btn-default" @if($user_list->admin_user_flag == 0) disabled @endif>登録</button>
+                                    </div>
+
                                 </div>     
                                 <!-- ボタン -->
 

@@ -562,7 +562,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backUserEditEntry',
+            url: 'adminUserEditEntry',
             dataType: 'json',
             data: sendData,
             cache:false,
@@ -708,13 +708,35 @@ $(function() {
             }
 
             // 免許概要
-            if(tab_class == 'company_licences-tab'){
+            if(tab_class == 'company_license-tab'){
                                 
                 console.log('ユーザタブの処理');
 
-                $('#nav-company_licences-tab').addClass('bg_tab_error');
+                $('#nav-company_license-tab').addClass('bg_tab_error');
                 
-            } 
+            }
+
+            /**
+             * 法務局
+             */
+            if(tab_class == 'legal_places-tab'){
+                                
+                console.log('ユーザタブの処理');
+
+                $('#nav-legal_places-tab').addClass('bg_tab_error');
+                
+            }
+
+            /**
+             * 保証協会
+             */
+            if(tab_class == 'guaranty_societies-tab'){
+                                
+                console.log('ユーザタブの処理');
+
+                $('#nav-guaranty_societies-tab').addClass('bg_tab_error');
+                
+            }
 
         }
     }
@@ -779,4 +801,100 @@ $(function() {
         
     });
 
+    /**
+     * 削除
+     */
+    $("#btn_delete").on('click', function(e) {
+
+        console.log('削除の処理');
+
+        e.preventDefault();
+
+        // alertの設定
+        var options = {
+            title: "削除しますか？",
+            text: "※一度削除したデータは復元出来ません。",
+            icon: 'warning',
+            buttons: {
+                Cancel: "Cancel", // キャンセルボタン
+                OK: true
+            }
+        };
+
+        // 値取得
+        let create_user_id = $("#create_user_id").val();
+        console.log(create_user_id);
+        
+        // then() OKを押した時の処理
+        swal(options)
+            .then(function(val) {
+
+            if(val == null){
+
+                console.log('キャンセルの処理');
+
+                return false;
+            }
+
+            if (val == "OK") {
+
+                console.log('OKの処理');
+
+                // 送信用データ
+                let sendData = {
+
+                    "create_user_id": create_user_id,
+                };
+
+                console.log(sendData);
+
+                $.ajaxSetup({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+                });
+
+                $.ajax({
+
+                    type: 'post',
+                    url: 'adminUserDeleteEntry',
+                    dataType: 'json',
+                    data: sendData,
+                
+                // 接続処理
+                }).done(function(data) {
+
+                    console.log('status:' + data.status)
+
+                    var options = {
+                        title: "削除が完了しました。",
+                        icon: "success",
+                        buttons: {
+                            ok: true
+                        }
+                    };
+
+                    // then() OKを押した時の処理
+                    swal(options)
+                        .then(function(val) {
+                        if (val) {
+
+                            location.href="adminUserInit"
+                            
+                        }
+                    });
+
+                // ajax接続失敗の時の処理
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+
+                    setTimeout(function(){
+                        $("#overlay").fadeOut(300);
+                    },500);
+
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                });
+            };
+            // sweetalert
+        });
+    });
 });
