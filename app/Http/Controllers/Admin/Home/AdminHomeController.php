@@ -49,6 +49,14 @@ class AdminHomeController extends Controller
             // アカウント数
             $user_info = $this->getUserList($request);
             $user_list = $user_info[0];
+
+            // 申込件数（自社）
+            $app_mine_info = $this->getAppMineList($request);
+            $app_mine_list = $app_mine_info[0];
+
+            // 申込件数（自社）
+            $app_info = $this->getAppList($request);
+            $app_list = $app_info[0];
         
             // // 申込件数
             // $app_info = $this->getAppList($request);
@@ -80,7 +88,7 @@ class AdminHomeController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('admin.adminHome' ,$information_list ,compact('access_list' ,'access_list_today' ,'user_list'));
+        return view('admin.adminHome' ,$information_list ,compact('access_list' ,'access_list_today' ,'user_list' ,'app_mine_list' ,'app_list'));
     }
 
     /**
@@ -211,11 +219,11 @@ class AdminHomeController extends Controller
     }
 
     /**
-     *  申込件数
+     *  申込件数(自社)
      *
-     * @return $ret(real_estate_agentの件数)
+     * @return
      */
-    private function getAppList(Request $request){
+    private function getAppMineList(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         // session_id
@@ -234,19 +242,18 @@ class AdminHomeController extends Controller
     }
 
     /**
-     * 申込件数（審査中）
+     * 申込件数（合計）
      */
-    private function getAppJudgmentList(Request $request){
+    private function getAppList(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         // session_id
         $session_id = $request->session()->get('create_user_id');
 
+        // sql
         $str = "select count(*) as app_count "
-        ."from applications "
-        ."where entry_user_id = $session_id "
-        ."and "
-        ."applications.contract_progress_id = 2 ";
+        ."from applications ";
+        Log::debug('sql:'.$str);
 
         $ret = DB::select($str);
 

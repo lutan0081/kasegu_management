@@ -47,8 +47,11 @@ class AdminAppController extends Controller
             
             $common = new Common();
 
-            // 契約進捗状況
+            // 進捗状況
             $contract_progress = $common->getContractProgress();
+
+            // ユーザ一覧
+            $create_users = $common->getCreateUsers();
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -60,7 +63,7 @@ class AdminAppController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('admin.adminApp' ,$app_list,compact('contract_progress'));
+        return view('admin.adminApp' ,$app_list,compact('contract_progress' ,'create_users'));
     }
 
     /**
@@ -84,6 +87,10 @@ class AdminAppController extends Controller
             // 進捗状況
             $contract_progress_id = $request->input('contract_progress_id');
             Log::debug('$contract_progress_id:' .$contract_progress_id);
+
+            // アカウント情報
+            $create_user_id = $request->input('create_user_id');
+            Log::debug('$create_user_id:' .$create_user_id);
 
             // 日付始期
             $start_date = $request->input('start_date');
@@ -143,6 +150,8 @@ class AdminAppController extends Controller
                 $where = $where ."or ifnull(real_estate_name,'') like '%$free_word%'";
                 $where = $where ."or ifnull(entry_contract_name,'') like '%$free_word%'";
                 $where = $where ."or ifnull(entry_contract_mobile_tel,'') like '%$free_word%'";
+                $where = $where ."or ifnull(create_user_name,'') like '%$free_word%'";
+
             };
 
             // 進捗状況
@@ -150,15 +159,31 @@ class AdminAppController extends Controller
 
                 if($where == ""){
 
-                    $where = "where ";
+                    $where = $where ."where ";
 
                 }else{
                     
-                    $where = "and ";
+                    $where = $where ."and ";
                 }
 
                 // ユーザ名、仲介業者名、物件名、契約者名
                 $where = $where ."applications.contract_progress_id = '$contract_progress_id' ";
+            };
+
+            // アカウント情報
+            if($create_user_id !== null){
+
+                if($where == ""){
+
+                    $where = $where ."where ";
+
+                }else{
+                    
+                    $where = $where ."and ";
+                }
+
+                // ユーザ名、仲介業者名、物件名、契約者名
+                $where = $where ."applications.create_user_id = '$create_user_id' ";
             };
 
             // 始期終期
@@ -168,11 +193,11 @@ class AdminAppController extends Controller
 
                 if($where == ""){
 
-                    $where = "where ";
+                    $where = $where ."where ";
 
                 }else{
                     
-                    $where = "and ";
+                    $where = $where ."and ";
                 }
 
                 $where = $where ."(applications.contract_start_date >= '$start_date') "
@@ -188,11 +213,11 @@ class AdminAppController extends Controller
 
                     if($where == ""){
 
-                        $where = "where ";
+                        $where = $where ."where ";
     
                     }else{
                         
-                        $where = "and ";
+                        $where = $where ."and ";
                     }
 
                     $where = $where ."applications.contract_start_date >= '$start_date' ";
@@ -206,11 +231,11 @@ class AdminAppController extends Controller
 
                     if($where == ""){
 
-                        $where = "where ";
+                        $where = $where ."where ";
     
                     }else{
                         
-                        $where = "and ";
+                        $where = $where ."and ";
                     }
 
                     $where = $where ."applications.contract_start_date <= '$end_date' ";

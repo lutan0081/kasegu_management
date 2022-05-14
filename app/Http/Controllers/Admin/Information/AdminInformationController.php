@@ -154,56 +154,6 @@ class AdminInformationController extends Controller
     }
 
     /**
-     *  新規(表示)
-     *
-     * @param Request $request(フォームデータ)
-     * @return
-     */
-    public function backLegalPlaceNewInit(Request $request){   
-        Log::debug('start:' .__FUNCTION__);
-
-        try {            
-            // 法務局一覧
-            $legal_place_list = $this->getNewList($request);
-            
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug('error:'.$e);
-
-        } finally {
-
-        }
-
-        Log::debug('end:' .__FUNCTION__);
-        return view('back.backLegalPlaceEdit' ,compact('legal_place_list'));
-    }
-
-    /**
-     * 新規(ダミー値取得)
-     *
-     * @return $ret(空の配列)
-     */
-    private function getNewList(){
-        Log::debug('log_start:'.__FUNCTION__);
-        $obj = new \stdClass();
-        
-        // 募集要項
-        $obj->legal_place_id  = '';
-        $obj->legal_place_name = '';
-        $obj->legal_place_post_number = '';
-        $obj->legal_place_address = '';
-        $obj->legal_place_tel = '';
-        $obj->legal_place_fax = '';
-
-        $ret = [];
-        $ret = $obj;
-
-        Log::debug('log_end:'.__FUNCTION__);
-        return $ret;
-    }
-
-    /**
      *  編集(表示)
      *
      * @param Request $request(フォームデータ)

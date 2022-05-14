@@ -372,6 +372,30 @@ class Common
     }
 
     /**
+     * ユーザ一覧
+     *
+     * @param [type] $request
+     * @return void
+     */
+    public function getCreateUsers(){
+        Log::debug('log_start:'.__FUNCTION__);
+
+        // $session_id = $request->session()->get('create_user_id');
+
+        $str = "select * "
+        ."from "
+        ."create_users ";
+
+        Log::debug('sql:'.$str);
+
+        $ret = DB::select($str);
+
+        Log::debug('log_end:'.__FUNCTION__);
+        return $ret; 
+    }
+
+
+    /**
      * 抵当権リスト作成
      *
      * @return $ret(抵当件リスト)

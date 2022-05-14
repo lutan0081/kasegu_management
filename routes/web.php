@@ -261,8 +261,10 @@ Route::post('adminInformationEditEntry', 'Admin\Information\AdminInformationCont
 // 新着情報(削除)
 Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@adminDeleteEntry')->middleware("kasegu_auth");
 
+
 // アカウント
 Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
+
 
 // 申込管理(一覧表示)
 Route::any('adminAppInit', 'Admin\App\AdminAppController@adminAppInit')->middleware("kasegu_auth");
@@ -293,6 +295,39 @@ Route::post('adminAppNextStageEntry', 'Admin\App\AdminAppController@adminAppNext
 
 // 申込管理(メール送信)
 Route::post('adminAppMailEntry', 'Admin\App\AdminAppController@adminAppMailEntry')->middleware("kasegu_auth");
+
+// 契約一覧(表示)
+Route::any('ContractInit', 'Admin\Contract\BackContractController@backContractInit')->middleware("kasegu_auth");
+
+// 契約詳細(新規表示)
+Route::get('backContractNewInit', 'Admin\Contract\BackContractController@backContractNewInit')->middleware("kasegu_auth");
+
+// 契約詳細(編集表示)
+Route::get('backContractEditInit', 'Admin\Contract\BackContractController@backContractEditInit')->middleware("kasegu_auth");
+
+// 商号コンボボックス変更(データ取得)
+Route::post('backChangeCompanyLicense', 'Admin\Contract\BackContractController@backChangeCompanyLicense')->middleware("kasegu_auth");
+
+// 宅地建物取引士コンボボックス変更(データ取得)
+Route::post('backChangeUserLicense', 'Admin\Contract\BackContractController@backChangeUserLicense')->middleware("kasegu_auth");
+
+// 契約詳細(登録)
+Route::post('backContractEditEntry', 'Admin\Contract\BackContractController@backContractEditEntry')->middleware("kasegu_auth");
+
+// 契約詳細(削除)
+Route::post('backContractDeleteEntry', 'Admin\Contract\BackContractController@backContractDeleteEntry')->middleware("kasegu_auth");
+
+// 銀行一覧取得(モーダル初期表示・検索)
+Route::post('backSearchBank', 'Admin\Contract\BackContractController@backSearchBank')->middleware("kasegu_auth");
+
+// 同居人(登録)
+Route::post('backContractHouseMateEditEntry', 'Admin\Contract\BackContractController@backContractHouseMateEditEntry')->middleware("kasegu_auth");
+
+// 同居人(編集表示)
+Route::post('backContractHouseMateEditInit', 'Admin\Contract\BackContractController@backContractHouseMateEditInit')->middleware("kasegu_auth");
+
+// 同居人(削除)
+Route::post('backContractHouseMateDeleteEntry', 'Admin\Contract\BackContractController@backContractHouseMateDeleteEntry')->middleware("kasegu_auth");
 
 /**adminAppDeleteEntry
  * テスト

@@ -76,9 +76,9 @@
                                                     <label for="">フリーワード</label>
                                                     <input type="text" class="form-control" name="free_word" id="free_word" value="">
                                                 </div>
-                                        
+
                                                 <!-- 申込進捗 -->
-                                                <div class="col-12 col-md-8 col-lg-2 mt-1">
+                                                <div class="col-12 col-md-8 col-lg-3 mt-1">
                                                     <label class="label_any mb-2" for="textBox"></label>申込進捗
                                                     
                                                     <select class="form-select" name="contract_progress_id" id="contract_progress_id">
@@ -89,7 +89,21 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <!-- 契約進捗 -->
+                                                <!-- 申込進捗 -->
+                                    
+                                                <!-- アカウント -->
+                                                <div class="col-12 col-md-8 col-lg-3 mt-1">
+                                                    <label class="label_any mb-2" for="textBox"></label>アカウント
+                                                    
+                                                    <select class="form-select" name="create_user_id" id="create_user_id">
+                                                        <!-- タグ内に値を追加、値追加後同一の場合選択する -->
+                                                        <option></option>
+                                                        @foreach($create_users as $create_user)
+                                                            <option value="{{$create_user->create_user_id}}">{{ $create_user->create_user_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <!-- アカウント -->
 
                                                 <!-- 改行 -->
                                                 <div class="w-100"></div>

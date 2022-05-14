@@ -109,11 +109,11 @@
                                                 </div>
                                                 
                                                 <div class="col-12 col-md-12 col-lg-12 pt-2">
-                                                    契約手続中: <span class="count dashboard_box_num">1111111111111</span>
+                                                    自社件数: <span class="count dashboard_box_num">{{ $app_mine_list->app_count }}</span>
                                                 </div>
 
                                                 <div class="col-12 col-md-12 col-lg-12">
-                                                    契約件数: <span class="count dashboard_box_num">1111111111111</span>
+                                                    合計件数: <span class="count dashboard_box_num">{{ $app_list->app_count }}</span>
                                                 </div>
                                                 
                                             </div>

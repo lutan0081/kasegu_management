@@ -9,7 +9,7 @@
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('admin/css/admin_information.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_user.css') }}">  
 		
         <style>
 
@@ -198,7 +198,7 @@
 		@endcomponent
         
 		<!-- 自作js -->
-		<script src="{{ asset('admin/js/admin_information.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_user.js') }}"></script>
 	</body>
 	
 </html>

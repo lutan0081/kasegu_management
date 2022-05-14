@@ -83,11 +83,11 @@ class AdminUserController extends Controller
 
                 if($where == ""){
 
-                    $where = "where ";
+                    $where = $where ."where ";
 
                 }else{
 
-                    $where = "and ";
+                    $where = $where ."and ";
                 }
 
                 $where = $where ."ifnull(create_user_name,'') like '%$free_word%'";
