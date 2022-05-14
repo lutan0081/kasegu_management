@@ -484,7 +484,7 @@
                                                         </div>
                                                     @else
                                                         <div class="col-12 col-md-12 col-lg-4 mt-3">
-                                                            <label class="label_any mb-2" for="textBox"></label>保証協会
+                                                            <label class="label_any mb-2" for="textBox"></label>保証協会所属地方
                                                             <input type="text" class="form-control" name="guaranty_association_region_id" id="guaranty_association_id" value="{{ $user_list->guaranty_association_region_name }}" readonly>
                                                             <div class="guaranty_societies-tab invalid-feedback" id ="guaranty_association_region_id_error"> 
                                                             </div>
@@ -554,7 +554,7 @@
                                     <div class="col-6 col-md-6 col-lg-6 mt-3">
                                         <button id="btn_delete" class="btn btn-outline-danger btn-default">削除</button>
                                     </div>
-                                    
+
                                     <!-- 登録、帳票 -->
                                     <div class="col-6 col-md-6 col-lg-6 mt-3">
                                         <button id="btn_edit" class="btn btn-outline-primary float-end btn-default" @if($user_list->admin_user_flag == 0) disabled @endif>登録</button>
