@@ -33,7 +33,7 @@ class AdminContractController extends Controller
      * @param Request $request(フォームデータ)
      * @return
      */
-    public function backContractInit(Request $request){
+    public function adminContractInit(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -47,6 +47,8 @@ class AdminContractController extends Controller
             // 契約進捗状況
             $contract_detail_progress = $common->getContractDetailProgress();
             
+            // ユーザ一覧
+            $create_users = $common->getCreateUsers();
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -58,7 +60,7 @@ class AdminContractController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('back.backContract' ,$contract_list ,compact('contract_detail_progress'));
+        return view('admin.adminContract' ,$contract_list ,compact('contract_detail_progress','create_users'));
     }
 
     /**
@@ -91,6 +93,10 @@ class AdminContractController extends Controller
             // 契約終期
             $end_date = $request->input('end_date');
             Log::debug('$end_date:' .$end_date);
+
+            // アカウントid
+            $create_user_id = $request->input('create_user_id');
+            Log::debug('$create_user_id:' .$create_user_id);
 
             $str = "select "
             ."contract_details.contract_detail_id as contract_detail_id, "
@@ -217,13 +223,16 @@ class AdminContractController extends Controller
             ."contract_details.entry_user_id as entry_user_id, "
             ."contract_details.entry_date as entry_date, "
             ."contract_details.update_user_id as update_user_id, "
-            ."contract_details.update_date as update_date "
+            ."contract_details.update_date as update_date, "
+            ."create_users.create_user_name as create_user_name, "
+            ."create_users.admin_user_flag as admin_user_flag "
             ."from "
             ."contract_details "
-            ."left join contract_detail_progress "
-            ."on contract_detail_progress.contract_detail_progress_id = contract_details.contract_detail_progress_id "
-            ."where contract_details.create_user_id = $session_id ";
-            
+            ."left join contract_detail_progress on "
+            ."contract_detail_progress.contract_detail_progress_id = contract_details.contract_detail_progress_id "
+            ."left join create_users on "
+            ."create_users.create_user_id = contract_details.entry_user_id ";
+
             // where句
             $where = "";
 
@@ -243,17 +252,33 @@ class AdminContractController extends Controller
             // 進捗状況
             if($contract_detail_progress_id !== null){
                     
-                    $where = "and ";
+                    $where = $where ."and ";
                     $where = $where ."contract_details.contract_detail_progress_id = '$contract_detail_progress_id' ";
 
             }
+
+            // アカウント情報
+            if($create_user_id !== null){
+
+                if($where == ""){
+
+                    $where = $where ."where ";
+
+                }else{
+                    
+                    $where = $where ."and ";
+                }
+
+                // ユーザ名、仲介業者名、物件名、契約者名
+                $where = $where ."contract_details.entry_user_id = '$create_user_id' ";
+            };
 
             // 始期終期
             if($start_date !== null && $end_date !== null){
 
                 Log::debug('始期・終期選択の処理');
 
-                $where = "and ";
+                $where = $where ."and ";
                 $where = $where ."(contract_details.contract_start_date >= '$start_date') "
                 ."and "
                 ."(contract_details.contract_start_date <= '$end_date')";
@@ -263,7 +288,7 @@ class AdminContractController extends Controller
                 // 始期
                 if($start_date !== null){
 
-                    $where = "and ";
+                    $where = $where ."and ";
                     $where = $where ."contract_details.contract_start_date >= '$start_date' ";
 
                 }
@@ -271,7 +296,7 @@ class AdminContractController extends Controller
                 // 終期
                 if($end_date !== null){
 
-                    $where = "and ";
+                    $where = $where ."and ";
                     $where = $where ."contract_details.contract_start_date <= '$end_date' ";
 
                 }
@@ -288,7 +313,7 @@ class AdminContractController extends Controller
             $alias = DB::raw("({$str}) as alias");
 
             // columnの設定、表示件数
-            $res = DB::table($alias)->selectRaw("*")->paginate(20)->onEachSide(1);
+            $res = DB::table($alias)->selectRaw("*")->orderByRaw("contract_detail_id desc,admin_user_flag desc")->paginate(20)->onEachSide(1);
 
             // resの中に値が代入されている
             $ret = [];
@@ -313,7 +338,7 @@ class AdminContractController extends Controller
      * @param Request $request(フォームデータ)
      * @return
      */
-    public function backContractNewInit(Request $request){   
+    public function adminContractNewInit(Request $request){   
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -405,7 +430,7 @@ class AdminContractController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('back.backContractEdit' ,compact('contract_list' ,'contract_detail_progress_list' ,'room_layout_list' ,'real_estate_structure_list' ,'guaranty_association_list' ,'legal_place_list' ,'company_license_list' ,'user_license_list' ,'need_list' ,'regi_mortgages_list' ,'water_list' ,'gas_list' ,'waste_water_list' ,'exclusive_type_list' ,'limit_uses_list' ,'cancel_fee_count_list' ,'trade_type_list' ,'bank_type_list' ,'special_contract_list' ,'contract_housemate_list' ,'clone_flag' ,'inside_and_outside_area_list' ,'guarantee_update_spans_list'));
+        return view('admin.adminContractEdit' ,compact('contract_list' ,'contract_detail_progress_list' ,'room_layout_list' ,'real_estate_structure_list' ,'guaranty_association_list' ,'legal_place_list' ,'company_license_list' ,'user_license_list' ,'need_list' ,'regi_mortgages_list' ,'water_list' ,'gas_list' ,'waste_water_list' ,'exclusive_type_list' ,'limit_uses_list' ,'cancel_fee_count_list' ,'trade_type_list' ,'bank_type_list' ,'special_contract_list' ,'contract_housemate_list' ,'clone_flag' ,'inside_and_outside_area_list' ,'guarantee_update_spans_list'));
     }
 
     /**
@@ -573,98 +598,12 @@ class AdminContractController extends Controller
     }
 
     /**
-     * 商号コンボボックス変更時の値取得
-     *
-     * @return void
-     */
-    public function backChangeCompanyLicense(Request $request){
-        Log::debug('start:' .__FUNCTION__);
-
-        try {
-            $response = [];
-            
-            // 契約詳細一覧
-            $common = new Common();
-
-            // 商号
-            $company_license_list = $common->getCompanyLicense($request);
-            $response['company_license_list'] = $company_license_list[0];
-
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug('error:'.$e);
-
-        } finally {
-
-        }
-
-        Log::debug('log_end:' .__FUNCTION__);
-        return response()->json($response);
-    }
-
-    /**
-     * 宅建取引士変更時の値取得
-     *
-     * @return void
-     */
-    public function backChangeUserLicense(Request $request){
-        Log::debug('start:' .__FUNCTION__);
-
-        try {
-            $response = [];
-            
-            // 契約詳細一覧
-            $common = new Common();
-
-            // 商号
-            $user_license_list = $common->getUserLicense($request);
-            $response['user_license_list'] = $user_license_list[0];
-
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug('error:'.$e);
-
-        } finally {
-
-        }
-
-        Log::debug('log_end:' .__FUNCTION__);
-        return response()->json($response);
-    }
-
-    /**
-     * 銀行一覧取得(モーダル初期表示・検索)
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function backSearchBank(Request $request){
-        
-        Log::debug('log_start:'.__FUNCTION__);
-        
-        // return初期値
-        $response = [];
-
-        $common = new Common();
-
-        $bank_list = $common->getBankList($request);
-
-        // js側での判定のステータス(true:OK/false:NG)
-        $response["bank_list"] = $bank_list;
-
-        Log::debug('log_end:' .__FUNCTION__);
-        return response()->json($response);
-    }
-
-    /**
      *  編集(表示)
      *
      * @param Request $request(フォームデータ)
      * @return
      */
-    public function backContractEditInit(Request $request){   
+    public function adminContractEditInit(Request $request){   
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -794,7 +733,7 @@ class AdminContractController extends Controller
         }
 
         Log::debug('end:' .__FUNCTION__);
-        return view('back.backContractEdit' ,compact('contract_list' ,'contract_detail_progress_list' ,'room_layout_list' ,'real_estate_structure_list' ,'guaranty_association_list' ,'legal_place_list' ,'company_license_list' ,'user_license_list' ,'need_list' ,'regi_mortgages_list' ,'water_list' ,'gas_list' ,'waste_water_list' ,'exclusive_type_list' ,'limit_uses_list' ,'cancel_fee_count_list' ,'trade_type_list' ,'bank_type_list' ,'special_contract_list' ,'contract_housemate_list' ,'clone_flag' ,'inside_and_outside_area_list' ,'guarantee_update_spans_list'));
+        return view('admin.adminContractEdit' ,compact('contract_list' ,'contract_detail_progress_list' ,'room_layout_list' ,'real_estate_structure_list' ,'guaranty_association_list' ,'legal_place_list' ,'company_license_list' ,'user_license_list' ,'need_list' ,'regi_mortgages_list' ,'water_list' ,'gas_list' ,'waste_water_list' ,'exclusive_type_list' ,'limit_uses_list' ,'cancel_fee_count_list' ,'trade_type_list' ,'bank_type_list' ,'special_contract_list' ,'contract_housemate_list' ,'clone_flag' ,'inside_and_outside_area_list' ,'guarantee_update_spans_list'));
     }
 
     /**
@@ -4777,4 +4716,91 @@ class AdminContractController extends Controller
         Log::debug('log_end:' .__FUNCTION__);
         return $ret;
     }
+
+    /**
+     * 商号コンボボックス変更時の値取得
+     *
+     * @return void
+     */
+    public function backChangeCompanyLicense(Request $request){
+        Log::debug('start:' .__FUNCTION__);
+
+        try {
+            $response = [];
+            
+            // 契約詳細一覧
+            $common = new Common();
+
+            // 商号
+            $company_license_list = $common->getCompanyLicense($request);
+            $response['company_license_list'] = $company_license_list[0];
+
+        // 例外処理
+        } catch (\Throwable $e) {
+
+            Log::debug('error:'.$e);
+
+        } finally {
+
+        }
+
+        Log::debug('log_end:' .__FUNCTION__);
+        return response()->json($response);
+    }
+
+    /**
+     * 宅建取引士変更時の値取得
+     *
+     * @return void
+     */
+    public function backChangeUserLicense(Request $request){
+        Log::debug('start:' .__FUNCTION__);
+
+        try {
+            $response = [];
+            
+            // 契約詳細一覧
+            $common = new Common();
+
+            // 商号
+            $user_license_list = $common->getUserLicense($request);
+            $response['user_license_list'] = $user_license_list[0];
+
+        // 例外処理
+        } catch (\Throwable $e) {
+
+            Log::debug('error:'.$e);
+
+        } finally {
+
+        }
+
+        Log::debug('log_end:' .__FUNCTION__);
+        return response()->json($response);
+    }
+
+    /**
+     * 銀行一覧取得(モーダル初期表示・検索)
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function backSearchBank(Request $request){
+        
+        Log::debug('log_start:'.__FUNCTION__);
+        
+        // return初期値
+        $response = [];
+
+        $common = new Common();
+
+        $bank_list = $common->getBankList($request);
+
+        // js側での判定のステータス(true:OK/false:NG)
+        $response["bank_list"] = $bank_list;
+
+        Log::debug('log_end:' .__FUNCTION__);
+        return response()->json($response);
+    }
+
 } 

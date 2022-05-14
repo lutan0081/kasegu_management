@@ -52,7 +52,7 @@
                         <form id="editForm" class="needs-validation" novalidate>
                 
                             <div class="info_title mt-3">
-                                <i class="far fa-gem icon_blue me-2"></i>アカウント詳細
+                                <i class="fas fa-user icon_blue me-2"></i>アカウント詳細
                             </div>
 
                             <!-- 境界線 -->

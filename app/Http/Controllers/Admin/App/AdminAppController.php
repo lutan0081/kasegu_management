@@ -44,6 +44,7 @@ class AdminAppController extends Controller
         try {            
             // 申込一覧取得
             $app_list = $this->getAppList($request);
+            // dd($app_list);
             
             $common = new Common();
 
@@ -52,6 +53,7 @@ class AdminAppController extends Controller
 
             // ユーザ一覧
             $create_users = $common->getCreateUsers();
+            // dd($create_users);
 
         // 例外処理
         } catch (\Throwable $e) {
@@ -120,7 +122,8 @@ class AdminAppController extends Controller
             ."create_users.create_user_name, "
             ."applications.entry_date, "
             ."applications.update_user_id, "
-            ."applications.update_date "
+            ."applications.update_date, "
+            ."create_users.admin_user_flag "
             ."from "
             ."applications "
             ."left join entry_contracts on "

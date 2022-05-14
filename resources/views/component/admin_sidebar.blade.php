@@ -75,7 +75,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="">契約一覧</a>
+                                <a href="adminContractInit">契約一覧</a>
                             </li>
                             <li>
                                 <a href="">取引台帳</a>

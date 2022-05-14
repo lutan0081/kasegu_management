@@ -2,14 +2,14 @@
 <html lang="ja">
 
 	<head>
-		<title>申込管理/ADMIN</title>
+		<title>契約一覧/ADMIN</title>
 
 		<!-- head -->
 		@component('component.admin_head')
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('admin/css/admin_app.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_contract_detail.css') }}">  
 		
         <style>
 
@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-12 col-lg-12">
                                     <div class="info_title mt-3">
-                                        <i class="fas fa-id-card icon_blue me-2"></i>申込一覧
+                                        <i class="fas fa-key icon_blue me-2"></i>契約一覧
                                     </div>
                                     <!-- 境界線 -->
                                     <hr>
@@ -65,7 +65,7 @@
                         
                             <!-- 上部検索 -->
                             <div class="row">
-                                <form action="adminAppInit" method="post">
+                                <form action="adminContractInit" method="post" autocomplete="off">
                                     {{ csrf_field() }}
                                     <div class="col-sm-12">
                                         <div class="card border border-0">
@@ -76,24 +76,24 @@
                                                     <label for="">フリーワード</label>
                                                     <input type="text" class="form-control" name="free_word" id="free_word" value="">
                                                 </div>
-
-                                                <!-- 申込進捗 -->
+                                        
+                                                <!-- 進捗状況 -->
                                                 <div class="col-12 col-md-8 col-lg-3 mt-1">
-                                                    <label class="label_any mb-2" for="textBox"></label>申込進捗
+                                                    <label class="mb-2" for="textBox"></label>進捗状況
                                                     
                                                     <select class="form-select" name="contract_progress_id" id="contract_progress_id">
                                                         <!-- タグ内に値を追加、値追加後同一の場合選択する -->
                                                         <option></option>
-                                                        @foreach($contract_progress as $progress)
-                                                            <option value="{{$progress->contract_progress_id}}">{{ $progress->contract_progress_name }}</option>
+                                                        @foreach($contract_detail_progress as $progress)
+                                                            <option value="{{$progress->contract_detail_progress_id}}">{{ $progress->contract_detail_progress_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <!-- 申込進捗 -->
-                                    
+                                                <!-- 契約進捗 -->
+
                                                 <!-- アカウント -->
                                                 <div class="col-12 col-md-8 col-lg-3 mt-1">
-                                                    <label class="label_any mb-2" for="textBox"></label>アカウント
+                                                    <label class="mb-2" for="textBox"></label>アカウント
                                                     
                                                     <select class="form-select" name="create_user_id" id="create_user_id">
                                                         <!-- タグ内に値を追加、値追加後同一の場合選択する -->
@@ -176,34 +176,40 @@
                                                         <th scope="col" id="create_user_id" style="display:none">id</th>
                                                         <th>選択</th>
                                                         <th scope="col" id="create_user_name">アカウント</th>
-                                                        <th scope="col" id="broker_coompany_name">仲介業者</th>
-                                                        <th scope="col" id="create_user_name">Tel</th>
-                                                        <th scope="col" id="create_user_name">E-mail</th>
-                                                        <th scope="col" id="post_number">物件名</th>
-                                                        <th scope="col" id="address">号室</th>
-                                                        <th scope="col" id="create_user_fax">契約者</th>
-                                                        <th scope="col" id="create_user_mail">携帯Tel</th>
-                                                        <th scope="col" id="create_user_tel">入居予定日</th>
+                                                        <th scope="col" id="admin_number">管理番号</th>
+                                                        <th scope="col" id="real_estate_name">物件名</th>
+                                                        <th scope="col" id="room_name">号室</th>
+                                                        <th scope="col" id="contract_name">契約者</th>
+                                                        <th scope="col" id="post_number">TEL</th>
+                                                        <th scope="col" id="address">賃料</th>
+                                                        <th scope="col" id="create_user_fax">共益費</th>
+                                                        <th scope="col" id="create_user_mail">水道代</th>
+                                                        <th scope="col" id="create_user_tel">その他</th>
+                                                        <th scope="col" id="password">総賃料</th>
+                                                        <th scope="col" id="password">契約始期</th>
                                                         <th scope="col" id="password">進捗状況</th>
                                                     </tr>
                                                 </thead>
 
                                                 <!-- テーブルボディ -->
                                                 <tbody>
-                                                    @foreach($res as $app)
-                                                        <tr @if($app->contract_progress_id == 4) class="table table-danger" @elseif($app->admin_user_flag == 1) class="table table-primary" @endif>
-                                                            <td id="{{ $app->application_id }}" class="click_class" style="display:none">{{ $app->application_id }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class"><input id="{{ $app->application_id }}" type="radio" class="align-middle" name="flexRadioDisabled"></td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->create_user_name }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_company_name }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_tel }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->broker_mail }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->real_estate_name }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->room_name }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->entry_contract_name }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->entry_contract_mobile_tel }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->contract_start_date }}</td>
-                                                            <td id="{{ $app->application_id }}" class="click_class">{{ $app->contract_progress_name }}</td>
+                                                    @foreach($res as $contracts)
+                                                        <tr @if($contracts->contract_detail_progress_id == 5) class="table table-danger" @elseif($contracts->admin_user_flag == 1) class="table table-primary" @endif>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class" style="display:none">{{ $contracts->contract_detail_id }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class"><input id="{{ $contracts->contract_detail_id }}" type="radio" class="align-middle" name="flexRadioDisabled"></td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->create_user_name }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->admin_number }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->real_estate_name }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->room_name }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->contract_name }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->contract_tel }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->rent_fee }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->service_fee }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->water_fee }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->ohter_fee }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->ohter_fee }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->contract_start_date }}</td>
+                                                            <td id="{{ $contracts->contract_detail_id }}" class="click_class">{{ $contracts->contract_detail_progress_name }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -226,21 +232,22 @@
                         <!-- テーブルcard -->
 
                         <!-- ボタン -->
-                        <div class="col-12 col-md-6 col-lg-12 mt-3">
+                        <div class="col-sm-12 mt-4 pt-1">
                             <div class="card border border-0">
                             <!-- row -->
                             <div class="row">
 
-                                <div class="col-12 col-md-6 col-lg-6">
+                                <div class="col-6">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-outline-primary float-start btn-default">CSV出力</button>
-                                        <button type="button" class="btn btn-outline-primary float-start btn-default" data-bs-toggle="modal" data-bs-target="#urlModal">URL発行</button>
                                     </div>
                                 </div>
+                                
                                 <!-- 新規、編集 -->
-                                <div class="col-12 col-md-6 col-lg-6">
-                                    <div class="btn-group float-xl-end" role="group">
-                                        <button type="button" onclick="location.href='adminAppNewInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
+                                <div class="col-6">
+                                    <div class="btn-group float-end" role="group">
+                                        <button type="button" id="btn_clone" class="btn btn-outline-primary float-end btn-default">複製登録</button>
+                                        <button type="button" onclick="location.href='adminContractNewInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
                                         <button type="button" id="btn_edit" class="btn btn-outline-primary float-end btn-default">編集</button>
                                     </div>
                                 </div>
@@ -259,102 +266,12 @@
 
 		</div>
 		<!-- page-wrapper -->
-        
-        <!-- URL発行 -->
-        <div class="modal fade" id="urlModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
 
-                    <!-- ヘッダー -->
-                    <div class="modal-header">
-                        <div class="modal-title info_title" id="exampleModalLabel">
-                            <i class="fas fa-paper-plane icon_blue me-2"></i>申込URL発行
-                        </div>
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <!-- ボディ -->
-                    <div class="modal-body">
-                        <form id="modalForm" class="needs-validation" novalidate>
-
-                            <div class="col-12 col-md-6 col-lg-12 mt-3">
-                                <div class="row">
-
-                                    <div class="col-12 col-md-12 col-lg-12 mt-2">
-                                        入力したメールアドレスに申込URLが届きます。<br>
-                                        <span class="text_red">※メールが届かない場合、最初からやり直してください。</span>
-                                    </div>  
-
-                                    <div class="col-12 col-md-6 col-lg-12 mt-3">
-                                        <label class="col-form-label">業者名</label>
-                                        <input type="text" class="form-control" id="application_name" placeholder="例：株式会社〇〇〇〇" required>
-                                        <div class="invalid-feedback" id ="application_name_error">
-                                            名前は必須です。
-                                        </div>
-                                    </div>  
-
-                                    <!-- address -->
-                                    <div class="col-12 col-md-6 col-lg-12 mt-3">
-                                        <label class="col-form-label">E-mail</label>
-                                        <input type="email" class="form-control" id="application_mail" placeholder="例：××××@gmail.com" required>
-                                        <div class="invalid-feedback" id ="application_mail_error">
-                                            E-mailは必須です。
-                                        </div>
-                                    </div>
-
-                                    <!-- 物件名 -->
-                                    <div class="col-12 col-md-6 col-lg-12 mt-3">
-                                        <label class="col-form-label">物件名</label>
-                                        <input type="email" class="form-control" id="real_estate_name" placeholder="例：〇〇〇〇マンション" required>
-                                        <div class="invalid-feedback" id ="real_estate_name_error">
-                                            物件名は必須です。
-                                        </div>
-                                    </div>
-
-                                    <!-- 号室 -->
-                                    <div class="col-12 col-md-6 col-lg-6 my-3">
-                                        <label class="col-form-label">号室</label>
-                                        <input type="email" class="form-control" id="room_name" placeholder="例：101" required>
-                                        <div class="invalid-feedback" id ="room_name_error">
-                                            号室は必須です。
-                                        </div>
-                                    </div>
-
-                                </div>  
-                            </div>
-
-                        </form>
-                    </div>
-                    <!-- ボディ -->
-
-                    <!-- フッター -->
-                    <div class="modal-footer">
-
-                        <div class="col my-3">
-
-                            <!-- 戻る -->
-                            <button type="button" id="btn_modal_url_back" class="btn btn-outline-primary btn-default" data-bs-dismiss="modal">戻る</button>
-
-                            <!-- 送信 -->
-                            <button type="button" id="btn_modal_url_send" class="btn btn-outline-primary btn-default float-end">送信</button>
-                            
-                        </div>
-
-                    </div>
-                    <!-- フッター -->
-                    
-                </div>
-            </div>
-        </div>
-        <!-- URL発行 -->
-
-		@component('component.back_js')
+		@component('component.admin_js')
 		@endcomponent
         
         <!-- bootstrap-datepickerのjavascriptコード -->
         <script>
-            
             $('#start_date').datepicker({
                 language:'ja'
             });
@@ -366,7 +283,7 @@
         </script>
 
 		<!-- 自作js -->
-		<script src="{{ asset('admin/js/admin_app.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_contract_detail.js') }}"></script>
 	</body>
 	
 </html>
