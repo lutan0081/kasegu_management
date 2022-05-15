@@ -650,6 +650,21 @@ class Common
     }
 
     /**
+     * 契約者が空白の場合、数値の表示を空白にする
+     *
+     */
+    public static function zeroToSpaceForContract($contractName, $number){
+
+        if($contractName == null){
+
+            return '';
+            
+        }
+
+        return $number;
+    }
+
+    /**
      * 特約事項マスタ一覧取得
      *
      * @param [type] $request
