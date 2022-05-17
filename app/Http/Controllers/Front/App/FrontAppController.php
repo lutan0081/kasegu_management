@@ -3973,11 +3973,11 @@ class FrontAppController extends Controller
             $arr = explode('/', $img_list[0]->img_path);
 
             // 取得データを"/"で分解、appを除外し文字結合(public/img/214)
-            $img_dir_path = '/public/' .$arr[0] ."/" .$arr[1];
+            $img_dir_path = $arr[0] ."/" .$arr[1];
             Log::debug('img_dir_path:'.$img_dir_path);
 
             // フォルダの中身を確認
-            $img_arr = Storage::files($img_dir_path);
+            $img_arr = Storage::files('/public/' .$img_dir_path);
 
             // デバック(ファイルの中身を確認)
             Log::debug('img_arr:'.$arrString);
