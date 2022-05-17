@@ -3969,12 +3969,10 @@ class FrontAppController extends Controller
             /**
              * 画像フォルダ削除
              */
-             // 画像パスを"/"で分解->配列化
-            $arr = explode('/', $img_list[0]->img_path);
-
+            // 画像パスを"/"で分解->配列化
             // 取得データを"/"で分解、appを除外し文字結合(public/img/214)
+            $arr = explode('/', $img_list[0]->img_path);
             $img_dir_path = $arr[0] ."/" .$arr[1];
-            Log::debug('img_dir_path:'.$img_dir_path);
 
             // フォルダの中身を確認
             $img_arr = Storage::files('/public/' .$img_dir_path);
