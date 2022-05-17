@@ -3367,8 +3367,6 @@ class BackAppController extends Controller
 
             // OK=1/NG=0
             $ret['status'] = DB::insert($str);
-
-            Log::debug('status:'.$ret);
             
         } catch (\Throwable $e) {
 
@@ -4186,14 +4184,14 @@ class BackAppController extends Controller
             $img_dir_path = $arr[0] ."/" .$arr[1];
 
             // フォルダの中身を確認
-            $img_arr = Storage::files($img_dir_path);
+            $img_arr = Storage::files('/public/' .$img_dir_path);
 
             // デバック(ファイルの中身を確認)
             Log::debug('img_arr:'.$arrString);
             $arrString = print_r($img_arr , true);
 
             // 参照の値が空白の場合、フォルダ削除
-            if($img_arr == null){
+            if(empty($img_arr)){
 
                 Log::debug('フォルダの中身がない場合の処理');
 

@@ -3984,12 +3984,12 @@ class FrontAppController extends Controller
             $arrString = print_r($img_arr , true);
 
             // 参照の値が空白の場合、フォルダ削除
-            if($img_arr == null){
+            if(empty($img_arr)){
 
                 Log::debug('フォルダの中身がない場合の処理');
 
                 // フォルダ削除
-                Storage::deleteDirectory($img_dir_path);
+                Storage::deleteDirectory('/public/' .$img_dir_path);
             }
 
             // 画像データ削除(DB)
