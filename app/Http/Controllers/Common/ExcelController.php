@@ -56,54 +56,6 @@ class ExcelController extends Controller
          * 2 = 無
          */
         // 連帯保証人有
-        // if($guarantor_need_id == 1){
-
-        //     Log::debug('連帯保証人有');
-
-        //     switch ($guarantee_company_id){
-        //         case '1':
-        //             Log::debug('オリジナル');
-        //             $template_flg = "1";
-        //             break;
-        //         case '2':
-        //             Log::debug('日本セーフティー');
-        //             $template_flg = "2";
-        //             break;
-        //         case '3':
-        //             Log::debug('全保連');
-        //             $template_flg = "3";
-        //             break;
-        //         default:
-        //         Log::debug('例外の処理');
-        //     }
-            
-        // }
-
-        // if($guarantor_need_id == 2){
-
-        //     Log::debug('連帯保証人無');
-
-        //     switch ($guarantor_need_id){
-                
-        //         case '1':
-        //             Log::debug('オリジナル');
-        //             $template_flg = "1";
-        //             break;
-        //         case '2':
-        //             Log::debug('日本セーフティー');
-        //             $template_flg = "2";
-        //             break;
-        //         default:
-        //         Log::debug('例外の処理');
-        //     }
-
-        // };
-        /**
-         * 連帯保証人有無の判定
-         * 1 = 有
-         * 2 = 無
-         */
-        // 連帯保証人有
         if($guarantor_need_id == 1){
 
             Log::debug('連帯保証人有');
@@ -147,13 +99,13 @@ class ExcelController extends Controller
         // オリジナル（連帯保証人有）
         if ($template_flg == '1') {
 
-            Log::debug('オリジナル（連帯保証人有）');
+            Log::debug('★1オリジナル（連帯保証人有）');
             $template_file = "application_yes_guarantor_original.xlsx";
         
         // オリジナル（連帯保証人無し）
         } elseif ($template_flg == '2') {
 
-            Log::debug('オリジナル（連帯保証人無）');
+            Log::debug('★1オリジナル（連帯保証人無）');
             $template_file = "application_none_guarantor_original.xlsx";
         }
 
@@ -210,37 +162,37 @@ class ExcelController extends Controller
             $tmp_file_path = '/app/public/' .$img_path;
             Log::debug('tmp_file_path:' .$tmp_file_path);
 
-            // // 身分証明証(表)
-            // if($img_type_id == 2){
+            // 身分証明証(表)
+            if($img_type_id == 2){
 
-            //     Log::debug('身分証表の処理');
+                Log::debug('身分証表の処理');
 
-            //     // 画像貼り付け
-            //     $drawing = new Drawing();
-            //     $drawing->setName('Logo');
-            //     $drawing->setDescription('Logo');
-            //     $drawing->setPath(storage_path() .$tmp_file_path); // 画像のファイルパス
-            //     $drawing->setHeight(250); // 高さpx
-            //     $drawing->setCoordinates('A56'); // 貼り付け場所
-            //     $drawing->setWorksheet($sheet); // 対象シート（インスタンスを指定
+                // 画像貼り付け
+                $drawing = new Drawing();
+                $drawing->setName('Logo');
+                $drawing->setDescription('Logo');
+                $drawing->setPath(storage_path() .$tmp_file_path); // 画像のファイルパス
+                $drawing->setHeight(250); // 高さpx
+                $drawing->setCoordinates('A56'); // 貼り付け場所
+                $drawing->setWorksheet($sheet); // 対象シート（インスタンスを指定
 
-            // };
+            };
             
-            // // 身分証明証(裏)
-            // if($img_type_id == 3){
+            // 身分証明証(裏)
+            if($img_type_id == 3){
 
-            //     Log::debug('身分証裏の処理');
+                Log::debug('身分証裏の処理');
 
-            //     // 画像貼り付け
-            //     $drawing = new Drawing();
-            //     $drawing->setName('Logo');
-            //     $drawing->setDescription('Logo');
-            //     $drawing->setPath(storage_path() .$tmp_file_path); // 画像のファイルパス
-            //     $drawing->setHeight(250); // 高さpx
-            //     $drawing->setCoordinates('A71'); // 貼り付け場所
-            //     $drawing->setWorksheet($sheet); // 対象シート（インスタンスを指定
+                // 画像貼り付け
+                $drawing = new Drawing();
+                $drawing->setName('Logo');
+                $drawing->setDescription('Logo');
+                $drawing->setPath(storage_path() .$tmp_file_path); // 画像のファイルパス
+                $drawing->setHeight(250); // 高さpx
+                $drawing->setCoordinates('A71'); // 貼り付け場所
+                $drawing->setWorksheet($sheet); // 対象シート（インスタンスを指定
 
-            // };
+            };
 
         };
 
@@ -1384,7 +1336,12 @@ class ExcelController extends Controller
 
                 $housemate_ruby_cell_2 = $housemate_ruby_cell_2 + 2;
             }
+
         }
+
+        Log::debug('log_end:' .__FUNCTION__);
+
+        return $sheet;
     }
     
 
