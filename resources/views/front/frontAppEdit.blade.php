@@ -109,7 +109,7 @@
                                     <div class="btn-group float-xl-end" role="group">
 
                                         <!-- 帳票登録 -->
-                                        <button type="button" class="btn btn-outline-primary btn-default" data-bs-toggle="modal" data-bs-target="#appModal">帳票作成</button>
+                                        <button type="button" id="btn_make_report" class="btn btn-outline-primary btn-default" data-bs-toggle="modal" data-bs-target="#appModal">帳票作成</button>
 
                                         <!-- 登録 -->
                                         <button id="btn_edit" class="btn btn-outline-primary btn-default">登録</button>

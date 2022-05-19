@@ -31,11 +31,15 @@ $(function() {
         // 2=入居審査中:全てを編集不可にする
         case '2':
             $("#editForm").find("input,textarea,select,button").prop("disabled", true);
+            $("#btn_make_report").prop('disabled', false);
             break;
+
         // 3=契約手続中:全てを編集不可にする
         case '3':
             $("#editForm").find("input,textarea,select,button").prop("disabled", true);
+            $("#btn_make_report").prop('disabled', false);
             break;
+
         // それ以外=契約手続中:全てを編集不可にする
         default:
             $("#editForm").find("input,textarea,select,button").prop("disabled", false);
@@ -48,6 +52,7 @@ $(function() {
             $("#housemate_age").prop('disabled', true);
             $("#housemate_home_tel").prop('disabled', true);
             $("#housemate_mobile_tel").prop('disabled', true);
+            $("#btn_make_report").prop('disabled', false);
 
             // 1 = 連帯保証人有以外の場合、連帯保証人箇所を編集不可にする
             if(guarantor_flag !== 1){
@@ -983,6 +988,16 @@ $(function() {
      * text、housemate_idを初期化
      */
     $("#housemate_add").on('click', function(e) {
+
+        let contract_progress_id = $("#contract_progress_id").val();
+        console.log('contract_progress_id:' + contract_progress_id);
+
+        // 進捗状況=1以外の場合は、先に進めない
+        if(contract_progress_id !== '1'){
+
+            console.log('入居申込の処理');
+            return false;
+        }
     
         console.log('同居人追加の処理');
 
@@ -1112,6 +1127,15 @@ $(function() {
 
         console.log('同居人の削除処理');
 
+        let contract_progress_id = $("#contract_progress_id").val();
+        console.log('contract_progress_id:' + contract_progress_id);
+
+        // 進捗状況=1以外の場合は、先に進めない
+        if(contract_progress_id !== '1'){
+
+            return false;
+        }
+
         e.preventDefault();
 
         // id取得
@@ -1212,6 +1236,15 @@ $(function() {
         console.log('画像削除の処理');
 
         e.preventDefault();
+
+        let contract_progress_id = $("#contract_progress_id").val();
+        console.log('contract_progress_id:' + contract_progress_id);
+
+        // 進捗状況=1以外の場合は、先に進めない
+        if(contract_progress_id !== '1'){
+
+            return false;
+        }
 
         // id取得
         var img_id = $(this).attr("id");
