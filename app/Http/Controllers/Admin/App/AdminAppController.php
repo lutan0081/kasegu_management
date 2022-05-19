@@ -4208,7 +4208,7 @@ class AdminAppController extends Controller
              * 画像ファイル削除
              */
             // 画像パスを"/"で分解->配列化
-            $img_name_path = $img_list[0]->img_path;
+            $img_name_path = '/public/' .$img_list[0]->img_path;
             Log::debug('img_name_path:'.$img_name_path);
 
             // ファイル削除(例:Storage::delete('public/img/214/1637578613.jpg');
@@ -4222,14 +4222,14 @@ class AdminAppController extends Controller
             $img_dir_path = $arr[0] ."/" .$arr[1];
 
             // フォルダの中身を確認
-            $img_arr = Storage::files($img_dir_path);
+            $img_arr = Storage::files('/public/' .$img_dir_path);
 
             // デバック(ファイルの中身を確認)
             Log::debug('img_arr:'.$arrString);
             $arrString = print_r($img_arr , true);
 
             // 参照の値が空白の場合、フォルダ削除
-            if($img_arr == null){
+            if(empty($img_arr)){
 
                 Log::debug('フォルダの中身がない場合の処理');
 
