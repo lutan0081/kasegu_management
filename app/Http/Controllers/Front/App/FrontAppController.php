@@ -3964,7 +3964,7 @@ class FrontAppController extends Controller
             Log::debug('img_name_path:'.$img_name_path);
 
             // ファイル削除(例:Storage::delete('public/img/214/1637578613.jpg');
-            Storage::delete($img_name_path);
+            Storage::delete('/public/' .$img_name_path);
 
             /**
              * 画像フォルダ削除
