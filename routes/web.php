@@ -297,6 +297,15 @@ Route::get('adminConfigLegalPlaceNewInit', 'Admin\Config\AdminConfigLegalPlaceCo
 // 法務局：詳細表示
 Route::get('adminConfigLegalPlaceEditInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigLegalPlaceEditInit')->middleware("kasegu_auth");
 
+// 保証協会一覧：表示
+Route::any('adminConfigGuarantyAssociationInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigGuarantyAssociationInit')->middleware("kasegu_auth");
+
+// 保証協会詳細：新規表示
+Route::get('adminConfigGuarantyAssociationNewInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigGuarantyAssociationNewInit')->middleware("kasegu_auth");
+
+// 保証協会：詳細表示
+Route::get('adminConfigGuarantyAssociationEditInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigGuarantyAssociationEditInit')->middleware("kasegu_auth");
+
 /**
  * 申込管理
  */

@@ -22,7 +22,7 @@ $(function(){
         },500);
 
         // idをパラメーターでControllerに渡す
-        location.href = "backGuarantyAssociationEditInit?guaranty_association_id=" + id;
+        location.href = "adminConfigGuarantyAssociationEditInit?guaranty_association_id=" + id;
     });
 
     // 編集(ラジオボタンの処理)
@@ -56,7 +56,7 @@ $(function(){
         console.log(id);
 
         // idをパラメーターでControllerに渡す
-        location.href = "backGuarantyAssociationEditInit?guaranty_association_id=" + id;
+        location.href = "adminConfigGuarantyAssociationEditInit?guaranty_association_id=" + id;
     });
 
 });
