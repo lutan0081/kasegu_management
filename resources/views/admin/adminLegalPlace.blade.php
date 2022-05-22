@@ -2,14 +2,14 @@
 <html lang="ja">
 
 	<head>
-		<title>法務局一覧/KASEGU</title>
+		<title>法務局一覧/ADMIN</title>
 
 		<!-- head -->
-		@component('component.back_head')
+		@component('component.admin_head')
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('back/css/back_legal_place.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_legal_place.css') }}">  
 		
         <style>
 
@@ -38,7 +38,7 @@
             </div>
         
             <!-- sidebar-wrapper  -->
-            @component('component.back_sidebar')
+            @component('component.admin_sidebar')
             @endcomponent
             <!-- sidebar-wrapper  -->
             
@@ -168,7 +168,7 @@
                                     <!-- 新規、編集 -->
                                     <div class="col-12">
                                         <div class="btn-group float-end" role="group">
-                                            <button type="button" onclick="location.href='adminConfigLegalPlaceInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
+                                            <button type="button" onclick="location.href='adminConfigLegalPlaceNewInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
                                             <button type="button" id="btn_edit" class="btn btn-outline-primary float-end btn-default">編集</button>
                                         </div>
                                     </div>
@@ -188,13 +188,12 @@
 
 		</div>
 		<!-- page-wrapper -->
-        
 
-		@component('component.back_js')
+		@component('component.admin_js')
 		@endcomponent
         
 		<!-- 自作js -->
-		<script src="{{ asset('back/js/back_legal_place.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_legal_place.js') }}"></script>
 	</body>
 	
 </html>

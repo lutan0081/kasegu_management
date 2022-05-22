@@ -174,14 +174,14 @@ $(function() {
                     title: "申込URLの送信が完了しました。",
                     icon: "success",
                     buttons: {
-                        ok: true
+                        OK: true
                     }
                 };
                 
                 // then() OKを押した時の処理
                 swal(options)
                     .then(function(val) {
-                    if (val == 'ok' || val == null) {
+                    if (val == 'OK' || val == null) {
 
                         location.href = 'backAppInit';
                     };

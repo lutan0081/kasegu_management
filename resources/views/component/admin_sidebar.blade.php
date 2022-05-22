@@ -156,10 +156,10 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="backUserInit">アカウント情報</a>
+                                <a href="adminConfigUserInit">アカウント情報</a>
                             </li>
                             <li>
-                                <a href="backLegalPlaceInit">法務局</a>
+                                <a href="adminConfigLegalPlaceInit">法務局</a>
                             </li>
                             <li>
                                 <a href="backGuarantyAssociationInit">不動産保証協会</a>

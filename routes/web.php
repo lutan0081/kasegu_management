@@ -159,7 +159,7 @@ Route::get('backUserInit', 'Back\User\BackUserController@backUserInit')->middlew
 // アカウント情報(専任取引士)
 Route::post('backUserLicenseChange', 'Back\User\BackUserController@backUserLicenseChange')->middleware("kasegu_auth");
 
-// アカウント情報(法務局)
+// アカウント情報：コンボボックス変更(法務局)
 Route::post('backLegalPlaceChange', 'Back\User\BackUserController@backLegalPlaceChange')->middleware("kasegu_auth");
 
 // アカウント情報：コンボボックス変更(保証協会)
@@ -267,7 +267,7 @@ Route::post('adminInformationEditEntry', 'Admin\Information\AdminInformationCont
 Route::post('adminDeleteEntry', 'Admin\Information\AdminInformationController@adminDeleteEntry')->middleware("kasegu_auth");
 
 /**
- * アカウント
+ * アカウント管理
  */
 // アカウント(一覧表示)
 Route::any('adminUserInit', 'Admin\User\AdminUserController@adminUserInit')->middleware("kasegu_auth");
@@ -280,6 +280,22 @@ Route::post('adminUserEditEntry', 'Admin\User\AdminUserController@adminUserEditE
 
 // アカウント(削除)
 Route::post('adminUserDeleteEntry', 'Admin\User\AdminUserController@adminUserDeleteEntry')->middleware("kasegu_auth");
+
+/**
+ * 設定
+ * 登録、編集、コンボボックスの値取得はback画面を流用
+ */
+// アカウント情報：表示
+Route::get('adminConfigUserInit', 'Admin\Config\AdminConfigUserController@adminConfigUserInit')->middleware("kasegu_auth");
+
+// 法務局一覧：表示
+Route::any('adminConfigLegalPlaceInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigLegalPlaceInit')->middleware("kasegu_auth");
+
+// 法務局詳細：新規表示
+Route::get('adminConfigLegalPlaceNewInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigLegalPlaceNewInit')->middleware("kasegu_auth");
+
+// 法務局：詳細表示
+Route::get('adminConfigLegalPlaceEditInit', 'Admin\Config\AdminConfigLegalPlaceController@adminConfigLegalPlaceEditInit')->middleware("kasegu_auth");
 
 /**
  * 申込管理
@@ -327,7 +343,7 @@ Route::get('adminContractNewInit', 'Admin\Contract\AdminContractController@admin
 Route::get('adminContractEditInit', 'Admin\Contract\AdminContractController@adminContractEditInit')->middleware("kasegu_auth");
 
 // 商号コンボボックス変更(データ取得)
-Route::post('backChangeCompanyLicense', 'Admin\Contract\AdminContractController@backChangeCompanyLicense')->middleware("kasegu_auth");
+Route::post('adminChangeCompanyLicense', 'Admin\Contract\AdminContractController@adminChangeCompanyLicense')->middleware("kasegu_auth");
 
 // 宅地建物取引士コンボボックス変更(データ取得)
 Route::post('backChangeUserLicense', 'Admin\Contract\AdminContractController@backChangeUserLicense')->middleware("kasegu_auth");
@@ -350,7 +366,7 @@ Route::post('backContractHouseMateEditInit', 'Admin\Contract\AdminContractContro
 // 同居人(削除)
 Route::post('backContractHouseMateDeleteEntry', 'Admin\Contract\AdminContractController@backContractHouseMateDeleteEntry')->middleware("kasegu_auth");
 
-/**adminAppDeleteEntry
+/**
  * テスト
  */
 // 表示

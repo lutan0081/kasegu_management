@@ -139,7 +139,7 @@ class LoginController extends Controller
                 $session_id = $request->session()->get('create_user_id');
                 Log::debug('session_id:' .$session_id);
                 
-                // 管理者フラグ
+                // 管理者フラグをsessionに設定
                 $admin_user_flag = $data[0]->admin_user_flag;
                 Log::debug('admin_user_flag:' .$admin_user_flag);
 

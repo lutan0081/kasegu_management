@@ -2,14 +2,14 @@
 <html lang="ja">
 
 	<head>
-		<title>法務局一覧/KASEGU</title>
+		<title>保証協会一覧/ADMIN</title>
 
 		<!-- head -->
-		@component('component.back_head')
+		@component('component.admin_head')
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('back/css/back_legal_place.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_guaranty_association.css') }}">  
 		
         <style>
 
@@ -38,42 +38,40 @@
             </div>
         
             <!-- sidebar-wrapper  -->
-            @component('component.back_sidebar')
+            @component('component.admin_sidebar')
             @endcomponent
             <!-- sidebar-wrapper  -->
             
             <!-- page-content" -->
             <main class="page-content">
-                
-                <!-- 上部検索枠 -->
+
+                <!-- 上部検索 -->
                 <div class="container">
 
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12 mt-2 mb-3">
-                        
+
                             <!-- タイトル -->
                             <div class="row">
                                 <div class="col-12 col-md-12 col-lg-12 mb-2">
                                     <div class="info_title mt-3">
-                                        <i class="far fa-gem icon_blue me-2"></i>法務局一覧
+                                        <i class="far fa-gem icon_blue me-2"></i>保証協会一覧
                                     </div>
                                     <!-- 境界線 -->
                                     <hr>
-                                    <!-- 境界線 -->
                                 </div>
                             </div>
                             <!-- タイトル -->
 
-                            <!-- 上部検索 -->
                             <div class="row">
-                                <form action="backLegalPlaceInit" method="post">
+                                <form action="backGuarantyAssociationInit" method="post">
                                     {{ csrf_field() }}
                                     <div class="col-sm-12">
                                         <div class="card border border-0">
                                             <div class="row align-items-end">
 
                                                 <!-- フリーワード -->
-                                                <div class="col-6 col-md-4 col-lg-4">
+                                                <div class="col-7 col-md-8 col-lg-4">
                                                     <label for="">フリーワード</label>
                                                     <input type="text" class="form-control" name="free_word" id="free_word" value="">
                                                 </div>
@@ -90,16 +88,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- 上部検索 -->
-
                         </div>
                     </div>
-                    
                 </div>
+                <!-- 上部検索 -->
 
                 <!-- 一覧 -->
                 <div class="container mb-5">
-
+                    
                     <div class="row">
                             
                         <!-- テーブルcard -->
@@ -113,32 +109,30 @@
                                     <div class="overflow-auto" style="height:37rem;">
                                         <div class="table-responsive">
                                             <table class="table table-hover table-condensed table-striped">
-                                                
                                                 <!-- テーブルヘッド -->
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" id="create_user_id" style="display:none">id</th>
+                                                        <th scope="col" id="guaranty_association_id" style="display:none">id</th>
                                                         <th>選択</th>
-                                                        <th scope="col" id="legal_place_name">名称</th>
-                                                        <th scope="col" id="legal_place_post_number">郵便番号</th>
-                                                        <th scope="col" id="legal_place_address">所在地</th>
-                                                        <th scope="col" id="legal_place_tel">TEL</th>
-                                                        <th scope="col" id="legal_place_fax">FAX</th>
+                                                        <th scope="col" id="guaranty_association_name">名称</th>
+                                                        <th scope="col" id="guaranty_association_post_number">郵便番号</th>
+                                                        <th scope="col" id="guaranty_association_address">所在地</th>
+                                                        <th scope="col" id="guaranty_association_tel">TEL</th>
+                                                        <th scope="col" id="guaranty_association_fax">FAX</th>
                                                     </tr>
                                                 </thead>
-                                                <!-- テーブルヘッド -->
 
                                                 <!-- テーブルボディ -->
                                                 <tbody>
-                                                    @foreach($res as $legal_place)
+                                                    @foreach($res as $guaranty_association)
                                                         <tr>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class" style="display:none"></td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class"><input id="{{ $legal_place->legal_place_id }}" type="radio" class="align-middle" name="flexRadioDisabled"></td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class">{{ $legal_place->legal_place_name }}</td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class">{{ $legal_place->legal_place_post_number }}</td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class">{{ $legal_place->legal_place_address }}</td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class">{{ $legal_place->legal_place_tel }}</td>
-                                                            <td id="{{ $legal_place->legal_place_id }}" class="click_class">{{ $legal_place->legal_place_fax }}</td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class" style="display:none"></td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class"><input id="{{ $guaranty_association->guaranty_association_id }}"  type="radio" class="align-middle" name="flexRadioDisabled"></td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class">{{ $guaranty_association->guaranty_association_name }}</td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class">{{ $guaranty_association->guaranty_association_post_number }}</td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class">{{ $guaranty_association->guaranty_association_address }}</td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class">{{ $guaranty_association->guaranty_association_tel }}</td>
+                                                            <td id="{{ $guaranty_association->guaranty_association_id }}" class="click_class">{{ $guaranty_association->guaranty_association_fax }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -161,14 +155,14 @@
                         <!-- テーブルcard -->
 
                         <!-- ボタン -->
-                        <div class="col-sm-12 mt-2 pt-2">
+                        <div class="col-sm-12 mt-3 pt-1">
                             <div class="card border border-0">
                                 <!-- row -->
                                 <div class="row">
                                     <!-- 新規、編集 -->
                                     <div class="col-12">
                                         <div class="btn-group float-end" role="group">
-                                            <button type="button" onclick="location.href='adminConfigLegalPlaceInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
+                                            <button type="button" onclick="location.href='backGuarantyAssociationNewInit'" class="btn btn-outline-primary float-end btn-default">新規登録</button>
                                             <button type="button" id="btn_edit" class="btn btn-outline-primary float-end btn-default">編集</button>
                                         </div>
                                     </div>
@@ -179,7 +173,6 @@
                         <!-- ボタン -->
 
                     </div>
-
                 </div>
                 <!-- 一覧 --> 
 
@@ -188,13 +181,24 @@
 
 		</div>
 		<!-- page-wrapper -->
-        
-
-		@component('component.back_js')
+    
+		@component('component.admin_js')
 		@endcomponent
         
+        <!-- bootstrap-datepickerのjavascriptコード -->
+        <script>
+            $('#start_date').datepicker({
+                language:'ja'
+            });
+
+            $('#end_date').datepicker({
+                language:'ja'
+            });
+
+        </script>
+
 		<!-- 自作js -->
-		<script src="{{ asset('back/js/back_legal_place.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_guaranty_association.js') }}"></script>
 	</body>
 	
 </html>

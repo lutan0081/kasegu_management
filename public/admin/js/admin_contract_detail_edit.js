@@ -30,7 +30,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backChangeCompanyLicense',
+            url: 'adminChangeCompanyLicense',
             dataType: 'json',
             data: sendData,
             cache:false,
@@ -136,7 +136,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backChangeUserLicense',
+            url: 'adminChangeUserLicense',
             dataType: 'json',
             data: sendData,
             cache:false,

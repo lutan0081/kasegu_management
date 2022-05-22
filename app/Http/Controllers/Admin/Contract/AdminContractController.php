@@ -4727,7 +4727,7 @@ class AdminContractController extends Controller
      *
      * @return void
      */
-    public function backChangeCompanyLicense(Request $request){
+    public function adminChangeCompanyLicense(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {
@@ -4758,7 +4758,7 @@ class AdminContractController extends Controller
      *
      * @return void
      */
-    public function backChangeUserLicense(Request $request){
+    public function adminChangeUserLicense(Request $request){
         Log::debug('start:' .__FUNCTION__);
 
         try {

@@ -2,14 +2,14 @@
 <html lang="ja">
 
 	<head>
-        <title>アカウント情報/KASEGU</title>
+        <title>アカウント情報/ADMIN</title>
 
 		<!-- head -->
-		@component('component.back_head')
+		@component('component.admin_head')
 		@endcomponent
 
 		<!-- 自作css -->
-		<link rel="stylesheet" href="{{ asset('back/css/back_user.css') }}">  
+		<link rel="stylesheet" href="{{ asset('admin/css/admin_config_user.css') }}">  
 		
         <style>
 
@@ -37,7 +37,7 @@
 		</div>
 	
 		<!-- sidebar-wrapper  -->
-		@component('component.back_sidebar')
+		@component('component.admin_sidebar')
 		@endcomponent
 		<!-- sidebar-wrapper  -->
 		
@@ -62,9 +62,6 @@
                             <div class="card border border-0">
 
                                 @include('component.form_user')
-                                
-                                <!-- 境界線 -->
-                                <hr>
 
                                 <!-- ボタン -->
                                 <div class="row row-cols-2 mb-5">
@@ -92,11 +89,11 @@
 		</div>
 		<!-- page-wrapper -->
 
-		@component('component.back_js')
+		@component('component.admin_js')
 		@endcomponent
 
 		<!-- 自作js -->
-		<script src="{{ asset('back/js/back_user.js') }}"></script>
+		<script src="{{ asset('admin/js/admin_config_user.js') }}"></script>
 	</body>
 	
 </html>

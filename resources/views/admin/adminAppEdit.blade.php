@@ -99,7 +99,7 @@
                                 <!-- カード -->
                                 <div class="card border border-0">
 
-                                    @include('component.app_form')
+                                    @include('component.form_app')
 
                                     <!-- ボタン -->
                                     <div class="row row-cols-2 mb-5">

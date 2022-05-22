@@ -183,7 +183,7 @@ $(function() {
                     .then(function(val) {
                     if (val == 'ok' || val == null) {
 
-                        location.href = 'backAppInit';
+                        location.href = 'adminAppInit';
                     };
                 });
 

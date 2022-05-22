@@ -528,6 +528,7 @@ class BackUserController extends Controller
 
             // 値取得
             $session_id = $request->session()->get('create_user_id');
+            $admin_user_flag = $request->session()->get('admin_user_flag');
             $create_user_name = $request->input('create_user_name');
             $create_user_mail = $request->input('create_user_mail');
             $create_user_post_number = $request->input('create_user_post_number');
@@ -535,7 +536,7 @@ class BackUserController extends Controller
             $create_user_tel = $request->input('create_user_tel');
             $create_user_fax = $request->input('create_user_fax');
             $password = $request->input('password');
-
+            
             // 現在の日付取得
             $date = now() .'.000';
     
@@ -600,7 +601,7 @@ class BackUserController extends Controller
             ."create_user_mail = '$create_user_mail', "
             ."password = '$password', "
             ."complete_flag = 1, "
-            ."admin_user_flag = 0, "
+            ."admin_user_flag = $admin_user_flag, "
             ."entry_date = '$date', "
             ."update_user_id = $session_id, "
             ."update_date = '$date' "

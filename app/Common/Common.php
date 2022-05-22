@@ -226,7 +226,7 @@ class Common
         $str = "select * from guaranty_associations "
         ."where guaranty_associations.entry_user_id = $session_id "
         ."order by guaranty_association_id desc ";
-        Log::debug('sql:'.$str);
+        Log::debug('sql_guaranty_association:'.$str);
 
         $ret = DB::select($str);
 
