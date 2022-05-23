@@ -355,7 +355,7 @@ Route::get('adminContractEditInit', 'Admin\Contract\AdminContractController@admi
 Route::post('adminChangeCompanyLicense', 'Admin\Contract\AdminContractController@adminChangeCompanyLicense')->middleware("kasegu_auth");
 
 // 宅地建物取引士コンボボックス変更(データ取得)
-Route::post('backChangeUserLicense', 'Admin\Contract\AdminContractController@backChangeUserLicense')->middleware("kasegu_auth");
+Route::post('adminChangeUserLicense', 'Admin\Contract\AdminContractController@adminChangeUserLicense')->middleware("kasegu_auth");
 
 // 契約詳細(登録)
 Route::post('backContractEditEntry', 'Admin\Contract\AdminContractController@backContractEditEntry')->middleware("kasegu_auth");

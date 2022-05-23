@@ -162,7 +162,7 @@
                                 <a href="adminConfigLegalPlaceInit">法務局</a>
                             </li>
                             <li>
-                                <a href="backGuarantyAssociationInit">不動産保証協会</a>
+                                <a href="adminConfigGuarantyAssociationInit">不動産保証協会</a>
                             </li>
                             <li>
                                 <a href="backUserLicenseInit">宅地建物取引士</a>
