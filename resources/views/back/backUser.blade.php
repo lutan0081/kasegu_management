@@ -62,9 +62,6 @@
                             <div class="card border border-0">
 
                                 @include('component.form_user')
-                                
-                                <!-- 境界線 -->
-                                <hr>
 
                                 <!-- ボタン -->
                                 <div class="row row-cols-2 mb-5">
