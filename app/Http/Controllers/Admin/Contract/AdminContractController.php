@@ -1040,7 +1040,7 @@ class AdminContractController extends Controller
         $rules['real_estate_post_number'] = "required|zip";
         $rules['real_estate_address'] = "required|max:100";
         $rules['real_estate_floor'] = "required|integer";
-        $rules['real_estate_age'] = "required|date";
+        $rules['real_estate_age'] = "required";
         $rules['real_estate_structure_id'] = "required|integer";
         $rules['room_layout_name'] = "required|integer";
         $rules['room_layout_id'] = "required|integer";
@@ -1198,7 +1198,6 @@ class AdminContractController extends Controller
         $messages['real_estate_floor.integer'] = "地上階数の形式が不正です。";
         // 築年月日
         $messages['real_estate_age.required'] = "築年月日は必須です。";
-        $messages['real_estate_age.date'] = "築年月日の形式が不正です。";
         // 構造
         $messages['real_estate_structure_id.required'] = "構造は必須いです。";
         $messages['real_estate_structure_id.integer'] = "構造の形式が不正です。";

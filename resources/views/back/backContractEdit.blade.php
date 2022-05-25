@@ -340,11 +340,6 @@
                 language:'ja'
             });
 
-            // 築年月日
-            $('#real_estate_age').datepicker({
-                language:'ja'
-            });
-
             // 契約者生年月日
             $('#contract_date').datepicker({
                 language:'ja'
