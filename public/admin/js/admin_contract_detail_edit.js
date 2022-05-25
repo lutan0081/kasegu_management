@@ -1,4 +1,23 @@
 $(function() {
+
+    /**
+     * 同居人初期化
+     */
+    function clearModalVal(){
+
+        console.log("初期化関数の実行.");
+
+        // 同居人名
+        $("input[name='modal_housemate_name']").val('');
+            
+        // 誕生日
+        $("input[name='modal_housemate_date']").val('');
+
+        // id
+        $("input[name='contract_housemate_id']").val('');
+
+    }
+
     /**
      * 商号(コンボボックス変更の処理)
      */
@@ -1066,7 +1085,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backContractEditEntry',
+            url: 'adminContractEditEntry',
             dataType: 'json',
             data: sendData,
             /**
@@ -1198,7 +1217,7 @@ $(function() {
      */
     $("#btn_delete").on('click', function(e) {
 
-        console.log('全体削除の処理');
+        console.log('admin削除の処理');
 
         e.preventDefault();
 
@@ -1246,7 +1265,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backContractDeleteEntry',
+                    url: 'adminContractDeleteEntry',
                     dataType: 'json',
                     data: sendData,
                 
@@ -1268,7 +1287,7 @@ $(function() {
                         .then(function(val) {
                         if (val) {
 
-                            location.href = 'backContractInit';
+                            location.href = 'adminContractInit';
                             
                         }
                     });
@@ -1454,7 +1473,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backSearchBank',
+            url: 'adminSearchBank',
             dataType: 'json',
             data: sendData,
             /**
@@ -1904,7 +1923,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backContractHouseMateEditEntry',
+            url: 'adminContractHouseMateEditEntry',
             dataType: 'json',
             data: sendData,
 
@@ -2024,24 +2043,6 @@ $(function() {
     });
 
     /**
-     * 同居人初期化
-     */
-    function clearModalVal(){
-
-        console.log("初期化関数の実行.");
-
-        // 同居人名
-        $("input[name='modal_housemate_name']").val('');
-            
-        // 誕生日
-        $("input[name='modal_housemate_date']").val('');
-
-        // id
-        $("input[name='contract_housemate_id']").val('');
-
-    }
-
-    /**
      * 同居人(新規表示)
      */
     $("#housemate_add").on('click', function(e) {
@@ -2089,7 +2090,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backContractHouseMateEditInit',
+            url: 'adminContractHouseMateEditInit',
             dataType: 'json',
             data: sendData,
 
@@ -2180,7 +2181,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backContractHouseMateEditInit',
+            url: 'adminContractHouseMateEditInit',
             dataType: 'json',
             data: sendData,
 
@@ -2292,7 +2293,7 @@ $(function() {
                 $.ajax({
 
                     type: 'post',
-                    url: 'backContractHouseMateDeleteEntry',
+                    url: 'adminContractHouseMateDeleteEntry',
                     dataType: 'json',
                     data: sendData,
                 
@@ -2967,7 +2968,7 @@ $(function() {
         $.ajax({
 
             type: 'post',
-            url: 'backContractEditEntry',
+            url: 'adminContractEditEntry',
             dataType: 'json',
             data: sendData,
             /**
@@ -3004,7 +3005,7 @@ $(function() {
                     .then(function(val) {
                     if (val) {
 
-                        location.href = 'backContractInit';
+                        location.href = 'adminContractInit';
 
                     };
                 });
@@ -3328,20 +3329,6 @@ $(function() {
             cbSpecialContract[i].checked = true
         }
     }
-
-
-    // $('#cb_special_contract').on('change', function(){
-    //     // チェックされた場合の処理
-    //     if(jQuery(this).prop('checked')){
-            
-    //         console.log('チェックされています');
-
-    //         const checkbox1 = document.getElementsByName("all_check")
-
-    //         $('.checkbox1').prop('checked', $(this).is(':checked'));
-    //     }
-    // });
-    
 
     /**
      * チェックボックス全選択

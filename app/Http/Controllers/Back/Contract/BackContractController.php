@@ -560,6 +560,8 @@ class BackContractController extends Controller
         $obj->guarantor_max_payment= '';
         $obj->daily_calculation= '';
         $obj->admin_number= '';
+        $obj->admin_user_flag= '';
+        $obj->admin_number= '';
         $obj->entry_user_id= '';
         $obj->entry_date= '';
         $obj->update_user_id= '';
@@ -817,7 +819,7 @@ class BackContractController extends Controller
             ."contract_detail_progress.contract_detail_progress_name as contract_detail_progress_name, "
             ."application_id as application_id, "
             ."contract_details.company_license_id as company_license_id, "
-            ."company_licenses.company_license_name as company_licenses, "
+            ."company_licenses.company_license_name as company_license_name, "
             ."company_licenses.company_license_representative  as company_license_representative, "
             ."company_licenses.company_license_address as company_license_address, "
             ."company_licenses.company_license_tel as company_license_tel, "
@@ -960,7 +962,8 @@ class BackContractController extends Controller
             ."contract_details.entry_user_id as entry_user_id, "
             ."contract_details.entry_date as entry_date, "
             ."contract_details.update_user_id as update_user_id, "
-            ."contract_details.update_date as update_date "
+            ."contract_details.update_date as update_date, "
+            ."create_users.admin_user_flag as admin_user_flag "
             ."from "
             ."contract_details "
             ."left join contract_detail_progress "
@@ -974,7 +977,9 @@ class BackContractController extends Controller
             ."left join guaranty_associations as guaranty_association_region on "
             ."guaranty_association_region.guaranty_association_id = company_licenses.guaranty_association_region_id "
             ."left join special_contract_details "
-            ."on special_contract_details.contract_detail_id = contract_details.contract_detail_id "           
+            ."on special_contract_details.contract_detail_id = contract_details.contract_detail_id "
+            ."left join create_users "
+            ."on create_users.create_user_id = contract_details.create_user_id "
             ."where "
             ."contract_details.contract_detail_id = $contract_detail_id ";
 

@@ -585,6 +585,8 @@ class AdminContractController extends Controller
         $obj->guarantor_max_payment= '';
         $obj->daily_calculation= '';
         $obj->admin_number= '';
+        $obj->admin_user_flag= '';
+        $obj->company_license_name= '';
         $obj->entry_user_id= '';
         $obj->entry_date= '';
         $obj->update_user_id= '';
@@ -945,7 +947,7 @@ class AdminContractController extends Controller
      * @param $request(edit.blade.phpの各項目)
      * @return $response(status:true=OK/false=NG)
      */
-    public function backContractEditEntry(Request $request){
+    public function adminContractEditEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         // 一時登録フラグ
@@ -4013,102 +4015,12 @@ class AdminContractController extends Controller
     }
 
     /**
-     * 削除
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function backBankDeleteEntry(Request $request){
-        Log::debug('log_start:'.__FUNCTION__);
-
-        try{
-
-            // return初期値
-            $response = [];
-
-            /**
-             * 不動産業者
-             */
-            $bank_info = $this->deleteBank($request);
-
-            // js側での判定のステータス(true:OK/false:NG)
-            $response['status'] = $bank_info['status'];
-
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug(__FUNCTION__ .':' .$e);
-
-            $response['status'] = 0;
-
-        // status:OK=1/NG=0
-        } finally {
-
-            if($response['status'] == 1){
-
-                Log::debug('status:trueの処理');
-                $response['status'] = true;
-
-            }else{
-
-                Log::debug('status:falseの処理');
-                $response['status'] = false;
-            }
-
-        }
-
-        Log::debug('log_end:' .__FUNCTION__);
-        return response()->json($response);
-    }
-
-    /**
-     * 削除(集金口座)
-     *
-     * @param Request $request
-     * @return void
-     */
-    private function deleteBank(Request $request){
-        Log::debug('log_start:'.__FUNCTION__);
-
-        try{
-            // return初期値
-            $ret = [];
-
-            // 値取得
-            $bank_id = $request->input('bank_id');
-
-            $str = "delete "
-            ."from "
-            ."banks "
-            ."where "
-            ."bank_id = $bank_id; ";
-
-            // OK=1/NG=0
-            $ret['status'] = DB::delete($str);
-
-        // 例外処理
-        } catch (\Throwable $e) {
-
-            Log::debug(__FUNCTION__ .':' .$e);
-
-            throw $e;
-
-        // status:OK=1/NG=0
-        } finally {
-
-        }
-
-        Log::debug('log_end:' .__FUNCTION__);
-        return $ret;
-    }
-
-    /**
      * 同居人編集(表示)
      *
      * @param Request $request
      * @return void
      */
-    public function backContractHouseMateEditInit(Request $request){
+    public function adminContractHouseMateEditInit(Request $request){
 
         Log::debug('log_start:'.__FUNCTION__);
         
@@ -4138,7 +4050,7 @@ class AdminContractController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backContractHouseMateEditEntry(Request $request){
+    public function adminContractHouseMateEditEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
         
         // return初期値
@@ -4450,7 +4362,7 @@ class AdminContractController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backContractHouseMateDeleteEntry(Request $request){
+    public function adminContractHouseMateDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -4538,7 +4450,7 @@ class AdminContractController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backContractDeleteEntry(Request $request){
+    public function adminContractDeleteEntry(Request $request){
         Log::debug('log_start:'.__FUNCTION__);
 
         try{
@@ -4790,7 +4702,7 @@ class AdminContractController extends Controller
      * @param Request $request
      * @return void
      */
-    public function backSearchBank(Request $request){
+    public function adminSearchBank(Request $request){
         
         Log::debug('log_start:'.__FUNCTION__);
         
