@@ -911,7 +911,7 @@
                     <!-- 敷金 -->
                     <div class="col-12 col-md-6 col-lg-3 mt-3">
                         <label class="label_required mb-2" for="textBox"></label>敷金・保証金
-                        <input type="number" class="form-control" name="security_fee" id="security_fee" value="{{ $contract_list->security_fee }}" placeholder="例：100000" style="text-align:right" required>
+                        <input type="number" class="form-control" name="security_fee" id="security_fee" value="{{ $contract_list->key_fee }}" placeholder="例：100000" style="text-align:right" required>
                         <div class="fee_detail-tab invalid-feedback" id ="security_fee_error">
                             敷金・保証金は必須です。
                         </div>

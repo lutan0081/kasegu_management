@@ -2014,7 +2014,7 @@ class ExcelController extends Controller
          * Excelの設定
          */
         // Excelを開く
-        $spreadsheet = IOFactory::load(public_path() . '/excel/Important_explanation_contract_lutan.xlsx');
+        $spreadsheet = IOFactory::load(public_path() . '/excel/important_explanation_contract_lutan.xlsx');
 
         // シートをアクティブにする
         $sheet = $spreadsheet->getActiveSheet();
