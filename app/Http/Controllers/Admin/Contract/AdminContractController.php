@@ -510,7 +510,7 @@ class AdminContractController extends Controller
         $obj->warning_storm_surge= '';
         $obj->warning_rain_water= '';
         $obj->security_fee= '';
-        $obj->security_fee= '';
+        $obj->key_fee= '';
         $obj->rent_fee= '';
         $obj->service_fee= '';
         $obj->water_fee= '';
@@ -826,6 +826,7 @@ class AdminContractController extends Controller
             ."warning_storm_surge as warning_storm_surge, "
             ."warning_rain_water as warning_rain_water, "
             ."security_fee as security_fee, "
+            ."key_fee as key_fee, "
             ."rent_fee as rent_fee, "
             ."service_fee as service_fee, "
             ."water_fee as water_fee, "
