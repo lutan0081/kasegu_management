@@ -306,12 +306,7 @@
 
             </main>
             <!-- page-content" -->
-
-            <!-- 新規url発行 -->
-            @component('component.back_url')
-            @endcomponent
-            <!-- 新規url発行 -->
-
+            
 		</div>
 		<!-- page-wrapper -->
 
