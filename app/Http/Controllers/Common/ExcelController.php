@@ -1750,7 +1750,8 @@ class ExcelController extends Controller
 
         // 抵当権設定
         $regi_mortgage_need_name = $contract_detail_list[0]->regi_mortgage_need_name;
-        
+        Log::debug('regi_mortgage_need_name:'.$regi_mortgage_need_name);
+
         // 貸主が所有者と違う場合
         $regi_difference_owner = $contract_detail_list[0]->regi_difference_owner;
         
@@ -2163,7 +2164,7 @@ class ExcelController extends Controller
         // 抵当権設定
         $sheet->setCellValue('C31', $regi_mortgage_need_name);
 
-        // 抵当権設定
+        // 所有者が違う場合
         $sheet->setCellValue('C32', $regi_difference_owner);
 
         // 未完成物件の時
