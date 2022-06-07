@@ -61,14 +61,17 @@ class ExcelController extends Controller
             Log::debug('連帯保証人有');
 
             switch ($guarantee_company_id){
+
                 case '1':
                     Log::debug('オリジナル');
                     $template_flg = "1";
                     break;
+
                 case '2':
                     Log::debug('日本セーフティー');
                     $template_flg = "3";
                     break;
+
                 default:
                 Log::debug('例外の処理');
             }
@@ -80,14 +83,17 @@ class ExcelController extends Controller
             Log::debug('連帯保証人無');
 
             switch ($guarantee_company_id){
+
                 case '1':
                     Log::debug('オリジナル保証人無');
                     $template_flg = "2";
                     break;
+
                 case '2':
                     Log::debug('日本セーフティー保証人無');
-                    $template_flg = "4";
+                    $template_flg = "3";
                     break;
+
                 default:
                 Log::debug('例外の処理');
             }    
@@ -99,17 +105,21 @@ class ExcelController extends Controller
         // オリジナル（連帯保証人有）
         if ($template_flg == '1') {
 
-            Log::debug('★1オリジナル（連帯保証人有）');
+            Log::debug('オリジナル（連帯保証人有）');
             $template_file = "application_yes_guarantor_original.xlsx";
         
         // オリジナル（連帯保証人無し）
         } elseif ($template_flg == '2') {
 
-            Log::debug('★1オリジナル（連帯保証人無）');
+            Log::debug('オリジナル（連帯保証人無）');
             $template_file = "application_none_guarantor_original.xlsx";
-        }
 
-        Log::debug('template_file:' .$template_file);
+        } elseif($template_flg == '3'){
+
+            Log::debug('日本セーフティー株式会社');
+            $template_file = "nihon_safety_application.xlsx";
+            
+        }
 
         /**
          * ★2 エクセル設定データ取得
@@ -135,7 +145,12 @@ class ExcelController extends Controller
 
             // オリジナル（連帯保証人無し）
             Log::debug('オリジナル（連帯保証人無）');
-            $sheet = $this->entryNoneAndNoneGuarantor($app_list, $sheet);;
+            $sheet = $this->entryNoneAndNoneGuarantor($app_list, $sheet);
+            
+        } elseif($template_flg == '3'){
+
+            Log::debug('日本セーフティー');
+            $sheet = $this->entryNihonSafety($app_list, $sheet);
             
         }
 
@@ -1239,6 +1254,595 @@ class ExcelController extends Controller
         // 値取得
         $housemate_list = $this->entryHousemate($application_id);
 
+        // デバック
+        $arrString = print_r($housemate_list , true);
+        Log::debug('messages:'.$arrString);
+
+        $common = new Common();
+
+        /**
+         * 同居人
+         */
+        // 同居人の配列数取得
+        $cnt = count($housemate_list);
+        Log::debug('cnt:'.$cnt);
+
+        // 同居人名、その他初期値
+        $housemate_etc_cell = 28;
+        Log::debug('housemate_etc_cell:'.$housemate_etc_cell);
+
+        // 同居人名フリガナ
+        $housemate_ruby_cell = 27;
+        Log::debug('housemate_ruby_cell:'.$housemate_ruby_cell);
+
+        // 同居人名、その他初期値（2P）
+        $housemate_etc_cell_2 = 45;
+        Log::debug('housemate_etc_cell_2:'.$housemate_etc_cell_2);
+
+        // 同居人名フリガナ（2P）
+        $housemate_ruby_cell_2 = 44;
+        Log::debug('housemate_ruby_cell_2:'.$housemate_ruby_cell_2);
+
+
+        for($i = 0; $i < $cnt; $i++){
+
+            /**
+             * 値取得
+             */
+            // 同居人名
+            $housemate_name = $housemate_list[$i]->housemate_name;
+
+            // フリガナ
+            $housemate_ruby = $housemate_list[$i]->housemate_ruby;
+
+            // 続柄
+            $sex_name = $housemate_list[$i]->sex_name;
+
+            // TEL
+            $housemate_mobile_tel = $housemate_list[$i]->housemate_mobile_tel;
+
+            // 生年月日
+            $housemate_birthday = $common->format_date_jp($housemate_list[$i]->housemate_birthday);
+
+            /**
+             * テンプレートの1ページ目には2人目しか記載出来ないため
+             * 3人目からは2ページ目に記載する
+             */
+
+            if($i < 2){
+                /**
+                 * Excelに値設定
+                 */
+                // 同居人名
+                $sheet->setCellValue('C' .$housemate_etc_cell, $housemate_name);
+
+                // 続柄
+                $sheet->setCellValue('F' .$housemate_etc_cell, $sex_name);
+
+                // 生年月日
+                $sheet->setCellValue('G' .$housemate_etc_cell, $housemate_birthday);
+
+                // 携帯番号
+                $sheet->setCellValue('I' .$housemate_etc_cell, $housemate_mobile_tel);
+
+                // フリガナ
+                $sheet->setCellValue('C' .$housemate_ruby_cell, $housemate_ruby);
+
+                // セルの値を足し算
+                $housemate_etc_cell = $housemate_etc_cell + 2;
+
+                $housemate_ruby_cell = $housemate_ruby_cell + 2;
+
+            }else{
+
+                // 同居人名(2P)
+                $sheet->setCellValue('C' .$housemate_etc_cell_2, $housemate_name);
+                // 続柄
+                $sheet->setCellValue('F' .$housemate_etc_cell_2, $sex_name);
+                // 生年月日
+                $sheet->setCellValue('G' .$housemate_etc_cell_2, $housemate_birthday);
+                // 携帯番号
+                $sheet->setCellValue('I' .$housemate_etc_cell_2, $housemate_mobile_tel);
+                // フリガナ
+                $sheet->setCellValue('C' .$housemate_ruby_cell_2, $housemate_ruby);
+
+                // セルの値を足し算
+                $housemate_etc_cell_2 = $housemate_etc_cell_2 + 2;
+
+                $housemate_ruby_cell_2 = $housemate_ruby_cell_2 + 2;
+            }
+
+        }
+
+        Log::debug('log_end:' .__FUNCTION__);
+
+        return $sheet;
+    }
+
+    /**
+     * 申込書作成(日本セーフティー)
+     *
+     * @param [type] $request
+     * @return $sheet（書き込み後）
+     */
+    private function entryNihonSafety($app_list, $sheet){
+        
+        Log::debug('log_start:' .__FUNCTION__);
+
+        // 申込id
+        $application_id = $app_list[0]->application_id;
+        Log::debug('application_id:' .$application_id);
+
+        // 申込日
+        $now = date('Y/m/d');
+        
+        // 入居予定日
+        $contract_start_date = $app_list[0]->contract_start_date;
+
+        // 申込区分id
+        $application_type_id = $app_list[0]->application_type_id;
+
+        // 申込区分名
+        $application_type_name = $app_list[0]->application_type_name;
+
+        // 物件用途
+        $application_use_id = $app_list[0]->application_use_id;
+
+        // 物件用途名
+        $application_use_name = $app_list[0]->application_use_name;
+
+        // 物件名
+        $real_estate_name = $app_list[0]->real_estate_name;
+
+        // 物件カナ
+        $real_estate_ruby = $app_list[0]->real_estate_ruby;
+
+        // 号室
+        $room_name = $app_list[0]->room_name;
+    
+        // 郵便番号
+        $post_number = $app_list[0]->post_number;
+
+        // 住所
+        $address = $app_list[0]->address;
+
+        // 仲介業者名
+        $broker_company_name = $app_list[0]->broker_company_name;
+
+        // 担当者
+        $broker_name = $app_list[0]->broker_name;
+
+        // 電話番号
+        $broker_tel = $app_list[0]->broker_tel;
+
+        // ペット飼育数
+        $pet_bleed = $app_list[0]->pet_bleed;
+
+        // ペット種類
+        $pet_kind = $app_list[0]->pet_kind;
+
+        // 駐輪台数
+        $bicycle_number = $app_list[0]->bicycle_number;
+
+        // 駐車台数
+        $car_number = $app_list[0]->car_number;
+
+        // 敷金
+        $security_fee = $app_list[0]->security_fee;
+
+        // 保証金
+        $deposit_fee = $app_list[0]->deposit_fee;
+
+        // 礼金
+        $key_fee = $app_list[0]->key_fee;
+
+        // 解約引き
+        $refund_fee = $app_list[0]->refund_fee;
+
+        // 家賃
+        $rent_fee = $app_list[0]->rent_fee;
+
+        // 共益費
+        $service_fee = $app_list[0]->service_fee;
+    
+        // 水道代
+        $water_fee = $app_list[0]->water_fee;
+
+        // その他
+        $ohter_fee = $app_list[0]->ohter_fee;
+
+        // 合計
+        $total_fee = $app_list[0]->total_fee;
+
+        /**
+         * 契約者
+         */
+        // 契約者名
+        $entry_contract_name = $app_list[0]->entry_contract_name;
+
+        // 契約者フリガナ
+        $entry_contract_ruby = $app_list[0]->entry_contract_ruby;
+
+        // 性別
+        $entry_contract_sex_name = $app_list[0]->entry_contract_sex_name;
+    
+        // 年齢
+        $entry_contract_age = $app_list[0]->entry_contract_age;
+
+        // 生年月日
+        $entry_contract_birthday = $app_list[0]->entry_contract_birthday;
+
+        // 郵便番号
+        $entry_contract_post_number = $app_list[0]->entry_contract_post_number;
+
+        // 住所
+        $entry_contract_address = $app_list[0]->entry_contract_address;
+
+        // 自宅TEL
+        $entry_contract_home_tel = $app_list[0]->entry_contract_home_tel;
+
+        // 携帯TEL
+        $entry_contract_mobile_tel = $app_list[0]->entry_contract_mobile_tel;
+    
+        // 携帯TEL
+        $entry_contract_mobile_tel = $app_list[0]->entry_contract_mobile_tel;
+
+        // 勤務先名
+        $entry_contract_business_name = $app_list[0]->entry_contract_business_name;
+
+        // 勤務先フリガナ
+        $entry_contract_business_ruby = $app_list[0]->entry_contract_business_ruby;
+
+        // 勤務先所在地
+        $entry_contract_business_address = $app_list[0]->entry_contract_business_address;
+
+        // TEL
+        $entry_contract_business_tel = $app_list[0]->entry_contract_business_tel;
+        
+        // 業種
+        $entry_contract_business_type = $app_list[0]->entry_contract_business_type;
+        
+        // 職種
+        $entry_contract_business_line = $app_list[0]->entry_contract_business_line;
+
+        // 勤務年数
+        $entry_contract_business_year = $app_list[0]->entry_contract_business_year;
+
+        // 雇用形態
+        $entry_contract_business_status = $app_list[0]->entry_contract_business_status;
+
+        // 年収
+        $entry_contract_income = $app_list[0]->entry_contract_income;
+
+        // 健康保険
+        $insurance_name = $app_list[0]->insurance_name;
+
+        /**
+         * 保証人
+         */
+        // 保証人名
+        $guarantor_name = $app_list[0]->guarantor_name;
+
+        // 保証人フリガナ
+        $guarantor_ruby = $app_list[0]->guarantor_ruby;
+
+        // 性別
+        $guarantor_sex_name = $app_list[0]->guarantor_sex_name;
+
+        // 年齢
+        $guarantor_age = $app_list[0]->guarantor_age;
+
+        // 生年月日
+        $guarantor_birthday = $app_list[0]->guarantor_birthday;
+
+        // 郵便番号
+        $guarantor_post_number = $app_list[0]->guarantor_post_number;
+
+        // 住所
+        $guarantor_address = $app_list[0]->guarantor_address;
+
+        // TEL
+        $guarantor_home_tel = $app_list[0]->guarantor_home_tel;
+
+        // 携帯
+        $guarantor_mobile_tel = $app_list[0]->guarantor_mobile_tel;
+
+        // 勤務先
+        $guarantor_business_name = $app_list[0]->guarantor_business_name;
+
+        // 勤務先フリガナ
+        $guarantor_business_ruby = $app_list[0]->guarantor_business_ruby;
+
+        // 勤務先住所
+        $guarantor_business_address = $app_list[0]->guarantor_business_address;
+
+        // 勤務先TEL
+        $guarantor_business_tel = $app_list[0]->guarantor_business_tel;
+        
+        // 職種
+        $guarantor_business_type = $app_list[0]->guarantor_business_type;
+        
+        // 業種
+        $guarantor_business_line = $app_list[0]->guarantor_business_line;
+        
+        // 勤続年数
+        $guarantor_business_years = $app_list[0]->guarantor_business_years;
+
+        // 雇用形態
+        $guarantor_business_status = $app_list[0]->guarantor_business_status;
+
+        // 年数
+        $guarantor_income = $app_list[0]->guarantor_income;
+
+        // 健康保険
+        $guarantor_income = $app_list[0]->guarantor_income;
+
+        // 取扱店
+        $create_user_name = $app_list[0]->create_user_name;
+
+        // TEL
+        $create_user_tel = $app_list[0]->create_user_tel;
+
+        // FAX
+        $create_user_fax = $app_list[0]->create_user_fax;
+
+        // 住所
+        $create_user_address = $app_list[0]->create_user_address;
+
+        // 担当者
+        $create_user_address = $app_list[0]->create_user_address;
+
+        /**
+         * セルに値挿入
+         */
+        // 申込日
+        $sheet->setCellValue('I1', "申込日 : " .$now);
+
+        // 入居予定日
+        $sheet->setCellValue('H3', $contract_start_date);
+
+        // 物件名
+        $sheet->setCellValue('B6', $real_estate_name);
+
+        // 物件名カナ
+        $sheet->setCellValue('B5', $real_estate_ruby);
+        
+        // 号室
+        $sheet->setCellValue('J5', $room_name);
+
+        // 郵便番号
+        $sheet->setCellValue('B7', '〒' .$post_number);
+
+        // 住所
+        $sheet->setCellValue('B8', $address);
+
+        // 仲介業者
+        $sheet->setCellValue('B9', $broker_company_name);
+
+        // 担当者
+        $sheet->setCellValue('J9', $broker_name);
+
+        // TEL
+        $sheet->setCellValue('G9', $broker_tel);
+
+        /**
+         * 申込区分
+         * 1=新規申込
+         * 2=入居中申込
+         */
+        if($application_type_id == 1){
+
+            $sheet->setCellValue('B3', '■' .$application_type_name);
+
+        }else{
+
+            $sheet->setCellValue('B4', '■' .$application_type_name);
+
+        };
+
+        /**
+         * 物件用途
+         * 1=住居
+         * 2=店舗
+         * 3=事務所
+         * 4=駐車場
+         * 5=その他
+         */
+        if($application_use_id == 1){
+
+            $sheet->setCellValue('D3', '■' .$application_use_name);
+
+        }elseif($application_use_id == 2){
+
+            $sheet->setCellValue('E3', '■' .$application_use_name);
+
+        }elseif($application_use_id == 3){
+
+            $sheet->setCellValue('F3', '■' .$application_use_name);
+
+        }elseif($application_use_id == 4){
+
+            $sheet->setCellValue('D4', '■' .$application_use_name);
+
+        }elseif($application_use_id == 5){
+
+            $sheet->setCellValue('E4', '■' .$application_use_name);
+
+        }
+
+        // 飼育頭数
+        $sheet->setCellValue('B10',$pet_bleed);
+
+        // 種類
+        $sheet->setCellValue('E10',$pet_kind);
+
+        // 駐輪台数
+        $sheet->setCellValue('H10',$bicycle_number);
+
+        // 駐車台数
+        $sheet->setCellValue('J10',$car_number);
+
+        // 敷金
+        $sheet->setCellValue('B11',$security_fee);
+        
+        // 保証金
+        $sheet->setCellValue('B12',$deposit_fee);
+
+        // 礼金
+        $sheet->setCellValue('B13',$key_fee);
+
+        // 解約引き
+        $sheet->setCellValue('B14',$refund_fee);
+
+        // 家賃
+        $sheet->setCellValue('G11',$rent_fee);
+
+        // 共益費
+        $sheet->setCellValue('G12',$service_fee);
+
+        // 水道代
+        $sheet->setCellValue('G13',$water_fee);
+
+        // その他
+        $sheet->setCellValue('G14',$ohter_fee);
+
+        // 合計
+        $sheet->setCellValue('G16',$total_fee);
+        
+        // 契約者名
+        $sheet->setCellValue('C19',$entry_contract_name);
+
+        // 契約者フリガナ
+        $sheet->setCellValue('C18',$entry_contract_ruby);
+
+        // 性別
+        $sheet->setCellValue('F19',$entry_contract_sex_name);
+
+        // 年齢
+        $sheet->setCellValue('G19',$entry_contract_age);
+
+        // 生年月日
+        $sheet->setCellValue('H19',$entry_contract_birthday);
+        
+        // 郵便番号
+        $sheet->setCellValue('C20', '〒' .$entry_contract_post_number);
+    
+        // 住所
+        $sheet->setCellValue('C21',$entry_contract_address);
+
+        // TEL
+        $sheet->setCellValue('H20',$entry_contract_home_tel);
+        
+        // 携帯
+        $sheet->setCellValue('H21',$entry_contract_mobile_tel);
+
+        // 勤務先フリガナ
+        $sheet->setCellValue('C22', $entry_contract_business_ruby);
+
+        // 勤務先名称
+        $sheet->setCellValue('C23', $entry_contract_business_name);
+
+        // 勤務先所在地
+        $sheet->setCellValue('G22', $entry_contract_business_address);
+
+        // 電話番号
+        $sheet->setCellValue('G23', $entry_contract_business_tel);
+
+        // 業種
+        $sheet->setCellValue('C24', $entry_contract_business_type);
+
+        // 職種
+        $sheet->setCellValue('E24', $entry_contract_business_line);
+    
+        // 勤務年数
+        $sheet->setCellValue('G24', $entry_contract_business_year);
+
+        // 雇用形態
+        $sheet->setCellValue('I24', $entry_contract_business_status);
+        
+        // 年収
+        $sheet->setCellValue('C25', $entry_contract_income);
+
+        // 健康保険
+        $sheet->setCellValue('G25', $insurance_name);
+
+        /**
+         * 連帯保証人
+         */
+        // 氏名
+        $sheet->setCellValue('C33', $guarantor_name);
+
+        // フリガナ
+        $sheet->setCellValue('C32', $guarantor_ruby);
+
+        // 性別
+        $sheet->setCellValue('F33', $guarantor_sex_name);
+        
+        // 年齢
+        $sheet->setCellValue('G33', $guarantor_age);
+
+        // 生年月日
+        $sheet->setCellValue('H33', $guarantor_birthday);
+
+        // 郵便番号
+        $sheet->setCellValue('C34', '〒' .$guarantor_post_number);
+        
+        // 住所
+        $sheet->setCellValue('C35', $guarantor_address);
+
+        // TEL
+        $sheet->setCellValue('H34', $guarantor_home_tel);
+
+        // 携帯TEL
+        $sheet->setCellValue('H35', $guarantor_mobile_tel);
+
+        // 勤務先名
+        $sheet->setCellValue('C37', $guarantor_business_name);
+
+        // 勤務先フリガナ
+        $sheet->setCellValue('C36', $guarantor_business_ruby);
+        
+        // 勤務先住所
+        $sheet->setCellValue('G36', $guarantor_business_address);
+        
+        // 勤務先TEL
+        $sheet->setCellValue('G37', $guarantor_business_tel);
+
+        // 職種
+        $sheet->setCellValue('C38', $guarantor_business_type);
+
+        // 業種
+        $sheet->setCellValue('E38', $guarantor_business_line);
+
+        // 勤続年数
+        $sheet->setCellValue('G38', $guarantor_business_years);
+
+        // 雇用形態
+        $sheet->setCellValue('I38', $guarantor_business_status);
+        
+        // 年収
+        $sheet->setCellValue('C39', $guarantor_income);
+
+        // 雇用保険
+        $sheet->setCellValue('G39', $insurance_name);
+
+        // 取扱店
+        $sheet->setCellValue('C41', $create_user_name);
+
+        // 住所
+        $sheet->setCellValue('C42', $create_user_address);
+
+        // TEL
+        $sheet->setCellValue('I41', $create_user_tel);
+
+        // FAX
+        $sheet->setCellValue('I42', $create_user_fax);
+
+        /**
+         * 同居人
+         */
+        // 値取得
+        $housemate_list = $this->entryHousemate($application_id);
         // デバック
         $arrString = print_r($housemate_list , true);
         Log::debug('messages:'.$arrString);

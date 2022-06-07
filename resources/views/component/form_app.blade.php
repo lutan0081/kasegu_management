@@ -1146,8 +1146,21 @@
                                     <div class="col-12 col-md-12 col-lg-4 mt-3 mb-2">
                                         <div class="card" style="min-height:25rem;">
                                             
-                                            <img src="storage/{{ $imgs->img_path }}" class="card-img-top">
-                                            
+                                            <!-- ファイル拡張子取得 -->
+                                            @php
+                                                $file_type = explode('.', $imgs->img_path)[1];
+                                            @endphp
+
+                                            <!-- ファイルタイプがPDFの場合 -->
+                                            @if($file_type == 'pdf')
+                                            <div class="pdf_icon_box">
+                                                <a href="storage/{{ $imgs->img_path }}" target="_blank"><img src="./img/pdf_icon.jpeg" class="pdf_icon_size"></a>
+                                            </div>
+                                            <!-- ファイルタイプがPDF以外の場合 -->
+                                            @else
+                                                <img src="storage/{{ $imgs->img_path }}" class="card-img-top">
+                                            @endif
+
                                             <!-- カードボディ -->
                                             <div class="card-body">
                                                 <ul class="list-group list-group-flush">

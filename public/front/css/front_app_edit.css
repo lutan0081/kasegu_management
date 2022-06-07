@@ -179,3 +179,17 @@ table, td, th {
     color: #ffffff !important;
     text-decoration: none;
 }
+
+/*==================================
+PDFの画像の調整
+===================================*/
+.pdf_icon_box{
+    width: 100%;
+    text-align: center!important;
+}
+
+.pdf_icon_size{
+    width: 30%;
+    margin: 3rem;
+    text-align: center!important;
+}
