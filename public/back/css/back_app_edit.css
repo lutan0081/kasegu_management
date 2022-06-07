@@ -172,14 +172,13 @@ table, td, th {
 PDFの画像の調整
 ===================================*/
 .pdf_icon_box{
-    width: 100%;
-    text-align: center;
+    width: 100% !important;
+    text-align: center !important;
 }
 
 .pdf_icon_size{
-    width: 30%;
-    margin: 3rem;
-    text-align: center;
+    width: 30% !important;
+    margin: 3rem !important;
+    text-align: center !important;
 }
-
 
