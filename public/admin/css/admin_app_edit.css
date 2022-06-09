@@ -168,5 +168,19 @@ table, td, th {
     background-color: #0070BD;
 }
 
+/*==================================
+PDFの画像の調整
+===================================*/
+.pdf_icon_box{
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.pdf_icon_size{
+    width: 30% !important;
+    margin: 3rem !important;
+    text-align: center !important;
+}
+
 
 
